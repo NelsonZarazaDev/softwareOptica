@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@600&family=Open+Sans:wght@300&display=swap");
+
+:root {
+  --darkBlue: #042256;
+  --white: #ffffff;
+  --grayishWhite: #f5f5f5;
+  --lightBlue: #cbedf6;
+  --blueSteel: #3d78a5;
+  --gray: #e0e0e0c4;
+  --leagueSpartan: "League Spartan", sans-serif;
+  --openSans: "League Spartan", sans-serif;
+  --openSansSlim: "font-family: 'League Spartan', sans-serif; font-family: 'Open Sans', sans-serif;";
+}
+
+body {
+  background: var(--grayishWhite);
+}
+
+/*Barra superior*/
+.userInfoBar {
+  background: var(--darkBlue);
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabText {
+  color: var(--white);
+  font-family: var(--leagueSpartan);
+}
+
+/*Sidebar*/
+.barIcon {
+  color: var(--lightBlue);
+  font-size: 30px;
+}
+
+.sidebar {
+  background: var(--lightBlue);
+}
+
+.boldFont {
+  font-weight: bolder;
+}
+
+a {
+  text-decoration: none;
+}
+
+div ~ li {
+  list-style: none;
+}
+
+ul {
+  margin: 0px;
+}
+
+ul > li {
+  margin-left: 20px;
+}
+
+.sidebarIcon {
+  margin: 0px 5px 5px 15px;
+  font-size: 22px;
+}
+
+.sidebarTextColor {
+  color: var(--darkBlue);
+  font-family: var(--leagueSpartan);
+  font-size: 18px;
+}
+
+.sidebarSize {
+  height: 100vh;
+}
+
+/*Finalizar sesion*/
+.dropdownClose {
+  font-family: var(--openSans);
+  color: var(--darkBlue);
+  margin-left: 10px;
+}
+
+/*Pie de pagina*/
+.footer {
+  background: var(--darkBlue);
+}
+
+/* Consultar usuarios administrador del sistema */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.textLabelSearch,
+.textLabelCreate,
+.textTableHeaderSearch,
+.textTableSearch,
+.textUpdateSearchLabel,
+.textMedicalHistoryLabel,
+.textUpdateSearch,
+.labelInfo {
+  font-size: 20px;
+  font-family: var(--openSans);
+  color: var(--darkBlue);
+}
+
+.buttonSearch,
+.buttonUserRegister,
+.buttonCreateHistory  {
+  border-radius: 22px;
+  font-size: 20px;
+  font-family: var(--openSans);
+  color: var(--darkBlue);
+  background-color: var(--lightBlue);
+  border: 1px solid var(--blueSteel);
+}
+
+.buttonSearch:hover,
+.buttonUserRegister:hover,
+.buttonCreateHistory:hover {
+  background: var(--darkBlue);
+  color: var(--white);
+}
+
+.textInput,
+.textInputSelect {
+  font-family: var(--openSans);
+  background-color: var(--gray);
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.textInputSelect {
+  height: 40px;
+}
+
+.textInputCreate {
+  font-family: var(--openSans);
+  background-color: var(--gray);
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.imgCreate img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--gray);
+  position: relative;
+  left: -9px;
+}
+
+.imgCreate {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: var(--gray);
+}
+
+input[readonly] {
+  background-color: #3d78a52a;
+}
+
+.table-bordered {
+  border: 1px solid;
+  border-color: var(--blueSteel);
+}
+
+.textTableHeaderSearch {
+  text-align: center;
+}
+
+.textTableSearch,
+.textUpdateSearch {
+  font-size: 17px;
+  font-family: (var(--openSansSlim));
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+  margin: auto;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: auto;
+  color: var(--darkBlue);
+  font-weight: bolder;
+  font-size: 10vw;
+}
+
+.photoInfo {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.infoPersonal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 30px;
+  color: var(--darkBlue);
+  font-family: var(--leagueSpartan);
+  font-weight: bold;
+}
+
+.textInfo {
+  font-size: 20px;
+}
+
+.infoFields {
+  font-size: 17px;
+  color: var(--darkBlue);
+  font-family: var(--openSans);
+}
+
+.hrInfo {
+  border: 4px solid red;
+  border-color: var(--darkBlue);
+  background-color: var(--blueSteel);
+}
+
+.search {
+  border: none;
+  background-color: #0000;
+}
+
+.inputSearch, .inputHistory, .inputMedicalHistory {
+  border: 1px solid var(--darkBlue);
+  border-radius: 8px;
+  color: var(--darkBlue);
+  font-family: var(--openSans);
+  text-align: left;
+  resize:none;
+}
+.inputSearch{
+  border-radius: 5px 0px 0px 5px;
+}
+
+.input-group-text {
+  background-color: var(--darkBlue);
+  border: 1px solid var(--darkBlue);
+  border-radius: 0px 5px 5px 0px;
+}
+
+.bi-search {
+  color: var(--white);
+}
+
+.icon{
+  font-size: 25px;
+}
+
+.clinicHistory{
+  border: 1px solid var(--darkBlue);
+  border-radius: 5px;
+}
+
+a.page-link{
+  background-color: var(--darkBlue);
+  color: var(--white);
+  border-radius: 10px;
+}
