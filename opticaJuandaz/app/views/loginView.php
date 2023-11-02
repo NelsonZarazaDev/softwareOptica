@@ -45,6 +45,8 @@ class loginView
 
         </html>
         <script src="public/js/login.js"></script>
+        <script src="assets/sweetalert2/sweetalert2.min.js"></script>
+            <script src="assets/sweetalert2/sweetalert2.all.min.js"></script>
 
 
 <?php

@@ -25,8 +25,9 @@ class loginController
             $_SESSION['auth'] = 'OK';
             $_SESSION['name_access'] = $array_access[0]['name_access'];
             $_SESSION['token_access']=$array_access[0]['token_access'];
+            $_SESSION['cod_employee']=$array_access[0]['cod_employee'];
         }
-/*         header('Location: index.php'); */
+        header('Location: index.php');
     }
 
     function closeSession()

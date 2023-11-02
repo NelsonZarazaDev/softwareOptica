@@ -7,7 +7,7 @@ class createUsersView
         <script>
             document.getElementById("textInfo").innerHTML = "Crear Usuarios";
         </script>
-
+ 
         <form id="insert_User">
             <div class="container imgCreate col-12 col-lg-12 mt-3" id="result"></div>
             <div class="col d-flex flex-sm-column justify-content-between">
@@ -82,14 +82,6 @@ class createUsersView
                         <option class="textInputCreate p-2" value="R0001">Due&ntilde;a</option>
                         <option class="textInputCreate p-2" value="R0002">Optometra</option>
                         <option class="textInputCreate p-2" value="R0003">Administrador del sistema</option>
-                    </select>
-                </div> 
-
-                <div class="col d-flex flex-sm-column justify-content-between">
-                    <label for="sexo" class="textLabelCreate">Pais:</label>
-                    <select id="id_country" class="textInputCreate textInputSelect col-8 col-lg-10 p-2" name="id_country" required>
-                        <option class="textInputCreate p-2" selected></option>
-                        <option class="textInputCreate p-2" value="1">Colombia</option>
                     </select>
                 </div> 
 

@@ -172,7 +172,7 @@ class menuView
                     <div class="content p-2 col-12 col-lg-10">
                         <div class="container">
                             <div id="content">
-                                <div class="col-6 col-lg-12 welcome">¡ BIENVENIDA !</div>
+                                <div class="col-6 col-lg-12 welcome">¡ BIENVENIDOS !</div>
                             </div>
                         </div>
                     </div>
@@ -192,11 +192,15 @@ class menuView
             <script src="assets/jquery/jquery.min.js"></script>
             <script src="assets/toastr/toastr.min.js"></script>
             <script src="assets/jquery-ui/jquery-ui.min.js"></script>
+            <script src="assets/sweetalert2/sweetalert2.min.js"></script>
+            <script src="assets/sweetalert2/sweetalert2.all.min.js"></script>
             <script src="assets/moment/moment.min.js"></script>
             <script src="assets/fullcalendar/main.js"></script>
             <script src="public/js/Menu.js"></script>
             <script src="public/js/systemAdministrator.js"></script>
             <script src="public/js/secretary.js"></script>
+            <script src="public/js/scheduleAppointment.js"></script>
+
 
         </body>
 

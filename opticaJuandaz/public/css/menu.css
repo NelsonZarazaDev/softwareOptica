@@ -111,13 +111,23 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .buttonSearch,
 .buttonUserRegister,
-.buttonCreateHistory  {
+.buttonCreateHistory, .buttonDelete  {
   border-radius: 22px;
   font-size: 20px;
   font-family: var(--openSans);
   color: var(--darkBlue);
   background-color: var(--lightBlue);
   border: 1px solid var(--blueSteel);
+}
+
+.buttonDelete{
+  background-color: #ff0000;
+  
+}
+
+.buttonDelete:hover{
+  background: rgb(209, 59, 59);
+  color: var(--white);
 }
 
 .buttonSearch:hover,
@@ -137,13 +147,26 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .textInputSelect {
   height: 40px;
+  color: var(--darkBlue);
+}
+
+.textInputSelectModal{
+  height: 40px;
+  color: var(--darkBlue);
+  font-family: var(--openSans);
+  border: 1px solid rgb(68, 67, 67);
+  border-radius: 8px;
 }
 
 .textInputCreate {
   font-family: var(--openSans);
-  background-color: var(--gray);
-  border: 1px solid black;
+  border: 1px solid #d2d2d2;
   border-radius: 8px;
+  color: var(--darkBlue);
+}
+
+.text{
+  background-color: var(--gray);
 }
 
 .imgCreate img {
