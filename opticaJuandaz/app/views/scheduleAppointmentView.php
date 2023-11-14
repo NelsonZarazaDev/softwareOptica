@@ -1,7 +1,7 @@
 <?php
 class scheduleAppointmentView
 {
-    function paginateScheduleAppointment($arraySchedule)
+    function paginateScheduleAppointment($arraySchedule,$array_department,$array_city)
     {
 ?>
 
@@ -61,6 +61,42 @@ class scheduleAppointmentView
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Fecha</label>
                         <input class="textInputCreate text p-2" type="date" name="date" id="date">
+                    </div>
+
+                    <div class="d-flex flex-column mt-3">
+                        <label class="textLabelCreate">Departamento:</label>
+                        <select class="textInputCreate textInputSelect p-2" name="id_department" id="id_department" required>
+                            <option value=""></option>
+                            <?php
+                            if ($array_department) {
+                                foreach ($array_department as $object_department) {
+                                    $id_department = $object_department['id_department'];
+                                    $name_department = $object_department['name_department'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_department; ?>"><?php echo $name_department; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="d-flex flex-column mt-3">
+                        <label class="textLabelCreate">Ciudad:</label>
+                        <select class="textInputCreate textInputSelect p-2" name="id_city" id="id_city" required>
+                            <option value=""></option>
+                            <?php
+                            if ($array_city) {
+                                foreach ($array_city as $object_city) {
+                                    $id_city = $object_city['id_city'];
+                                    $name_city = $object_city['name_city'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
                     </div>
 
                 </div>
@@ -126,7 +162,7 @@ class scheduleAppointmentView
                     var fecha = '<?php echo ($object_schedule['date_quote']); ?>';
                     var hora = '<?php echo ($object_schedule['hour_quote']); ?>';
                     var name = '<?php echo ($object_schedule['name_person']); ?>';
-                    var surname = '<?php echo ($object_schedule['surname']); ?>';
+                    var surname = '<?php echo ($object_schedule['surname_person']); ?>';
                     var phone = '<?php echo ($object_schedule['phone_person']); ?>';
 
                     // Parsea la fecha en el formato "DD/MM/YYYY"
@@ -150,7 +186,7 @@ class scheduleAppointmentView
                                 backgroundColor: '#042256',
                                 borderColor: '#042256',
                                 textColor: '#fff',
-                                token: '<?php echo ($object_schedule['token']); ?>'
+                                token: '<?php echo ($object_schedule['token_quote']); ?>'
                             };
                             eventsArray.push(event); // Agrega el evento al array
                         }
@@ -176,7 +212,6 @@ class scheduleAppointmentView
                         }
                     },
                     // Agrega el manejador de eventos eventClick
-                    // Agrega el manejador de eventos eventClick
                     eventClick: function(info) {
                         var token = info.event.extendedProps.token;
                         Schedule.showSchedule(token);
@@ -192,7 +227,7 @@ class scheduleAppointmentView
 
 
             // Obtén el elemento del campo de fecha
-            var datePicker = document.getElementById("datePicker");
+            var datePicker = document.getElementById("date");
 
             // Obtiene la fecha actual en formato ISO (AAAA-MM-DD)
             var today = new Date().toISOString().split("T")[0];
@@ -211,10 +246,10 @@ class scheduleAppointmentView
         $date_quote = $array_schedule[0]['date_quote'];
         $hour_quote = $array_schedule[0]['hour_quote'];
         $name_person = $array_schedule[0]['name_person'];
-        $surname = $array_schedule[0]['surname'];
+        $surname = $array_schedule[0]['surname_person'];
         $document_person = $array_schedule[0]['document_person'];
         $phone_person = $array_schedule[0]['phone_person'];
-        $token = $array_schedule[0]['token'];
+        $token = $array_schedule[0]['token_quote'];
         $id_person = $array_schedule[0]['id_person'];
     ?>
         <div class="card">
@@ -222,22 +257,27 @@ class scheduleAppointmentView
                 <form id="update_schedule" class="row">
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token" name="token" value="<?php echo $token; ?>" readonly>
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="id_person" name="id_person" value="<?php echo $id_person; ?>" readonly>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_phone" name="current_phone" value="<?php echo $phone_person; ?>" readonly>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_hour" name="current_hour" value="<?php echo $hour_quote; ?>" readonly>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_date" name="current_date" value="<?php echo $date_quote; ?>" readonly>
+
+
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
                         <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name_person" name="name_person" value="<?php echo $name_person; ?>" readonly>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Apellidos</label>
-                        <input type="text" class="form-control textUpdateSearch"" id="surname" name="surname" value="<?php echo $surname;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" surname" name="surname" value="<?php echo $surname;  ?>" readonly>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Documento</label>
-                        <input type="text" class="form-control textUpdateSearch"" id="document_person" name="document_person" value="<?php echo $document_person;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $document_person;  ?>" readonly>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Telefono</label>
-                        <input type="number" class="form-control textUpdateSearch"" id="phone_person" name="phone_person" value="<?php echo $phone_person;  ?>" maxlength="10">
+                        <input type="number" class="form-control textUpdateSearch"" id=" phone_person" name="phone_person" value="<?php echo $phone_person;  ?>" maxlength="10">
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column">
@@ -267,7 +307,7 @@ class scheduleAppointmentView
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Fecha</label>
-                        <input type="date" class="form-control textUpdateSearch" id="date_quote" name="date_quote" value="<?php echo $date_quote;   ?>" maxlength="10">
+                        <input class="form-control textUpdateSearch" type="date" name="date_quote" id="date_quote" value="<?php echo $date_quote;   ?>">
                     </div>
 
 
@@ -285,12 +325,22 @@ class scheduleAppointmentView
                 </button>
 
                 <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonDelete" onclick="Schedule.deleteSchedule()">
-                    <i class="bi bi-floppy me-2 ms-2"></i> Eliminar
+                    <i class="bi bi-trash3 me-2 ms-2"></i> Eliminar
                 </button>
             </div>
             </form>
         </div>
         </div>
+        <script>
+            // Obtén el elemento del campo de fecha
+            var datePicker = document.getElementById("date_quote");
+
+            // Obtiene la fecha actual en formato ISO (AAAA-MM-DD)
+            var today = new Date().toISOString().split("T")[0];
+
+            // Establece la fecha mínima (mínimo seleccionable) en el campo de entrada de fecha
+            datePicker.setAttribute("min", today);
+        </script>
 <?php
     }
 }

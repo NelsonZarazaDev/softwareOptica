@@ -1,7 +1,7 @@
  <?php
     class scheduleAppointmentModel
     {
-        private $connection;
+        private $connection; 
 
         function __construct($connection)
         {
@@ -19,10 +19,10 @@
             return $this->connection->fetchAll();
         }
 
-        function insertPerson($name, $surname, $document, $phone)
+        function insertPerson($name, $surname, $document, $phone,$department,$city)
         {
-            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname)
-        VALUES ('$name', '$document', '$phone', '$surname')";
+            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id)
+        VALUES ('$name', '$document', '$phone', '$surname', '$department', '$city')";
             $this->connection->query($sql);
         }
 
@@ -35,27 +35,26 @@
 
         function insertSchedule($id_person, $hour, $date, $cod_secretary, $token)
         {
-            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token)
+            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token_quote)
         VALUES ('$id_person','$date','$hour','$cod_secretary','$token')";
             $this->connection->query($sql);
         }
 
-        function paginateScheduleAppointment()
+        function paginateScheduleAppointment($cod_secretary)
         {
-            $sql = "SELECT q.date_quote, q.hour_quote, p.name_person, p.surname, p.phone_person, q.token FROM optica.quote q inner join optica.person p
-        on (q.id_person=p.id_person)";
+            $sql = "SELECT q.date_quote, q.hour_quote, p.name_person, p.surname_person, p.phone_person, q.token_quote FROM optica.quote q inner join optica.person p
+            on (q.id_person=p.id_person) WHERE cod_secretary='$cod_secretary'";
             $this->connection->query($sql);
             return $this->connection->fetchAll();
-        }
+        } 
 
         function selectQuote($array)
         {
-            $field = $array['field'];
             $value = $array['value'];
 
-            $sql = "SELECT q.date_quote, q.hour_quote, p.name_person, p.surname, p.phone_person, p.document_person, q.token, p.id_person
+            $sql = "SELECT q.date_quote, q.hour_quote, p.name_person, p.surname_person, p.phone_person, p.document_person, q.token_quote, p.id_person
         FROM optica.quote q inner join optica.person p
-        on (q.id_person=p.id_person) WHERE $field='$value'";
+        on (q.id_person=p.id_person) WHERE token_quote='$value'";
             $this->connection->query($sql);
             return $this->connection->fetchall();
         }
@@ -72,12 +71,13 @@
             $sql = "UPDATE optica.quote SET 
         hour_quote = '$hour_quote_name',
         date_quote = '$date_quote_name'
-        WHERE token = '$token'";
+        WHERE token_quote = '$token'";
             $this->connection->query($sql);
         }
+        
         function deleteSchedule($token)
         {
-            $sql = "DELETE FROM optica.quote WHERE token = '$token'";
+            $sql = "DELETE FROM optica.quote WHERE token_quote = '$token'";
             $this->connection->query($sql);
         }
     }

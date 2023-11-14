@@ -10,7 +10,6 @@ class ScheduleJS {
       .then(function (data) {
         try {
           object = JSON.parse(data);
-
           toastr.error(object.message);
         } catch (error) {
           document.querySelector("#content").innerHTML = data;

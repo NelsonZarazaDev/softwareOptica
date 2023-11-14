@@ -238,6 +238,10 @@ input[readonly] {
   overflow: hidden;
 }
 
+.table-responsive{
+  border-radius: 15px;
+}
+
 .infoPersonal {
   display: flex;
   flex-direction: column;

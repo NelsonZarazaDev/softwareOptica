@@ -6,10 +6,24 @@ class createUsersController
 {  
     function paginateCreateUsers()
     {
+        require_once "app/models/departmentModel.php";
+        require_once "app/models/cityModel.php";
+        require_once "app/models/roleModel.php";
+
         $conecction = new connection();
+
+        $departmentModel=new departmentModel($conecction);
+        $cityModel=new cityModel($conecction);
+        $roleModel=new roleModel($conecction);
+
         $createUsersView = new createUsersView();
- 
-        $createUsersView->paginateCreateUsers();
+
+        $array_department=$departmentModel->paginateDepartment();
+        $array_city=$cityModel->paginateCity();
+        $array_role=$roleModel->paginateRole();
+        $createUsersView->paginateCreateUsers($array_department,$array_city,$array_role);
+        
+
     }
 
     function insertUser()
@@ -32,7 +46,8 @@ class createUsersController
         $token_access=date('YmdHms').microtime(true).rand(1,1000).$_SESSION['id_access'].uniqid().rand(100,1000);
         $location_departament_id = $_POST['id_departament'];
         $location_city_id = $_POST['id_city']; 
+        $location_address=$_POST['address'];
         
-         $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access,$token_access, $location_departament_id, $location_city_id);
+         $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access,$token_access, $location_departament_id, $location_city_id,$location_address);
         }
 }

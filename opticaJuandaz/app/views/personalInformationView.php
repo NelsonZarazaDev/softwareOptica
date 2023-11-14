@@ -15,8 +15,8 @@ class personalInformationView
                     <img src="public/img/<?php echo $_SESSION['name_access']; ?>.jpg" class="photoInfo img-fluid">
                 </div>
                 <?php
-                $id_access=$array_info[0]['id_access'];
-                $id_role=$array_info[0]['id_role'];
+                $name_role=$array_info[0]['name_role'];
+                $cod_employee=$array_info[0]['cod_employee'];
                 $name_access = $array_info[0]['name_access'];
                 $surname_access = $array_info[0]['surname_access'];
                 $document_access = $array_info[0]['document_access'];
@@ -27,14 +27,12 @@ class personalInformationView
                 $email_access = $array_info[0]['email_access'];
                 $address_access = $array_info[0]['address_access'];
                 $sex_access = $array_info[0]['sex_access'];
-                $location_departament_id = $array_info[0]['location_departament_id'];
-                $location_city_id = $array_info[0]['location_city_id'];
-                $role=array('R0000'=>'Secretaria','R0001'=>'Propietaria','R0002'=>'Optometra','R0003'=>'Administrador del sistema');
-                $roleSearch=$role[$id_role];
+                $name_department = $array_info[0]['name_department'];
+                $name_city = $array_info[0]['name_city'];
                 ?>
                 <div class="infoPersonal mt-sm-2">
                     <div><?php echo $name_access." ".$surname_access; ?></div>
-                    <div class="textInfo"><?php echo $roleSearch; ?></div>
+                    <div class="textInfo"><?php echo $name_role; ?></div>
                     <div class="textInfo">Fecha de ingreso: <?php echo $date_admission_access; ?></div>
                 </div>
             </div>
@@ -45,7 +43,7 @@ class personalInformationView
             <div class="row row-cols-lg-2 ms-sm-1 ms-lg-4">
                 <div>
                     <label class="labelInfo">Codigo:</label>
-                    <div class="mb-3 infoFields"><?php echo $id_access; ?></div>
+                    <div class="mb-3 infoFields"><?php echo $cod_employee; ?></div>
                 </div>
                 <div>
                     <label class="labelInfo">Nombres:</label>
@@ -85,11 +83,11 @@ class personalInformationView
                 </div>
                 <div>
                     <label class="labelInfo">Ciudad:</label>
-                    <div class="mb-3 infoFields"><?php echo $location_city_id; ?></div>
+                    <div class="mb-3 infoFields"><?php echo $name_city; ?></div>
                 </div>
                 <div>
                     <label class="labelInfo">Departamento:</label>
-                    <div class="mb-3 infoFields"><?php echo $location_departament_id; ?></div>
+                    <div class="mb-3 infoFields"><?php echo $name_department; ?></div>
                 </div>
             </div>
         </div>

@@ -6,8 +6,11 @@ class searchUsersController
 {
     function paginateSearchUsers()
     {
+
         $connection = new connection();
+
         $searchUsersModel = new searchUsersModel($connection);
+
         $searchUsersView = new searchUsersView();
 
         $array_searchUsers = $searchUsersModel->paginateSearchUsers();
@@ -16,14 +19,17 @@ class searchUsersController
 
     function showSearchUsers()
     {
+        require_once "app/models/roleModel.php";
+
         $connection = new connection();
+        $roleModel = new roleModel($connection);
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();
-
+        $array_role=$roleModel->paginateRole();
         $token = $_POST['token_access'];
 
         $array_searchUsers = $searchUsersModel->selectUsers(['field' => 'token_access', 'value' => $token]);
-        $searchUsersView->showSearchUsers($array_searchUsers);
+        $searchUsersView->showSearchUsers($array_searchUsers,$array_role);
     }
 
     function updateSearchUsers()

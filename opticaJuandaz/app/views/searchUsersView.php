@@ -20,7 +20,7 @@ class searchUsersView
             document.getElementById("textInfo").innerHTML = "Buscar Usuarios";
         </script>
         <br>
-        <div class="table-responsive">
+        <div class="table-responsive"> 
             <table class="table table-hover" id="myTable">
                 <thead>
                     <tr>
@@ -84,7 +84,7 @@ class searchUsersView
 
     <?php
     }
-    function showSearchUsers($array_searchUsers)
+    function showSearchUsers($array_searchUsers, $array_role)
     {
         $name_access = $array_searchUsers[0]['name_access'];
         $surname_access = $array_searchUsers[0]['surname_access'];
@@ -99,6 +99,7 @@ class searchUsersView
         $sex_access = $array_searchUsers[0]['sex_access'];
         $password_access = $array_searchUsers[0]['password_access'];
         $status_access = $array_searchUsers[0]['status_access'];
+        $name_role=$array_searchUsers[0]['name_role'];
         $token_access = $array_searchUsers[0]['token_access'];
     ?>
         <div class="card">
@@ -122,11 +123,18 @@ class searchUsersView
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Rol</label>
                         <select id="id_role" name="id_role" class="form-control p-2" required>
-                            <option class="p-2" value="<?php echo $id_role; ?>"><?php echo $id_role; ?></option>
-                            <option class="p-2" value="R0000">Secretaria</option>
-                            <option class="p-2" value="R0001">Due&ntilde;a</option>
-                            <option class="p-2" value="R0002">Optometra</option>
-                            <option class="p-2" value="R0003">Administrador del sistema</option>
+                        <option value=""><?php echo $name_role; ?></option>
+                            <?php
+                            if ($array_role) {
+                                foreach ($array_role as $object_role) {
+                                    $id_role = $object_role['id_role'];
+                                    $name_role = $object_role['name_role'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_role; ?>"><?php echo $name_role; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
                         </select>
                     </div>
 

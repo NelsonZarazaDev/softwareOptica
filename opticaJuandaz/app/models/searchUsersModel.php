@@ -19,7 +19,10 @@ class searchUsersModel
         $field=$array['field'];
         $value=$array['value'];
 
-        $sql="SELECT * FROM optica.access WHERE $field='$value'";
+        $sql="SELECT a.*, r.name_role
+        from optica.access a inner join optica.role r
+        on (a.id_role = r.id_role)
+        WHERE $field='$value'";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }
@@ -27,7 +30,7 @@ class searchUsersModel
     function updateSearchUsers($token_access,$id_role_id,$id_role_name,$phone_access_id,$phone_access_name,$email_access_id,$email_access_name,$address_access_id,$address_access_name,$status_access_id,$status_access_name,$password_access_id,$password_access_name)
     {
         $sql="UPDATE optica.access SET 
-        id_role='$id_role_name',
+        id_role='$id_role_name', 
         phone_access= '$phone_access_name',
         email_access = '$email_access_name',
         address_access = '$address_access_name',
@@ -38,7 +41,7 @@ class searchUsersModel
     }
 
     function search($search){
-        $sql="SELECT * FROM optica.access WHERE id_access LIKE '%$search%' OR document_access LIKE '%$search%' OR email_access LIKE '%$search%'";
+        $sql="SELECT * FROM optica.access WHERE cod_employee LIKE '%$search%' OR document_access LIKE '%$search%' OR email_access LIKE '%$search%'";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }

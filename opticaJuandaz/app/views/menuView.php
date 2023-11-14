@@ -169,7 +169,7 @@ class menuView
 
 
 
-                    <div class="content p-2 col-12 col-lg-10">
+                    <div class="content p-4 col-12 col-lg-10">
                         <div class="container">
                             <div id="content">
                                 <div class="col-6 col-lg-12 welcome">¡ BIENVENIDOS !</div>

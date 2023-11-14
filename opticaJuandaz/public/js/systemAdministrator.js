@@ -23,10 +23,37 @@ class systemAdministratorJs {
     function mostrarAlertaCampoVacio(campo) {
       Swal.fire({
         title: "ERROR",
-        text: "Hay campos vacío",
+        text: "Hay campos vacíos",
         icon: "error",
         confirmButtonText: "Aceptar",
       });
+    }
+
+    const isAnyFieldEmpty = (
+      name.value.trim() === "" ||
+      id_city.value.trim() === "" ||
+      id_departament.value.trim() === "" ||
+      id_role.value.trim() === "" ||
+      password.value.trim() === "" ||
+      sex.value.trim() === "" ||
+      address.value.trim() === "" ||
+      email.value.trim() === "" ||
+      years_experience.value.trim() === "" ||
+      phone.value.trim() === "" ||
+      admission.value.trim() === "" ||
+      birth_date.value.trim() === "" ||
+      documento.value.trim() === "" ||
+      surname.value.trim() === ""
+    );
+
+    if (isAnyFieldEmpty) {
+      Swal.fire({
+        title: "ERROR",
+        text: "Hay campos vacíos",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return;
     }
 
     const nombreValido = /^[A-Za-zÁáÉéÍíÓóÚúÑñüÜ\s]+$/.test(name.value.trim());
@@ -162,48 +189,25 @@ class systemAdministratorJs {
       mostrarAlertaCampoVacio("Apellidos");
       return;
     } else {
-      Swal.fire({
-        title: "LISTO",
-        text: "USUARIO CREADO",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
-
       var object = new FormData(document.querySelector("#insert_User"));
 
       fetch("createUsersController/insertUser", {
         method: "POST",
-        body: object,
-  
+      body: object,
+    })
+      .then((resp) => resp.text())
+      .then(function (data) {
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#content").innerHTML = data;
+          toastr.success("el registro fue guardado");
+        }
       })
-        .then((resp) => resp.text())
-        .then(function (data) {
-          try {
-            const responseObject = JSON.parse(data);
-            if (responseObject.success) {
-              // Usuario creado con éxito
-              Swal.fire({
-                title: "LISTO",
-                text: "USUARIO CREADO",
-                icon: "success",
-                confirmButtonText: "Aceptar",
-              });
-            } else {
-              // Ocurrió un error al crear el usuario
-              Swal.fire({
-                title: "ERROR",
-                text: responseObject.message,
-                icon: "error",
-                confirmButtonText: "Aceptar",
-              });
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
 
