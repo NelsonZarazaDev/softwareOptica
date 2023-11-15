@@ -25,6 +25,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
 }
 
 .tabText {
@@ -111,7 +112,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .buttonSearch,
 .buttonUserRegister,
-.buttonCreateHistory, .buttonDelete  {
+.buttonCreateHistory,
+.buttonDelete {
   border-radius: 22px;
   font-size: 20px;
   font-family: var(--openSans);
@@ -120,12 +122,11 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid var(--blueSteel);
 }
 
-.buttonDelete{
+.buttonDelete {
   background-color: #ff0000;
-  
 }
 
-.buttonDelete:hover{
+.buttonDelete:hover {
   background: rgb(209, 59, 59);
   color: var(--white);
 }
@@ -150,7 +151,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--darkBlue);
 }
 
-.textInputSelectModal{
+.textInputSelectModal {
   height: 40px;
   color: var(--darkBlue);
   font-family: var(--openSans);
@@ -172,7 +173,6 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--gray);
-  position: relative;
   left: -9px;
 }
 
@@ -181,6 +181,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 200px;
   border-radius: 50%;
   background-color: var(--gray);
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
 input[readonly] {
@@ -207,7 +208,6 @@ input[readonly] {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 60%;
   color: var(--bs-modal-color);
   pointer-events: auto;
   background-color: var(--bs-modal-bg);
@@ -223,26 +223,25 @@ input[readonly] {
   justify-content: center;
   height: 100vh;
   width: auto;
-  color: var(--darkBlue);
+  color: #9d9e9f7d;
   font-weight: bolder;
   font-size: 5vw;
 }
 
 .photoInfo {
   width: 250px;
-  height: 250px;
+  height: auto;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
-.rounded-circle{
+.rounded-circle {
   height: 45px;
   width: auto;
 }
 
-
-.table-responsive{
+.table-responsive {
   border-radius: 15px;
 }
 
@@ -255,6 +254,7 @@ input[readonly] {
   color: var(--darkBlue);
   font-family: var(--leagueSpartan);
   font-weight: bold;
+  align-items: center;
 }
 
 .textInfo {
@@ -268,9 +268,8 @@ input[readonly] {
 }
 
 .hrInfo {
-  border: 4px solid red;
-  border-color: var(--darkBlue);
-  background-color: var(--blueSteel);
+  background: rgb(0 96 255);
+  height: 5px;
 }
 
 .search {
@@ -278,17 +277,19 @@ input[readonly] {
   background-color: #0000;
 }
 
-.inputSearch, .inputHistory, .inputMedicalHistory {
+.inputSearch,
+.inputHistory,
+.inputMedicalHistory {
   border: none;
   border-radius: 8px;
   color: var(--darkBlue);
   font-family: var(--openSans);
   text-align: left;
-  resize:none;
+  resize: none;
   box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
-.inputSearch{
+.inputSearch {
   border-radius: 5px 0px 0px 5px;
 }
 
@@ -302,17 +303,21 @@ input[readonly] {
   color: var(--white);
 }
 
-.icon{
+.icon {
   font-size: 25px;
 }
 
-.clinicHistory{
+.clinicHistory {
   border: 1px solid var(--darkBlue);
   border-radius: 5px;
 }
 
-a.page-link{
+a.page-link {
   background-color: var(--darkBlue);
   color: var(--white);
   border-radius: 10px;
+}
+
+.infoWorker{
+  text-align-last: center;
 }

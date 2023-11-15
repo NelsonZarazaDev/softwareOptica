@@ -43,8 +43,8 @@ class menuView
                 <div class="row m-0">
 
                     <div class="sidebar navbar-expand-lg col-12 col-lg-2 m-0 p-0">
-                        <div class="container p-0">
-                            <div class="collapse navbar-collapse h-100 m-0 p-0 align-items-start" id="sidebar">
+                        <div class="container pt-4">
+                            <div class="collapse navbar-collapse h-100 m-0 pt-5 align-items-start" id="sidebar">
                                 <div class="d-flex flex-column sidebarSize">
                                     <img src="public/img/Logo.png" alt="Logo" class="img-fluid p-3">
                                     <?php if ($id_role == "R0000") { ?>
@@ -154,7 +154,7 @@ class menuView
 
 
                     <div id="my_modal" class="modal" tabindex="-1">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog modal-xxl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title textTableHeaderSearch" id="modal_title"></h5>
@@ -169,8 +169,8 @@ class menuView
 
 
 
-                    <div class="content p-4 col-12 col-lg-10">
-                        <div class="container">
+                    <div class="content p-4 p-lg-5 col-12 col-lg-10">
+                        <div class="container pt-5">
                             <div id="content">
                                 <div class="col-6 col-lg-12 welcome">¡ BIENVENIDOS !</div>
                             </div>

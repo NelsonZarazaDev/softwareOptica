@@ -37,7 +37,7 @@ class ScheduleJS {
       .catch(function (error) {
         console.log(error);
       });
-  } 
+  }
 
   updateSchedule() {
     var object = new FormData(document.querySelector("#update_schedule"));

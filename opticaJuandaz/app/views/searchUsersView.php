@@ -6,7 +6,7 @@ class searchUsersView
 ?>
         <div class="card-body mt-4">
             <form id="formSearch">
-                <div class="input-group flex-nowrap justify-content-end">
+                <div class="input-group position-static justify-content-end">
                     <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Codigo, Documento, Email">
                     <span class="input-group-text" id="">
                         <button type="button" class="search" onclick="Administrador.search()">
@@ -40,7 +40,7 @@ class searchUsersView
                 <tbody>
                     <?php
                     foreach ($array_searchUsers as $object_searchUsers) {
-                        $id_role = $object_searchUsers['id_role'];
+                        $name_role = $object_searchUsers['name_role'];
                         $name_access = $object_searchUsers['name_access'];
                         $surname_access = $object_searchUsers['surname_access'];
                         $document_access = $object_searchUsers['document_access'];
@@ -55,7 +55,7 @@ class searchUsersView
                         <tr class="text-center">
                             <td class="textTableSearch text-start"><?php echo $name_access; ?></td>
                             <td class="textTableSearch text-start"><?php echo $surname_access; ?></td>
-                            <td class="textTableSearch"><?php echo $id_role; ?></td>
+                            <td class="textTableSearch"><?php echo $name_role; ?></td>
                             <td class="textTableSearch"><?php echo $document_access; ?></td>
                             <td class="textTableSearch"><?php echo $phone_access; ?></td>
                             <td class="textTableSearch"><?php echo $date_admission_access; ?></td>
@@ -123,7 +123,7 @@ class searchUsersView
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Rol</label>
                         <select id="id_role" name="id_role" class="form-control p-2" required>
-                        <option value=""><?php echo $name_role; ?></option>
+                        <option value="<?php echo $id_role; ?>"><?php echo $name_role; ?></option>
                             <?php
                             if ($array_role) {
                                 foreach ($array_role as $object_role) {

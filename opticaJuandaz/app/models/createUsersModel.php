@@ -7,6 +7,12 @@ class createUsersModel
     { 
         $this->connection = new Connection();
     }
+
+    function diplicateCreate($email_access,$document_access){
+        $sql="SELECT * FROM optica.access where email_access='$email_access' or document_access='$document_access'";
+        $this->connection->query($sql);
+        return $this->connection->fetchAll();
+    }
  
     function insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id, $location_address)
     {

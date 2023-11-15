@@ -25,11 +25,11 @@ class searchUsersController
         $roleModel = new roleModel($connection);
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();
-        $array_role=$roleModel->paginateRole();
+        $array_role = $roleModel->paginateRole();
         $token = $_POST['token_access'];
 
         $array_searchUsers = $searchUsersModel->selectUsers(['field' => 'token_access', 'value' => $token]);
-        $searchUsersView->showSearchUsers($array_searchUsers,$array_role);
+        $searchUsersView->showSearchUsers($array_searchUsers, $array_role);
     }
 
     function updateSearchUsers()
@@ -39,8 +39,8 @@ class searchUsersController
         $searchUsersView = new searchUsersView();
 
         $token_access = $_POST['token_access'];
-        $id_role_id= $_POST['id_role'];
-        $id_role_name= $_POST['id_role'];
+        $id_role_id = $_POST['id_role'];
+        $id_role_name = $_POST['id_role'];
         $phone_access_id = $_POST['phone_access'];
         $phone_access_name = $_POST['phone_access'];
         $email_access_id = $_POST['email_access'];
@@ -52,34 +52,44 @@ class searchUsersController
         $password_access_id = $_POST['password_access'];
         $password_access_name = $_POST['password_access'];
 
-        if(!filter_var($email_access_id, FILTER_VALIDATE_EMAIL)){
-            exit('Correo Mal estructurado');
-        }
-        if(strlen($phone_access_id) < 10){
-            exit('Numero telefonico invalido');
-        }
-        if(strlen($password_access_id)<8){
-            exit('La contrasena debe tener 8 o mas caracteres');
+        $arrayDuplicateSearch = $searchUsersModel->duplicateSearch($id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name, $token_access);
+        if (empty($id_role_id) || empty($phone_access_id) || empty($email_access_id) || empty($address_access_id) || empty($status_access_id) || empty($password_access_id)) {
+            $array_message = ['error' => true, 'message' => 'Todos los campos son obligatorios.'];
+            exit(json_encode($array_message));
         }
 
-        if(empty($phone_access_id) || empty($email_access_id) || empty($address_access_id) || empty($password_access_id)){
-            exit('Ningun campo debe estar vacio');
+        if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*+#?&])[A-Za-z\d@$!%*+#?&]{8,}$/', $password_access_id)) {
+            $array_message = ['error' => true, 'message' => 'La contraseña debe tener al menos 8 caracteres, incluir letras, números y caracteres especiales (@$!%*+#?&)'];
+            exit(json_encode($array_message));
         }
 
-        
-        $searchUsersModel->updateSearchUsers($token_access,$id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name);
+        if (!preg_match('/^\d{10}$/', $phone_access_id)) {
+            $array_message = ['error' => true, 'message' => 'El teléfono debe contener 10 números'];
+            exit(json_encode($array_message));
+        }
+
+        if (!filter_var($email_access_id, FILTER_VALIDATE_EMAIL)) {
+            $array_message = ['error' => true, 'message' => 'Ingrese un correo electrónico válido'];
+            exit(json_encode($array_message));
+        }
+
+
+        if ($arrayDuplicateSearch) {
+            $array_message = ['message' => 'No se a realizado cambios'];
+            exit(json_encode($array_message));
+        }
+        $searchUsersModel->updateSearchUsers($token_access, $id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name);
         $array_updateSearchUsers = $searchUsersModel->paginateSearchUsers();
         $searchUsersView->paginateSearchUsers($array_updateSearchUsers);
     }
 
-    function search(){
-        $connection=new Connection();
-        $searchUsersModel=new searchUsersModel($connection);
-        $searchUsersView=new searchUsersView();
-        $search=$_POST['search'];
-
+    function search()
+    {
+        $connection = new Connection();
+        $searchUsersModel = new searchUsersModel($connection);
+        $searchUsersView = new searchUsersView();
+        $search = $_POST['search'];
         $array_search = $searchUsersModel->search($search);
         $searchUsersView->paginateSearchUsers($array_search);
-
     }
 }

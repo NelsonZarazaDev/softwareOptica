@@ -9,7 +9,9 @@ class searchUsersModel
 
     function paginateSearchUsers()
     {
-        $sql="SELECT * FROM optica.access";
+        $sql="SELECT r.name_role, a.*
+        from optica.access a inner join optica.role r
+        on (a.id_role=r.id_role)";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     } 
@@ -23,6 +25,13 @@ class searchUsersModel
         from optica.access a inner join optica.role r
         on (a.id_role = r.id_role)
         WHERE $field='$value'";
+        $this->connection->query($sql);
+        return $this->connection->fetchall();
+    }
+
+    function duplicateSearch($id_role_id,$id_role_name,$phone_access_id,$phone_access_name, $email_access_id,$email_access_name,$address_access_id,$address_access_name, $status_access_id, $status_access_name,$password_access_id, $password_access_name, $token_access){
+        $sql="SELECT * FROM optica.access WHERE id_role='$id_role_name' and phone_access='$phone_access_id' and email_access='$email_access_id'
+        and address_access='$address_access_id' and status_access='$status_access_id' and password_access='$password_access_id' and token_access='$token_access'";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }
@@ -41,7 +50,9 @@ class searchUsersModel
     }
 
     function search($search){
-        $sql="SELECT * FROM optica.access WHERE cod_employee LIKE '%$search%' OR document_access LIKE '%$search%' OR email_access LIKE '%$search%'";
+        $sql="SELECT r.name_role, a.*
+        FROM optica.access a inner join optica.role r
+        on (a.id_role=r.id_role) WHERE cod_employee LIKE '%$search%' OR document_access LIKE '%$search%' OR email_access LIKE '%$search%'";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }
