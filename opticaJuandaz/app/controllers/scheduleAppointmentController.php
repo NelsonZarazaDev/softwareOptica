@@ -62,8 +62,22 @@ class scheduleAppointmentController
         if ($arraySchedule) {
             $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
             exit(json_encode($array_message));
-        } else {
+        }
 
+        $array_person=$scheduleAppointmentModel->duplicatePerson($document);
+        
+        if($array_person)
+        {
+            $id_person = $scheduleAppointmentModel->showId($document, $phone);
+            $id_person = $id_person[0]['id_person'];
+            $cod_secretary = $_SESSION['cod_employee'];
+            $scheduleAppointmentModel->insertSchedule($id_person, $hour, $date, $cod_secretary, $token);
+            $array_department = $departmentModel->paginateDepartment();
+            $array_city = $cityModel->paginateCity();
+            $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
+            $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city);
+        }
+        else{
             $scheduleAppointmentModel->insertPerson($name, $surname, $document, $phone, $department, $city);
             $id_person = $scheduleAppointmentModel->showId($document, $phone);
             $id_person = $id_person[0]['id_person'];

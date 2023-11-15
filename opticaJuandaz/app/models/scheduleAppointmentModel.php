@@ -19,6 +19,12 @@
             return $this->connection->fetchAll();
         }
 
+        function duplicatePerson($document){
+            $sql="SELECT * FROM optica.person where document_person='$document'";
+            $this->connection->query($sql);
+            return $this->connection->fetchAll();
+        }
+
         function insertPerson($name, $surname, $document, $phone,$department,$city)
         {
             $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id)

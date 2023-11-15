@@ -140,9 +140,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .textInput,
 .textInputSelect {
   font-family: var(--openSans);
-  background-color: var(--gray);
-  border: 1px solid black;
+  border: none;
   border-radius: 8px;
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
 .textInputSelect {
@@ -160,13 +160,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .textInputCreate {
   font-family: var(--openSans);
-  border: 1px solid #d2d2d2;
+  border: none;
   border-radius: 8px;
   color: var(--darkBlue);
-}
-
-.text{
-  background-color: var(--gray);
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
 .imgCreate img {
@@ -203,6 +200,7 @@ input[readonly] {
 .textUpdateSearch {
   font-size: 17px;
   font-family: (var(--openSansSlim));
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
 .modal-content {
@@ -222,13 +220,12 @@ input[readonly] {
 
 .welcome {
   display: flex;
-  align-items: center;
   justify-content: center;
   height: 100vh;
   width: auto;
   color: var(--darkBlue);
   font-weight: bolder;
-  font-size: 10vw;
+  font-size: 5vw;
 }
 
 .photoInfo {
@@ -236,7 +233,14 @@ input[readonly] {
   height: 250px;
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
+
+.rounded-circle{
+  height: 45px;
+  width: auto;
+}
+
 
 .table-responsive{
   border-radius: 15px;
@@ -275,13 +279,15 @@ input[readonly] {
 }
 
 .inputSearch, .inputHistory, .inputMedicalHistory {
-  border: 1px solid var(--darkBlue);
+  border: none;
   border-radius: 8px;
   color: var(--darkBlue);
   font-family: var(--openSans);
   text-align: left;
   resize:none;
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
+
 .inputSearch{
   border-radius: 5px 0px 0px 5px;
 }

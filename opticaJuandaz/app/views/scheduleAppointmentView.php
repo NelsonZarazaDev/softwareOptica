@@ -100,7 +100,7 @@ class scheduleAppointmentView
                     </div>
 
                 </div>
-                <button type="button" class="align-items-center buttonUserRegister col-10 col-lg-2 mt-3 p-2 d-flex justify-content-center" onclick="Schedule.insertSchedule()">
+                <button type="button" class="align-items-center buttonUserRegister col-10 col-lg-2 mt-4 p-2 d-flex justify-content-center" onclick="Schedule.insertSchedule()">
                     <i class="bi bi-cursor me-2"></i>Crear
                 </button>
             </form>

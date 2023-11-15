@@ -21,7 +21,7 @@ class menuView
         </head>
 
         <body>
-            <div class="userInfoBar container-fluid">
+            <div class="userInfoBar p-2 container-fluid">
                 <button class="navbar-toggler d-block d-md-block d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar">
                     <i class="barIcon bi bi-list"></i>
                 </button>
@@ -46,7 +46,7 @@ class menuView
                         <div class="container p-0">
                             <div class="collapse navbar-collapse h-100 m-0 p-0 align-items-start" id="sidebar">
                                 <div class="d-flex flex-column sidebarSize">
-                                    <img src="public/img/Logo.png" alt="Logo" class="img-fluid p-2">
+                                    <img src="public/img/Logo.png" alt="Logo" class="img-fluid p-3">
                                     <?php if ($id_role == "R0000") { ?>
                                         <!-- Secretaria -->
                                         <hr>

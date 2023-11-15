@@ -155,7 +155,7 @@ class ClinicHistory
 
 
 
-                                    <button type="button" class="align-items-center m-2 col-10 col-lg-4   mt-2 p-2 justify-content-center buttonSearch" onclick="">
+                                    <button type="button" class="align-items-center m-2 col-10 col-lg-4   mt-4 p-2 justify-content-center buttonSearch" onclick="">
                                         <i class="bi bi-floppy me-2 ms-2"></i> Guardar
                                     </button>
 

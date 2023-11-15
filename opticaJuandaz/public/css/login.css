@@ -48,11 +48,12 @@ body {
     margin: 15px;
     padding: 10px;
     font-size: 20px;
-    border: 1px solid black;
+    border: none;
     border-radius: 15px;
     background: rgba(245, 245, 245, 0);
     outline: none;
     font-family: var(--openSans);
+    box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
 .emailContainer:hover,
