@@ -11,4 +11,4 @@ class clinicHistoryController
 
     function createUser(){}
 }
-?>
+?> 

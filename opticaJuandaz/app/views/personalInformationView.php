@@ -40,7 +40,7 @@ class personalInformationView
 
 
 
-            <div class="row row-cols-lg-3 ms-sm-1 ms-lg-4">
+            <div class="row row-cols-lg-3 ms-sm-1 ms-lg-4 g-lg-3">
                 <div>
                     <label class="labelInfo">Codigo:</label>
                     <div class="mb-3 infoFields"><?php echo $cod_employee; ?></div>

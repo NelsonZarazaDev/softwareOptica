@@ -39,6 +39,24 @@ class ScheduleJS {
       });
   }
 
+  showCheckAppointmentSchedule(token) {
+    var object = new FormData();
+    object.append("token", token);
+    $("#my_modal").modal("show");
+    document.querySelector("#modal_title").innerHTML = "Informacion de reserva";
+    fetch("checkAppointmentScheduleController/showCheckAppointmentSchedule", {
+      method: "POST",
+      body: object,
+    })
+      .then((resp) => resp.text())
+      .then(function (data) {
+        document.querySelector("#modal_content").innerHTML = data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   updateSchedule() {
     var object = new FormData(document.querySelector("#update_schedule"));
 
@@ -63,22 +81,36 @@ class ScheduleJS {
   deleteSchedule() {
     var object = new FormData(document.querySelector("#update_schedule"));
 
-    fetch("scheduleAppointmentController/deleteSchedule", {
-      method: "POST",
-      body: object,
-    })
-      .then((resp) => resp.text())
-      .then(function (data) {
-        try {
-          object = JSON.parse(data);
-          toastr.error(object.message);
-        } catch (error) {
-          document.querySelector("#content").innerHTML = data;
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    Swal.fire({
+      title: "¿Está seguro?",
+      text: "¡No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("scheduleAppointmentController/deleteSchedule", {
+          method: "POST",
+          body: object,
+        })
+          .then((resp) => resp.text())
+          .then(function (data) {
+            try {
+              object = JSON.parse(data);
+              toastr.error(object.message);
+            } catch (error) {
+              document.querySelector("#content").innerHTML = data;
+              toastr.success('Reserva eliminada');
+
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    });
   }
 }
 

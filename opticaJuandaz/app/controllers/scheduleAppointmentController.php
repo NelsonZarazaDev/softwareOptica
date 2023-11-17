@@ -64,10 +64,9 @@ class scheduleAppointmentController
             exit(json_encode($array_message));
         }
 
-        $array_person=$scheduleAppointmentModel->duplicatePerson($document);
-        
-        if($array_person)
-        {
+        $array_person = $scheduleAppointmentModel->duplicatePerson($document);
+
+        if ($array_person) {
             $id_person = $scheduleAppointmentModel->showId($document, $phone);
             $id_person = $id_person[0]['id_person'];
             $cod_secretary = $_SESSION['cod_employee'];
@@ -76,8 +75,7 @@ class scheduleAppointmentController
             $array_city = $cityModel->paginateCity();
             $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
             $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city);
-        }
-        else{
+        } else {
             $scheduleAppointmentModel->insertPerson($name, $surname, $document, $phone, $department, $city);
             $id_person = $scheduleAppointmentModel->showId($document, $phone);
             $id_person = $id_person[0]['id_person'];
@@ -131,7 +129,6 @@ class scheduleAppointmentController
             exit(json_encode($array_message));
         }
 
-
         // Validar que el teléfono contenga 10 números
         if (!preg_match('/^\d{10}$/', $phone_person_id)) {
             $array_message = ['message' => 'El teléfono debe contener exactamente 10 números'];
@@ -168,14 +165,14 @@ class scheduleAppointmentController
         require_once "app/models/cityModel.php";
         require_once "app/models/departmentModel.php";
         $connection = new connection();
-        $departmentModel=new departmentModel($connection);
-        $cityModel=new cityModel($connection);
+        $departmentModel = new departmentModel($connection);
+        $cityModel = new cityModel($connection);
         $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
         $scheduleAppointmentView = new scheduleAppointmentView();
 
         $token = $_POST['token'];
-        $array_department=$departmentModel->paginateDepartment();
-            $array_city=$cityModel->paginateCity();
+        $array_department = $departmentModel->paginateDepartment();
+        $array_city = $cityModel->paginateCity();
         $arraySchedule = $scheduleAppointmentModel->deleteSchedule($token);
         $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city);
     }

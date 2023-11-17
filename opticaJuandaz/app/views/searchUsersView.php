@@ -104,7 +104,7 @@ class searchUsersView
     ?>
         <div class="card">
             <div class="card-body">
-                <form id="update_User" class="row">
+                <form id="update_User" class="row gx-5 gy-3">
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" readonly>
 
                     <div class="col-lg-6 d-flex flex-column ">

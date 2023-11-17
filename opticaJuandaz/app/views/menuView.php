@@ -54,7 +54,7 @@ class menuView
                                         <div class="collapse collapse-horizontal optionsNav" id="collapseListNav1">
                                             <ul>
                                                 <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistoryController/paginateClinicHistory')">Historia Clinica</a></li>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('')">Buscar</a></li>
+                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
                                             </ul>
                                         </div>
                                         <hr>
@@ -78,13 +78,13 @@ class menuView
                                         <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav2" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
                                         <div class="collapse collapse-horizontal optionsNav" id="collapseListNav2">
                                             <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('')">Buscar</a></li>
+                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
                                             </ul>
                                         </div>
                                         <hr>
 
                                         <li>
-                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('')">
+                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('checkAppointmentScheduleController/paginateCheckAppointmentSchedule')">
                                                 <i class="bi bi-calendar4 sidebarIcon"></i>
                                                 Reserva Cita Medica
                                             </a>
@@ -92,7 +92,7 @@ class menuView
                                         <hr>
 
                                         <li>
-                                            <a href="#" class="boldFont sidebarTextColor">
+                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('statisticsController/paginateStatistics')">
                                                 <i class="bi bi-graph-up-arrow sidebarIcon"></i>
                                                 Estadistica
                                             </a>
@@ -153,8 +153,8 @@ class menuView
 
 
 
-                    <div id="my_modal" class="modal" tabindex="-1">
-                        <div class="modal-dialog modal-xxl">
+                    <div id="my_modal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title textTableHeaderSearch" id="modal_title"></h5>
@@ -169,7 +169,8 @@ class menuView
 
 
 
-                    <div class="content p-4 p-lg-5 col-12 col-lg-10">
+
+                    <div class="content p-lg-5 col-12 col-lg-10">
                         <div class="container pt-5">
                             <div id="content">
                                 <div class="col-6 col-lg-12 welcome">¡ BIENVENIDOS !</div>
@@ -200,7 +201,7 @@ class menuView
             <script src="public/js/systemAdministrator.js"></script>
             <script src="public/js/secretary.js"></script>
             <script src="public/js/scheduleAppointment.js"></script>
-
+            <script src="public/chart.js/Chart.min.js"></script>
 
         </body>
 

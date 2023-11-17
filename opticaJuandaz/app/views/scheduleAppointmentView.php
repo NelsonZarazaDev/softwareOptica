@@ -1,7 +1,7 @@
 <?php
 class scheduleAppointmentView
 {
-    function paginateScheduleAppointment($arraySchedule,$array_department,$array_city)
+    function paginateScheduleAppointment($arraySchedule, $array_department, $array_city)
     {
 ?>
 
@@ -254,7 +254,7 @@ class scheduleAppointmentView
     ?>
         <div class="card">
             <div class="card-body">
-                <form id="update_schedule" class="row">
+                <form id="update_schedule" class="row gx-5 gy-3">
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token" name="token" value="<?php echo $token; ?>" readonly>
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="id_person" name="id_person" value="<?php echo $id_person; ?>" readonly>
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_phone" name="current_phone" value="<?php echo $phone_person; ?>" readonly>
@@ -309,9 +309,6 @@ class scheduleAppointmentView
                         <label class="textUpdateSearchLabel">Fecha</label>
                         <input class="form-control textUpdateSearch" type="date" name="date_quote" id="date_quote" value="<?php echo $date_quote;   ?>">
                     </div>
-
-
-
             </div>
             <input type="hidden" id="token" name="token" value="<?php echo $token;  ?>">
             <input type="hidden" id="id_person" name="id_person" value="<?php echo $id_person;  ?>">
@@ -332,13 +329,8 @@ class scheduleAppointmentView
         </div>
         </div>
         <script>
-            // Obtén el elemento del campo de fecha
             var datePicker = document.getElementById("date_quote");
-
-            // Obtiene la fecha actual en formato ISO (AAAA-MM-DD)
             var today = new Date().toISOString().split("T")[0];
-
-            // Establece la fecha mínima (mínimo seleccionable) en el campo de entrada de fecha
             datePicker.setAttribute("min", today);
         </script>
 <?php

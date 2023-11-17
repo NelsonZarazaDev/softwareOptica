@@ -26,6 +26,7 @@ body {
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  z-index: 10000;
 }
 
 .tabText {
@@ -208,6 +209,7 @@ input[readonly] {
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 60%;
   color: var(--bs-modal-color);
   pointer-events: auto;
   background-color: var(--bs-modal-bg);
@@ -223,7 +225,7 @@ input[readonly] {
   justify-content: center;
   height: 100vh;
   width: auto;
-  color: #9d9e9f7d;
+  color: #c4c4c47d;
   font-weight: bolder;
   font-size: 5vw;
 }
@@ -318,6 +320,37 @@ a.page-link {
   border-radius: 10px;
 }
 
-.infoWorker{
+.infoWorker {
   text-align-last: center;
 }
+
+.totalStatistics {
+  width: 350px;
+  height: 50px;
+  background-color: #042256;
+}
+
+.statisticalCircle {
+  width: 150px;
+  height: 150px;
+  background-color: #000000;
+  border-radius: 50%;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.textStatistical {
+  font-size: 20px;
+  text-align: center;
+  color: var(--darkBlue);
+  font-weight: bold;
+  font-family: var(--openSans);
+}
+
+.fc .fc-toolbar-title {
+  font-size: 35px;
+  margin: 0;
+  color: var(--darkBlue);
+}
+
