@@ -8,7 +8,8 @@ class ClinicHistory
             document.getElementById("textInfo").innerHTML = "Crear historia clinica";
         </script>
 
-        <div class="card-body d-flex justify-content-between pb-3 mt-4">
+        <div class="card-body d-flex align-items-center flex-column flex-lg-row justify-content-lg-between pb-3 mt-4">
+
             <button type="button" class="col-12 buttonCreateHistory align-items-center col-lg-2 p-1 d-flex justify-content-center mb-2 ml-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="bi bi-person-add me-2 icon"></i> Crear
             </button>
@@ -73,8 +74,8 @@ class ClinicHistory
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
+            <div class="modal-dialog modal-xl mt-5 pt-5">
+                <div class="modal-content-history">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Crear historia clinica</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -82,7 +83,7 @@ class ClinicHistory
                     <div class="modal-body">
                         <div class="card">
                             <div class="card-body">
-                                <form id="update_User" class="row gx-4 gy-2 row-cols-1 row-cols-md-2">
+                                <form id="update_User" class="row gx-4 gy-2 row-cols-1 row-cols-md-3">
                                     <div class="col-lg-6 justify-content-between">
                                         <label class="textMedicalHistoryLabel">Documento</label>
                                         <input type="text" name="" id="" class="form-control inputMedicalHistory">

@@ -1,7 +1,7 @@
 <?php
 class scheduleAppointmentView
 {
-    function paginateScheduleAppointment($arraySchedule, $array_department, $array_city)
+    function paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist)
     {
 ?>
 
@@ -92,6 +92,25 @@ class scheduleAppointmentView
                                     $name_city = $object_city['name_city'];
                             ?>
                                     <option class="textInputCreate p-2" value="<?php echo $id_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="d-flex flex-column mt-3">
+                        <label class="textLabelCreate">Optometra:</label>
+                        <select class="textInputCreate textInputSelect p-2" name="id_optometrist" id="id_optometrist" required>
+                            <option value=""></option>
+                            <?php
+                            if ($array_optometrist) {
+                                foreach ($array_optometrist as $object_optometrist) {
+                                    $cod_employee = $object_optometrist['cod_employee'];
+                                    $name_access = $object_optometrist['name_access'];
+                                    $surname_access = $object_optometrist['surname_access'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $cod_employee; ?>"><?php echo $name_access," ".$surname_access; ?></option>
                             <?php
                                 }
                             }
@@ -241,7 +260,7 @@ class scheduleAppointmentView
 
     <?php
     }
-    function showSchedule($array_schedule)
+    function showSchedule($array_schedule,$array_optometrist)
     {
         $date_quote = $array_schedule[0]['date_quote'];
         $hour_quote = $array_schedule[0]['hour_quote'];
@@ -251,6 +270,10 @@ class scheduleAppointmentView
         $phone_person = $array_schedule[0]['phone_person'];
         $token = $array_schedule[0]['token_quote'];
         $id_person = $array_schedule[0]['id_person'];
+        $cod_expert = $array_schedule[0]['cod_expert'];
+        $name_access=$array_schedule[0]['name_access'];
+        $surname_access=$array_schedule[0]['surname_access'];
+        
     ?>
         <div class="card">
             <div class="card-body">
@@ -260,6 +283,7 @@ class scheduleAppointmentView
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_phone" name="current_phone" value="<?php echo $phone_person; ?>" readonly>
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_hour" name="current_hour" value="<?php echo $hour_quote; ?>" readonly>
                     <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_date" name="current_date" value="<?php echo $date_quote; ?>" readonly>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_cod_expert" name="current_cod_expert" value="<?php echo $cod_expert; ?>" readonly> 
 
 
                     <div class="col-lg-6 d-flex flex-column ">
@@ -309,12 +333,33 @@ class scheduleAppointmentView
                         <label class="textUpdateSearchLabel">Fecha</label>
                         <input class="form-control textUpdateSearch" type="date" name="date_quote" id="date_quote" value="<?php echo $date_quote;   ?>">
                     </div>
+
+                    <div class="col-lg-6 d-flex flex-column">
+                        <label class="textLabelCreate">Optometra:</label>
+                        <select class="textInputCreate textInputSelect p-2" name="id_optometrist" id="id_optometrist" required>
+                        <option class="p-2" value="<?php echo $cod_expert; ?>"><?php echo $name_access." ".$surname_access; ?></option>
+                            <?php
+                            if ($array_optometrist) {
+                                foreach ($array_optometrist as $object_optometrist) {
+                                    $cod_employee = $object_optometrist['cod_employee'];
+                                    $name_access = $object_optometrist['name_access'];
+                                    $surname_access = $object_optometrist['surname_access'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $cod_employee; ?>"><?php echo $name_access," ".$surname_access; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
             </div>
             <input type="hidden" id="token" name="token" value="<?php echo $token;  ?>">
             <input type="hidden" id="id_person" name="id_person" value="<?php echo $id_person;  ?>">
             <input type="hidden" id="phone_person" name="phone_person" value="<?php echo $phone_person;  ?>">
             <input type="hidden" id="hour_quote" name="hour_quote" value="<?php echo $hour_quote;  ?>">
             <input type="hidden" id="date_quote" name="date_quote" value="<?php echo $date_quote;  ?>">
+            <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
 
             <div class="d-flex flex-sm-column flex-lg-row">
                 <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">

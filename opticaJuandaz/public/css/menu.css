@@ -354,3 +354,17 @@ a.page-link {
   color: var(--darkBlue);
 }
 
+.modal-content-history {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+  margin: auto;
+}

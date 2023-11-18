@@ -154,7 +154,7 @@ class menuView
 
 
                     <div id="my_modal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog modal-xl mt-5 pt-5">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title textTableHeaderSearch" id="modal_title"></h5>
