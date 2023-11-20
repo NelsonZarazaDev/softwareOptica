@@ -125,15 +125,21 @@ class ClinicHistory
                                         <input type="text" name="" id="" class="form-control inputMedicalHistory">
                                     </div>
                                     <div class="col-lg-6 justify-content-between">
-                                        <label class="textMedicalHistoryLabel">Apellidos acompa&ntilde;ante</label>
-                                        <input type="text" name="" id="" class="form-control inputMedicalHistory">
+                                        <label class="textMedicalHistoryLabel">Parentesco acompañante</label>
+                                        <select name="parentesco_acompanante" id="parentesco_acompanante" class="form-select inputMedicalHistory">
+                                            <option value="">Seleccionar parentesco</option>
+                                            <option value="padre">Padre</option>
+                                            <option value="madre">Madre</option>
+                                            <option value="hermano">Hermano</option>
+                                            
+                                        </select>
                                     </div>
                                     <div class="col-lg-6 justify-content-between">
                                         <label class="textMedicalHistoryLabel">Telefono acompa&ntilde;ante</label>
                                         <input type="text" name="" id="" class="form-control inputMedicalHistory">
                                     </div>
 
-                                    <!-- <div class="col-lg-6 justify-content-between">
+                                    <div class="col-lg-6 justify-content-between">
                                         <label class="textMedicalHistoryLabel">Motivo de consulta</label>
                                         <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory"></textarea>
                                     </div>
@@ -148,7 +154,7 @@ class ClinicHistory
                                     <div class="col-lg-6 justify-content-between">
                                         <label class="textMedicalHistoryLabel">Antecedentes familiares</label>
                                         <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory"></textarea>
-                                    </div> -->
+                                    </div>
 
 
 

@@ -1,7 +1,7 @@
 <?php
 class searchMedicalHistoryView
 {
-    function paginateSearchMedicalHistory()
+    function paginateSearchMedicalHistory($array_searchMedicalHistory)
     {
 ?>
         <div class="card-body mt-4">
@@ -9,7 +9,7 @@ class searchMedicalHistoryView
                 <div class="input-group position-static justify-content-end">
                     <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento">
                     <span class="input-group-text" id="">
-                        <button type="button" class="search" onclick="Administrador.search()">
+                        <button type="button" class="search" onclick="Administrador.buscar()">
                             <i class="bi bi-search"></i>
                         </button>
                     </span>
@@ -33,12 +33,40 @@ class searchMedicalHistoryView
                     </tr>
                 </thead>
                 <tbody>
-
+                <?php
+                    foreach ($array_searchMedicalHistory as $object_searchMedicalHistory) {
+                        $document_person = $object_searchMedicalHistory['document_person'];
+                        $name_person = $object_searchMedicalHistory['name_person'];
+                        $phone_person = $object_searchMedicalHistory['phone_person'];
+                        $age_person = $object_searchMedicalHistory['age_person'];
+                        $birth_date_person = $object_searchMedicalHistory['birth_date_person'];
+                        
+                    ?>
+                        <tr class="text-center">
+                            <td class="textTableSearch"><?php echo $document_person; ?></td>
+                            <td class="textTableSearch text-start"><?php echo $name_person; ?></td>
+                            <td class="textTableSearch"><?php echo  $phone_person ; ?></td>
+                            <td class="textTableSearch text-start"><?php echo $age_person ; ?></td>
+                            <td class="textTableSearch"><?php echo $birth_date_person; ?></td>
+                            <td class="textTableSearch" style="text-align:center;"><i class="bi bi-pencil-square" onclick="Administrador.showSearchMedicalHistory('<?php echo $token_access ?>')"></i></td>
+                            </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                </ul>
+            </nav>
 
         </div>
         <script src="public/js/function.js"></script>
-<?php
+
+
+
+
+
+    <?php
     }
 }
