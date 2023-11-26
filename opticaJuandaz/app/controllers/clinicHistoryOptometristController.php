@@ -11,7 +11,8 @@ class clinicHistoryOptometristController
         $clinicHistoryView = new clinicHistoryOptometristView();
         date_default_timezone_set('America/Bogota');
         $date = date('Y-m-d');
-        $array_history = $clinicHistoryModel->paginateClinicHistory($date);
+        $cod_optometry = $_SESSION['cod_employee'];
+        $array_history = $clinicHistoryModel->paginateClinicHistory($date, $cod_optometry);
         $clinicHistoryView->paginateClinicHistory($array_history);
     }
 
@@ -161,8 +162,8 @@ class clinicHistoryOptometristController
         );
         date_default_timezone_set('America/Bogota');
         $date = date('Y-m-d');
-        $array_history = $clinicHistoryModel->paginateClinicHistory($date);
+        $cod_optometry = $_SESSION['cod_employee'];
+        $array_history = $clinicHistoryModel->paginateClinicHistory($date, $cod_optometry);
         $clinicHistoryView->paginateClinicHistory($array_history);
-
     }
 }

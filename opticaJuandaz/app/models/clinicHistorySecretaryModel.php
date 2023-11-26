@@ -6,11 +6,11 @@ class clinicHistorySecretaryModel
     {
         $this->connection = $connection;
     }
-
+ 
     function paginateClinicHistory($date)
     {
         $sql = "SELECT m.id_medical_history, p.document_person,p.phone_person,p.age_person,p.name_person,
-        p.surname_person,p.birth_date_person, m.token_medical_history
+        p.surname_person,p.birth_date_person, m.token_medical_history, m.hour_history
                 from optica.person p inner join optica.medical_history m
                 on p.id_person = m.id_person
                 where m.date_history='$date' order by m.id_medical_history DESC ";

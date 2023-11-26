@@ -245,13 +245,8 @@ class scheduleAppointmentView
 
 
 
-            // Obtén el elemento del campo de fecha
             var datePicker = document.getElementById("date");
-
-            // Obtiene la fecha actual en formato ISO (AAAA-MM-DD)
             var today = new Date().toISOString().split("T")[0];
-
-            // Establece la fecha mínima (mínimo seleccionable) en el campo de entrada de fecha
             datePicker.setAttribute("min", today);
         </script>
 
@@ -273,17 +268,25 @@ class scheduleAppointmentView
         $cod_expert = $array_schedule[0]['cod_expert'];
         $name_access = $array_schedule[0]['name_access'];
         $surname_access = $array_schedule[0]['surname_access'];
+        date_default_timezone_set('America/Bogota');
+        $fechaActual = date('Y-m-d');
+        $currentTime = new DateTime();
+        $hour_historyObject = new DateTime($hour_quote);
+        $difference = $currentTime->diff($hour_historyObject);
+        $subtraction = $difference->format('%H:%i:%s');
+
+
 
     ?>
         <div class="card">
             <div class="card-body">
                 <form id="update_schedule" class="row gx-5 gy-3">
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_token" name="current_token" value="<?php echo $token; ?>" >
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_id_person" name="current_id_person" value="<?php echo $id_person; ?>" >
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_phone" name="current_phone" value="<?php echo $phone_person; ?>" >
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_hour" name="current_hour" value="<?php echo $hour_quote; ?>" >
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_date" name="current_date" value="<?php echo $date_quote; ?>" >
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_cod_expert" name="current_cod_expert" value="<?php echo $cod_expert; ?>" >
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_token" name="current_token" value="<?php echo $token; ?>">
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_id_person" name="current_id_person" value="<?php echo $id_person; ?>">
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_phone" name="current_phone" value="<?php echo $phone_person; ?>">
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_hour" name="current_hour" value="<?php echo $hour_quote; ?>">
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_date" name="current_date" value="<?php echo $date_quote; ?>">
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="current_cod_expert" name="current_cod_expert" value="<?php echo $cod_expert; ?>">
 
 
                     <div class="col-lg-6 d-flex flex-column ">
@@ -329,10 +332,11 @@ class scheduleAppointmentView
                         </select>
                     </div>
 
-                    <div class="col-lg-6 d-flex flex-column ">
-                        <label class="textUpdateSearchLabel">Fecha</label>
-                        <input class="form-control textUpdateSearch" type="date" name="date_quote" id="date_quote" value="<?php echo $date_quote;   ?>">
+                    <div class="col-lg-6 d-flex flex-column">
+                        <label class="textLabelCreate">Fecha</label>
+                        <input class="form-control textUpdateSearch" type="date" name="date_quote" id="date_quote" value="<?php echo $date_quote; ?>" min="<?php echo date('Y-m-d'); ?>">
                     </div>
+
 
                     <div class="col-lg-6 d-flex flex-column">
                         <label class="textLabelCreate">Optometra:</label>
@@ -352,30 +356,32 @@ class scheduleAppointmentView
                             ?>
                         </select>
                     </div>
-                </div>
-                <input type="hidden" id="token" name="token" value="<?php echo $token;  ?>">
-                <input type="hidden" id="id_person" name="id_person" value="<?php echo $id_person;  ?>">
-                <input type="hidden" id="phone_person" name="phone_person" value="<?php echo $phone_person;  ?>">
-                <input type="hidden" id="hour_quote" name="hour_quote" value="<?php echo $hour_quote;  ?>">
-                <input type="hidden" id="date_quote" name="date_quote" value="<?php echo $date_quote;  ?>">
-                <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
+            </div>
+            <input type="hidden" id="token" name="token" value="<?php echo $token;  ?>">
+            <input type="hidden" id="id_person" name="id_person" value="<?php echo $id_person;  ?>">
+            <input type="hidden" id="phone_person" name="phone_person" value="<?php echo $phone_person;  ?>">
+            <input type="hidden" id="hour_quote" name="hour_quote" value="<?php echo $hour_quote;  ?>">
+            <input type="hidden" id="date_quote" name="date_quote" value="<?php echo $date_quote;  ?>">
+            <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
 
-                <div class="d-flex flex-sm-column flex-lg-row">
-                    <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
-                    <i class="bi bi-floppy me-2 ms-2"></i> Guardar
-                    </button>
 
+            <div class="d-flex flex-sm-column flex-lg-row">
+                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual) { ?>
+                <?php } else { ?><button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
+                        <i class="bi bi-floppy me-2 ms-2"></i> Guardar
+                    </button> <?php } ?>
+
+                <?php if ($date_quote == $fechaActual) { ?> <?php } else { ?>
                     <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonDelete" onclick="Schedule.deleteSchedule()">
-                    <i class="bi bi-trash3 me-2 ms-2"></i> Eliminar
+                        <i class="bi bi-trash3 me-2 ms-2"></i> Eliminar
                     </button>
-                </div>
+                <?php } ?>
+            </div>
             </form>
         </div>
-        </div>
         <script>
-            var datePicker = document.getElementById("date_quote");
-            var today = new Date().toISOString().split("T")[0];
-            datePicker.setAttribute("min", today);
+            var dateInput = document.getElementById('date_quote');
+            dateInput.min = new Date().toISOString().split('T')[0];
         </script>
 <?php
     }

@@ -20,7 +20,7 @@ class searchUsersView
             document.getElementById("textInfo").innerHTML = "Buscar Usuarios";
         </script>
         <br>
-        <div class="table-responsive"> 
+        <div class="table-responsive">
             <table class="table table-hover" id="myTable">
                 <thead>
                     <tr>
@@ -99,13 +99,13 @@ class searchUsersView
         $sex_access = $array_searchUsers[0]['sex_access'];
         $password_access = $array_searchUsers[0]['password_access'];
         $status_access = $array_searchUsers[0]['status_access'];
-        $name_role=$array_searchUsers[0]['name_role'];
+        $name_role = $array_searchUsers[0]['name_role'];
         $token_access = $array_searchUsers[0]['token_access'];
     ?>
         <div class="card">
             <div class="card-body">
                 <form id="update_User" class="row gx-5 gy-3">
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" disabled>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" >
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
@@ -123,7 +123,7 @@ class searchUsersView
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Rol</label>
                         <select id="id_role" name="id_role" class="form-control p-2" required>
-                        <option value="<?php echo $id_role; ?>"><?php echo $name_role; ?></option>
+                            <option value="<?php echo $id_role; ?>"><?php echo $name_role; ?></option>
                             <?php
                             if ($array_role) {
                                 foreach ($array_role as $object_role) {

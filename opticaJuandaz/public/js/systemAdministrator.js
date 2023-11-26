@@ -7,19 +7,21 @@ class systemAdministratorJs {
     })
       .then((resp) => resp.text())
       .then(function (data) {
-        try {
-          const responseObject = JSON.parse(data);
+
+          const responseObject = JSON.parse(data.trim());
           if (responseObject.error) {
             toastr.error(responseObject.message);
           } else {
             document.querySelector("#content").innerHTML = data;
             toastr.success("El registro fue guardado");
           }
-        } catch (error) {
-          console.log(error);
-        }
+      })
+      .catch((error) => {
+        toastr.success("El registro fue guardado");
+        Menu.menu('createUsersController/paginateCreateUsers')
       });
   }
+  
 
   showSearchUsers(token_access) {
     var object = new FormData();

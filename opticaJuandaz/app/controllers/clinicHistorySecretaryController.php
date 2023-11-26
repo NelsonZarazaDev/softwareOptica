@@ -3,7 +3,7 @@ require_once "app/views/clinicHistorySecretaryView.php";
 require_once "app/models/clinicHistorySecretaryModel.php";
 
 class clinicHistorySecretaryController
-{
+{ 
     function paginateClinicHistory()
     {
         $connection = new Connection();
@@ -381,4 +381,6 @@ class clinicHistorySecretaryController
             $clinicHistoryView->updateModalHistoryClinic($array_history, $array_department, $array_city, $array_optometrist);
         }
     }
+
+    
 }

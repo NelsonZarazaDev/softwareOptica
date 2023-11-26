@@ -4,7 +4,7 @@ require_once "app/views/searchMedicalHistoryView.php";
 
 class searchMedicalHistoryController{
     function paginateSearchMedicalHistory()
-    {
+    { 
  
         $connection = new connection();
         $searchMedicalHistoryModel = new searchMedicalHistoryModel($connection);
@@ -20,6 +20,15 @@ class searchMedicalHistoryController{
         $token=$_POST['token'];
         $array_search_history=$searchMedicalHistoryModel->viewClinicHistory(['field'=>'token_medical_history','value'=>$token]);
         $searchMedicalHistoryView->viewClinicHistory($array_search_history);
+    }
+
+    function search(){
+        $connection = new Connection();
+        $searchMedicalHistoryModel = new searchMedicalHistoryModel($connection);
+        $searchMedicalHistoryView = new searchMedicalHistoryView();
+        $search = $_POST['search'];
+        $array_search = $searchMedicalHistoryModel->search($search);
+        $searchMedicalHistoryView->paginateSearchMedicalHistory($array_search);
     }
 }
 ?>

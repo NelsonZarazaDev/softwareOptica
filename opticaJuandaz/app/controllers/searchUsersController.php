@@ -33,7 +33,7 @@ class searchUsersController
     }
 
     function updateSearchUsers()
-    {
+    { 
         $connection = new connection();
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();

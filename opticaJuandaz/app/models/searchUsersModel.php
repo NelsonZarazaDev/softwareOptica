@@ -11,7 +11,7 @@ class searchUsersModel
     {
         $sql="SELECT r.name_role, a.*
         from optica.access a inner join optica.role r
-        on (a.id_role=r.id_role)";
+        on (a.id_role=r.id_role) order by a.id_access DESC";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     } 
@@ -48,7 +48,7 @@ class searchUsersModel
         WHERE token_access ='$token_access' ";
         $this->connection->query($sql);
     }
-
+ 
     function search($search){
         $sql="SELECT r.name_role, a.*
         FROM optica.access a inner join optica.role r

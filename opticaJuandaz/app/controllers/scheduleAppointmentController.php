@@ -141,7 +141,6 @@ class scheduleAppointmentController
         $current_date = $_POST['current_date'];
         $current_hour = $_POST['current_hour'];
 
-
         // Validar los campos
         if (empty($phone_person_id) || empty($hour_quote_id) || empty($date_quote_id)) {
             $array_message = ['message' => 'Todos los campos son obligatorios'];
@@ -157,7 +156,9 @@ class scheduleAppointmentController
             $array_message = ['message' => 'No se han realizado cambios en la reserva'];
             exit(json_encode($array_message));
         } else {
-            $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour_quote_id, $date_quote_id);
+            if ($date_quote_id != $current_date && $hour_quote_id != $current_hour) {
+                $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour_quote_id, $date_quote_id);
+            }
             if ($arraySchedule) {
                 $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
                 exit(json_encode($array_message));
@@ -173,23 +174,24 @@ class scheduleAppointmentController
             }
         }
     }
+}
 
-    function deleteSchedule()
-    {
-        require_once "app/models/cityModel.php";
-        require_once "app/models/departmentModel.php";
-        require_once "app/models/optometristModel.php";
-        $connection = new connection();
-        $departmentModel = new departmentModel($connection);
-        $cityModel = new cityModel($connection);
-        $optometristModel = new optometristModel($connection);
-        $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
-        $scheduleAppointmentView = new scheduleAppointmentView();
-        $token = $_POST['current_token'];
-        $array_department = $departmentModel->paginateDepartment();
-        $array_city = $cityModel->paginateCity();
-        $array_optometrist = $optometristModel->paginateOptometrist();
-        $arraySchedule = $scheduleAppointmentModel->deleteSchedule($token);
-        $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
-    }
+function deleteSchedule()
+{
+    require_once "app/models/cityModel.php";
+    require_once "app/models/departmentModel.php";
+    require_once "app/models/optometristModel.php";
+    $connection = new connection();
+    $departmentModel = new departmentModel($connection);
+    $cityModel = new cityModel($connection);
+    $optometristModel = new optometristModel($connection);
+    $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
+    $scheduleAppointmentView = new scheduleAppointmentView();
+    $token = $_POST['current_token'];
+    $date = $_POST['current_date'];
+    $array_department = $departmentModel->paginateDepartment();
+    $array_city = $cityModel->paginateCity();
+    $array_optometrist = $optometristModel->paginateOptometrist();
+    $arraySchedule = $scheduleAppointmentModel->deleteSchedule($token);
+    $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
 }

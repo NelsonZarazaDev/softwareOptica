@@ -7,14 +7,14 @@ class searchMedicalHistoryView
         <div class="card-body mt-4">
             <form id="formSearch">
                 <div class="input-group position-static justify-content-end">
-                    <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento">
+                    <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento,Nombre, N° historia">
                     <span class="input-group-text" id="">
-                        <button type="button" class="search" onclick="Administrador.buscar()">
+                        <button type="button" class="search" onclick="HistoryClinic.search()">
                             <i class="bi bi-search"></i>
                         </button>
                     </span>
                 </div>
-            </form>
+            </form> 
         </div>
         <script>
             document.getElementById("textInfo").innerHTML = "Buscar Historias clinicas";
@@ -44,7 +44,7 @@ class searchMedicalHistoryView
                         $birth_date_person = $object_history['birth_date_person'];
                         $token_medical_history = $object_history['token_medical_history'];
 
-                    ?>
+                    ?> 
                         <tr class="text-center">
                             <td><?php echo $id_medical_history; ?></td>
                             <td><?php echo $document_person; ?></td>
@@ -53,7 +53,7 @@ class searchMedicalHistoryView
                             <td><?php echo $name_person . " " . $surname_person; ?></td>
                             <td><?php echo $birth_date_person; ?></td>
                             <td class="textTableSearch" style="text-align:center;">
-                                <i class="bi bi-pencil-square" onclick="HistoryClinic.viewClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <i class="bi bi-eye-fill" onclick="HistoryClinic.viewClinicHistory('<?php echo $token_medical_history; ?>')"></i>
                             </td>
                         </tr>
                     <?php } ?>

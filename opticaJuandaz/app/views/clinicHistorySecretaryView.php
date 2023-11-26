@@ -42,8 +42,13 @@ class clinicHistorySecretaryView
                         $surname_person = $object_history['surname_person'];
                         $birth_date_person = $object_history['birth_date_person'];
                         $token_medical_history = $object_history['token_medical_history'];
-
-                    ?>
+                        $hour_history = $object_history['hour_history'];
+                        date_default_timezone_set('America/Bogota');
+                        $currentTime = new DateTime();
+                        $hour_historyObject = new DateTime($hour_history);
+                        $difference = $currentTime->diff($hour_historyObject);
+                        $subtraction = $difference->format('%H:%i:%s');
+                    ?> 
                         <tr class="text-center">
                             <td><?php echo $id_medical_history; ?></td>
                             <td><?php echo $document_person; ?></td>
@@ -52,7 +57,11 @@ class clinicHistorySecretaryView
                             <td><?php echo $name_person . " " . $surname_person; ?></td>
                             <td><?php echo $birth_date_person; ?></td>
                             <td class="textTableSearch" style="text-align:center;">
-                                <i class="bi bi-pencil-square" onclick="HistoryClinic.showClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php if ($subtraction < '02:00:0') { ?>
+                                    <i class="bi bi-pencil-square" onclick="HistoryClinic.showClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php } else { ?>
+                                    <i class="bi bi-eye-fill" onclick="HistoryClinic.viewClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>
@@ -571,17 +580,17 @@ class clinicHistorySecretaryView
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Observaciones</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['observation']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['observation']) ?></textarea>
                     </div>
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Recomendaciones</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['recommendation']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['recommendation']) ?></textarea>
                     </div>
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Diagnostico</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['diagnostic']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['diagnostic']) ?></textarea>
                     </div>
 
 
@@ -1106,17 +1115,17 @@ class clinicHistorySecretaryView
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Observaciones</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['observation']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['observation']) ?></textarea>
                     </div>
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Recomendaciones</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['recommendation']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['recommendation']) ?></textarea>
                     </div>
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Diagnostico</label>
-                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['diagnostic']) ?>" disabled></textarea>
+                        <textarea name="" id="" cols="10" rows="5" class="form-control inputMedicalHistory" value="" disabled><?php echo ($array_secretary_history[0]['diagnostic']) ?></textarea>
                     </div>
 
 

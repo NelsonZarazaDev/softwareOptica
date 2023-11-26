@@ -17,7 +17,6 @@ class HistoryClinicJs {
       });
   }
 
-
   searchDocument() {
     var object = new FormData(document.querySelector("#create_history"));
     fetch("clinicHistorySecretaryController/searchDocument", {
@@ -38,7 +37,6 @@ class HistoryClinicJs {
       });
   }
 
-
   createHistory() {
     var object = new FormData(document.querySelector("#create_history"));
     fetch("clinicHistorySecretaryController/createHistory", {
@@ -54,14 +52,13 @@ class HistoryClinicJs {
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
           toastr.success("Historia clinica registrada");
-          Menu.menu('clinicHistorySecretaryController/paginateClinicHistory');
+          Menu.menu("clinicHistorySecretaryController/paginateClinicHistory");
         }
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-
 
   showClinicHistory(token) {
     var object = new FormData();
@@ -82,7 +79,7 @@ class HistoryClinicJs {
       });
   }
 
-  updateHistory(){
+  updateHistory() {
     var object = new FormData(document.querySelector("#update_history"));
     fetch("clinicHistorySecretaryController/updateHistory", {
       method: "POST",
@@ -97,7 +94,7 @@ class HistoryClinicJs {
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
           toastr.success("Historia clinica registrada");
-          Menu.menu('clinicHistorySecretaryController/paginateClinicHistory');
+          Menu.menu("clinicHistorySecretaryController/paginateClinicHistory");
         }
       })
       .catch(function (error) {
@@ -105,23 +102,47 @@ class HistoryClinicJs {
       });
   }
 
-  viewClinicHistory(token){
-  var object = new FormData();
-  object.append("token", token);
-  $("#my_modal_history").modal("show");
-  document.querySelector("#modal_title_history").innerHTML ="Visualizar historia clinica";
-  fetch("searchMedicalHistoryController/viewClinicHistory", {
-    method: "POST",
-    body: object,
-  })
-    .then((resp) => resp.text())
-    .then(function (data) {
-      document.querySelector("#modal_content_history").innerHTML = data;
+  viewClinicHistory(token) {
+    var object = new FormData();
+    object.append("token", token);
+    $("#my_modal_history").modal("show");
+    document.querySelector("#modal_title_history").innerHTML =
+      "Visualizar historia clinica";
+    fetch("searchMedicalHistoryController/viewClinicHistory", {
+      method: "POST",
+      body: object,
     })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
+      .then((resp) => resp.text())
+      .then(function (data) {
+        document.querySelector("#modal_content_history").innerHTML = data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  search()
+  {
+    var object = new FormData(document.querySelector("#formSearch"));
+    fetch("searchMedicalHistoryController/search", {
+      method: "POST",
+      body: object,
+    })
+      .then((resp) => resp.text())
+      .then(function (data) {
+        console.log(data);
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#content").innerHTML = data;
+          toastr.success("Historia clinica registrada");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }
 
 var HistoryClinic = new HistoryClinicJs();

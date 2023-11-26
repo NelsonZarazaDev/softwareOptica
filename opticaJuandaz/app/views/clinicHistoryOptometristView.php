@@ -31,6 +31,12 @@ class clinicHistoryOptometristView
                         $surname_person = $object_history['surname_person'];
                         $birth_date_person = $object_history['birth_date_person'];
                         $token_medical_history = $object_history['token_medical_history'];
+                        $hour_history = $object_history['hour_history'];
+                        date_default_timezone_set('America/Bogota');
+                        $currentTime = new DateTime();
+                        $hour_historyObject = new DateTime($hour_history);
+                        $difference = $currentTime->diff($hour_historyObject);
+                        $subtraction = $difference->format('%H:%i:%s');
 
                     ?>
                         <tr class="text-center">
@@ -41,7 +47,11 @@ class clinicHistoryOptometristView
                             <td><?php echo $name_person . " " . $surname_person; ?></td>
                             <td><?php echo $birth_date_person; ?></td>
                             <td class="textTableSearch" style="text-align:center;">
-                                <i class="bi bi-pencil-square" onclick="HistoryClinicOptometrist.updateTokenClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php if ($subtraction < '02:00:0') { ?>
+                                    <i class="bi bi-pencil-square" onclick="HistoryClinicOptometrist.updateTokenClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php } else { ?>
+                                    <i class="bi bi-eye-fill" onclick="HistoryClinic.viewClinicHistory('<?php echo $token_medical_history; ?>')"></i>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>
@@ -141,7 +151,7 @@ class clinicHistoryOptometristView
                             <input type="text" name="phoneCompanionHistory" id="phoneCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['phone_companion']) ?>" disabled>
                         </div>
                     </div>
-
+ 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Motivo de consulta</label>
                         <textarea name="reason_history" id="reason_history" cols="10" rows="5" class="form-control inputMedicalHistory"><?php echo ($array_optometrist_history[0]['reason_history']) ?></textarea>
@@ -513,7 +523,7 @@ class clinicHistoryOptometristView
                             <div></div>
                         </div>
                     </div>
-
+ 
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Observaciones</label>
