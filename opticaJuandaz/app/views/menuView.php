@@ -30,7 +30,7 @@ class menuView
 
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center justify-content-center p-2  text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="public/img/<?php echo $_SESSION['name_access']; ?>.jpg" alt="mdo" width="50" height="50" class="rounded-circle">
+                        <img src="public/img/<?php echo $_SESSION['document_access']; ?>.jpg" alt="mdo" width="50" height="50" class="rounded-circle">
                     </a>
 
                     <ul class="dropdown-menu text-small shadow">
@@ -53,7 +53,7 @@ class menuView
                                         <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav1" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
                                         <div class="collapse collapse-horizontal optionsNav" id="collapseListNav1">
                                             <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistoryController/paginateClinicHistory')">Historia Clinica</a></li>
+                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistorySecretaryController/paginateClinicHistory')">Historia Clinica</a></li>
                                                 <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
                                             </ul>
                                         </div>
@@ -112,8 +112,8 @@ class menuView
                                         <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav3" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
                                         <div class="collapse collapse-horizontal optionsNav" id="collapseListNav3">
                                             <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('')">Historia Clinica</a></li>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('')">Buscar</a></li>
+                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistoryOptometristController/paginateClinicHistory')">Historia Clinica</a></li>
+                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
                                             </ul>
                                         </div>
                                         <hr>
@@ -155,12 +155,26 @@ class menuView
 
                     <div id="my_modal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog modal-xl mt-5 pt-5">
-                            <div class="modal-content">
+                            <div class="modal-content modal-content-style">
                                 <div class="modal-header">
                                     <h5 class="modal-title textTableHeaderSearch" id="modal_title"></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div id="modal_content" class="modal-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+
+                    <div id="my_modal_history" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                        <div class="modal-dialog modal-xl mt-5 pt-5">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title textTableHeaderSearch" id="modal_title_history"></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div id="modal_content_history" class="modal-body">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +184,7 @@ class menuView
 
 
 
-                    <div class="content p-lg-5 col-12 col-lg-10">
+                    <div class="content p-lg-4 col-12 col-lg-10">
                         <div class="container pt-5">
                             <div id="content">
                                 <div class="col-6 col-lg-12 welcome">¡ BIENVENIDOS !</div>
@@ -197,7 +211,10 @@ class menuView
             <script src="assets/sweetalert2/sweetalert2.all.min.js"></script>
             <script src="assets/moment/moment.min.js"></script>
             <script src="assets/fullcalendar/main.js"></script>
-            <script src="public/js/Menu.js"></script>
+            <script src="public/js/menu.js"></script>
+            <script src="public/js/historyClinicSecretary.js"></script>
+            <script src="public/js/historyClinicOptometrist.js"></script>
+            <script src="public/js/statistics.js"></script>
             <script src="public/js/systemAdministrator.js"></script>
             <script src="public/js/secretary.js"></script>
             <script src="public/js/scheduleAppointment.js"></script>

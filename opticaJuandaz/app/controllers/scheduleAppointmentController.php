@@ -12,12 +12,10 @@ class scheduleAppointmentController
         require_once "app/models/optometristModel.php";
 
         $connection = new connection();
-
         $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
         $departmentModel = new departmentModel($connection);
         $cityModel = new cityModel($connection);
         $optometristModel = new optometristModel($connection);
-
         $scheduleAppointmentView = new scheduleAppointmentView();
         $cod_secretary = $_SESSION['cod_employee'];
         $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
@@ -49,7 +47,10 @@ class scheduleAppointmentController
         $department = $_POST['id_department'];
         $city = $_POST['id_city'];
         $id_optometrist = $_POST['id_optometrist'];
+        date_default_timezone_set('America/Bogota');
+        $dateCreationQuote = date('Y-m-d');
         $token = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
+        $tokenPerson = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $cod_secretary = $_SESSION['id_access'];
 
 
@@ -77,18 +78,18 @@ class scheduleAppointmentController
             $id_person = $scheduleAppointmentModel->showId($document);
             $id_person = $id_person[0]['id_person'];
             $cod_secretary = $_SESSION['cod_employee'];
-            $scheduleAppointmentModel->insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist);
+            $scheduleAppointmentModel->insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist, $dateCreationQuote);
             $array_department = $departmentModel->paginateDepartment();
             $array_city = $cityModel->paginateCity();
             $array_optometrist = $optometristModel->paginateOptometrist();
             $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
             $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
         } else {
-            $scheduleAppointmentModel->insertPerson($name, $surname, $document, $phone, $department, $city);
-            $id_person = $scheduleAppointmentModel->showId($document, $phone);
+            $scheduleAppointmentModel->insertPerson($name, $surname, $document, $phone, $department, $city, $tokenPerson);
+            $id_person = $scheduleAppointmentModel->showId($document);
             $id_person = $id_person[0]['id_person'];
             $cod_secretary = $_SESSION['cod_employee'];
-            $scheduleAppointmentModel->insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist);
+            $scheduleAppointmentModel->insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist, $dateCreationQuote);
             $array_department = $departmentModel->paginateDepartment();
             $array_city = $cityModel->paginateCity();
             $array_optometrist = $optometristModel->paginateOptometrist();
@@ -125,8 +126,8 @@ class scheduleAppointmentController
         $cityModel = new cityModel($connection);
         $optometristModel = new optometristModel($connection);
 
-        $token = $_POST['token'];
-        $id_person = $_POST['id_person'];
+        $token = $_POST['current_token'];
+        $id_person = $_POST['current_id_person'];
         $current_phone = $_POST['current_phone'];
         $phone_person_id = $_POST['phone_person'];
         $phone_person_name = $_POST['phone_person'];
@@ -158,6 +159,9 @@ class scheduleAppointmentController
         } else {
             $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour_quote_id, $date_quote_id);
             if ($arraySchedule) {
+                $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
+                exit(json_encode($array_message));
+            } else {
                 $cod_secretary = $_SESSION['cod_employee'];
                 $array_department = $departmentModel->paginateDepartment();
                 $array_city = $cityModel->paginateCity();
@@ -166,9 +170,6 @@ class scheduleAppointmentController
                 $scheduleAppointmentModel->updateSchedule($token, $hour_quote_name, $hour_quote_id, $date_quote_name, $date_quote_id, $cod_expert_name, $cod_expert_id);
                 $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
                 $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
-            } else {
-                $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
-                exit(json_encode($array_message));
             }
         }
     }
@@ -184,8 +185,7 @@ class scheduleAppointmentController
         $optometristModel = new optometristModel($connection);
         $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
         $scheduleAppointmentView = new scheduleAppointmentView();
-
-        $token = $_POST['token'];
+        $token = $_POST['current_token'];
         $array_department = $departmentModel->paginateDepartment();
         $array_city = $cityModel->paginateCity();
         $array_optometrist = $optometristModel->paginateOptometrist();

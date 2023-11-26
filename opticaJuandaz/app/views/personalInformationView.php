@@ -12,7 +12,7 @@ class personalInformationView
         <div class="card-body">
             <div class="row row-cols-lg-2">
                 <div class="col col-lg-3 d-flex mb-4 ms-lg-3 mt-lg-4 justify-content-center justify-content-lg-end">
-                    <img src="public/img/<?php echo $_SESSION['name_access']; ?>.jpg" class="photoInfo img-fluid">
+                    <img src="public/img/<?php echo $_SESSION['document_access']; ?>.jpg" class="photoInfo img-fluid">
                 </div>
                 <?php
                 $name_role=$array_info[0]['name_role'];

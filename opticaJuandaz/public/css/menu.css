@@ -205,7 +205,7 @@ input[readonly] {
   box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
 
-.modal-content {
+.modal-modal-content-style {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -232,7 +232,7 @@ input[readonly] {
 
 .photoInfo {
   width: 250px;
-  height: auto;
+  height: 250px;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
@@ -241,6 +241,7 @@ input[readonly] {
 .rounded-circle {
   height: 45px;
   width: auto;
+  background: white;
 }
 
 .table-responsive {
@@ -333,11 +334,12 @@ a.page-link {
 .statisticalCircle {
   width: 150px;
   height: 150px;
-  background-color: #000000;
   border-radius: 50%;
   font-size: 50px;
+  background-color: black;
   font-weight: bold;
   color: var(--white);
+  border: 1px solid var(--darkBlue);
 }
 
 .textStatistical {
@@ -354,17 +356,6 @@ a.page-link {
   color: var(--darkBlue);
 }
 
-.modal-content-history {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  color: var(--bs-modal-color);
-  pointer-events: auto;
-  background-color: var(--bs-modal-bg);
-  background-clip: padding-box;
-  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
-  border-radius: var(--bs-modal-border-radius);
-  outline: 0;
-  margin: auto;
+.disabled-select {
+  background-color: #e9ecef;
 }

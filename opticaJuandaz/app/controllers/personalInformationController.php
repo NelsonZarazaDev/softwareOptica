@@ -9,8 +9,8 @@ class personalInformationController
         $connection = new Connection();
         $personalInformationModel=new personalInformationModel($connection);
         $personalInformationView = new personalInformationView();
-        $token= $_SESSION['token_access'];
-        $array_info=$personalInformationModel->info($token);
+        $codEmployee= $_SESSION['cod_employee'];
+        $array_info=$personalInformationModel->info($codEmployee);
         $personalInformationView->paginatePersonalInformation($array_info);
     }
 }

@@ -14,6 +14,7 @@ class ScheduleJS {
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
           toastr.success("el registro fue guardado");
+          Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
         }
       })
       .catch(function (error) {
@@ -71,6 +72,8 @@ class ScheduleJS {
           toastr.error(object.message);
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
+          toastr.success("Reserva Modificada");
+          Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
         }
       })
       .catch(function (error) {
@@ -102,8 +105,8 @@ class ScheduleJS {
               toastr.error(object.message);
             } catch (error) {
               document.querySelector("#content").innerHTML = data;
-              toastr.success('Reserva eliminada');
-
+              toastr.success("Reserva eliminada");
+              Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
             }
           })
           .catch(function (error) {

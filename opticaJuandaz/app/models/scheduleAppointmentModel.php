@@ -1,7 +1,7 @@
  <?php
     class scheduleAppointmentModel
     {
-        private $connection; 
+        private $connection;
 
         function __construct($connection)
         {
@@ -19,16 +19,17 @@
             return $this->connection->fetchAll();
         }
 
-        function duplicatePerson($document){
-            $sql="SELECT * FROM optica.person where document_person='$document'";
+        function duplicatePerson($document)
+        {
+            $sql = "SELECT * FROM optica.person where document_person='$document'";
             $this->connection->query($sql);
             return $this->connection->fetchAll();
         }
 
-        function insertPerson($name, $surname, $document, $phone,$department,$city)
+        function insertPerson($name, $surname, $document, $phone, $department, $city, $tokenPerson)
         {
-            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id)
-        VALUES ('$name', '$document', '$phone', '$surname', '$department', '$city')";
+            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id,token_person)
+        VALUES ('$name', '$document', '$phone', '$surname', '$department', '$city','$tokenPerson')";
             $this->connection->query($sql);
         }
 
@@ -39,10 +40,10 @@
             return $this->connection->fetchAll();
         }
 
-        function insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist)
+        function insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist, $dateCreationQuote)
         {
-            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token_quote,cod_expert)
-        VALUES ('$id_person','$date','$hour','$cod_secretary','$token','$id_optometrist')";
+            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token_quote,cod_expert,date_creation_quote)
+        VALUES ('$id_person','$date','$hour','$cod_secretary','$token','$id_optometrist','$dateCreationQuote')";
             $this->connection->query($sql);
         }
 
@@ -52,7 +53,7 @@
             on (q.id_person=p.id_person) WHERE cod_secretary='$cod_secretary'";
             $this->connection->query($sql);
             return $this->connection->fetchAll();
-        } 
+        }
 
         function selectQuote($array)
         {
@@ -85,7 +86,7 @@
         WHERE token_quote = '$token'";
             $this->connection->query($sql);
         }
-        
+
         function deleteSchedule($token)
         {
             $sql = "DELETE FROM optica.quote WHERE token_quote = '$token'";

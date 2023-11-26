@@ -105,19 +105,19 @@ class searchUsersView
         <div class="card">
             <div class="card-body">
                 <form id="update_User" class="row gx-5 gy-3">
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" readonly>
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" disabled>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
-                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name" name="name" value="<?php echo $name_access; ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name" name="name" value="<?php echo $name_access; ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Apellidos</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $surname_access;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $surname_access;  ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Documento</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_access" name="document_access" value="<?php echo $document_access;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_access" name="document_access" value="<?php echo $document_access;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
@@ -164,15 +164,15 @@ class searchUsersView
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Fecha de nacimiento</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $date_birth_access;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $date_birth_access;  ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Fecha ingreso</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $date_admission_access;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $date_admission_access;  ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">sexo</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $sex_access;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $sex_access;  ?>" disabled>
                     </div>
             </div>
             <input type="hidden" id="token_access" name="token_access" value="<?php echo $token_access;  ?>">

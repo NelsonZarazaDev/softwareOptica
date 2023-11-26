@@ -23,8 +23,7 @@ class loginController
             $_SESSION['id_access'] = $array_access[0]['id_access'];
             $_SESSION['status_access'] = $array_access[0]['status_access'];
             $_SESSION['auth'] = 'OK';
-            $_SESSION['name_access'] = $array_access[0]['name_access'];
-            $_SESSION['token_access']=$array_access[0]['token_access'];
+            $_SESSION['document_access'] = $array_access[0]['document_access'];
             $_SESSION['cod_employee']=$array_access[0]['cod_employee'];
         }
         header('Location: index.php');

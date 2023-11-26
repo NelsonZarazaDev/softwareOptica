@@ -151,41 +151,46 @@ class checkAppointmentScheduleView
         $surname = $array_schedule[0]['surname_person'];
         $document_person = $array_schedule[0]['document_person'];
         $phone_person = $array_schedule[0]['phone_person'];
-        $token = $array_schedule[0]['token_quote'];
-        $id_person = $array_schedule[0]['id_person'];
+        $name_access=$array_schedule[0]['name_access'];
+        $surname_access=$array_schedule[0]['surname_access'];
     ?>
         <div class="card">
             <div class="card-body">
                 <form id="update_schedule" class="row gx-5 gy-3">
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
-                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name_person" name="name_person" value="<?php echo $name_person; ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name_person" name="name_person" value="<?php echo $name_person; ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Apellidos</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" surname" name="surname" value="<?php echo $surname;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" surname" name="surname" value="<?php echo $surname;  ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Documento</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $document_person;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $document_person;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Telefono</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $phone_person;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $phone_person;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column">
                         <label class="textLabelCreate">Hora:</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $hour_quote;  ?>" readonly>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $hour_quote;  ?>" disabled>
 
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Fecha</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $date_quote;  ?>" readonly>
-
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $date_quote;  ?>" disabled>
                     </div>
+
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Optometra:</label>
+                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $name_access." ".$surname_access;  ?>" disabled>
+                    </div>
+
             </div>
 
 
