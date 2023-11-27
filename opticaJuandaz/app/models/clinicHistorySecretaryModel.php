@@ -7,13 +7,13 @@ class clinicHistorySecretaryModel
         $this->connection = $connection;
     }
  
-    function paginateClinicHistory($date)
+    function paginateClinicHistory($date,$cod_secretary)
     {
         $sql = "SELECT m.id_medical_history, p.document_person,p.phone_person,p.age_person,p.name_person,
         p.surname_person,p.birth_date_person, m.token_medical_history, m.hour_history
                 from optica.person p inner join optica.medical_history m
                 on p.id_person = m.id_person
-                where m.date_history='$date' order by m.id_medical_history DESC ";
+                where m.date_history='$date' and m.cod_secretary='$cod_secretary' order by m.id_medical_history DESC ";
         $this->connection->query($sql);
         return $this->connection->fetchAll();
     }
@@ -81,7 +81,7 @@ class clinicHistorySecretaryModel
         m.personal_history,
         m.ocular_history,
         m.family_history,
-        m.subjectivedp_oi,
+        m.subjectivedp_oi, 
         m.refractioncilindro_oi,
         m.keratometriaeje_od,
         m.keratometriaeje_od, c.name_city, d.name_department, a.name_access, a.surname_access
@@ -102,7 +102,6 @@ class clinicHistorySecretaryModel
         $addressHistory,
         $birthDateHistory,
         $healthcareEntityHistory,
-        $ageHistory,
         $occupationHistory,
         $id_department,
         $id_city,
@@ -116,7 +115,6 @@ class clinicHistorySecretaryModel
         birth_date_person='$birthDateHistory',
         healthcare_entity_person='$healthcareEntityHistory',
         occupation_person='$occupationHistory',
-        age_person='$ageHistory',
         location_department_id='$id_department',
         location_city_id='$id_city' 
         WHERE token_person='$tokenHistorySecretaryUpdate'";
@@ -133,20 +131,19 @@ class clinicHistorySecretaryModel
         $addressHistory,
         $birthDateHistory,
         $healthcareEntityHistory,
-        $ageHistory,
         $occupationHistory,
         $tokenHistorySecretaryCreate
     ) {
         $sql = "INSERT INTO optica.person (name_person,surname_person,document_person,healthcare_entity_person,
-        occupation_person,birth_date_person,age_person,phone_person,
+        occupation_person,birth_date_person,phone_person,
         location_department_id,location_city_id,address_person,token_person)
-        VALUES ('$nameHistory','$surnameHistory','$document_person','$healthcareEntityHistory','$occupationHistory','$birthDateHistory','$ageHistory','$phoneHistory','$id_department','$id_city','$addressHistory','$tokenHistorySecretaryCreate')";
+        VALUES ('$nameHistory','$surnameHistory','$document_person','$healthcareEntityHistory','$occupationHistory','$birthDateHistory','$phoneHistory','$id_department','$id_city','$addressHistory','$tokenHistorySecretaryCreate')";
         $this->connection->query($sql);
     }
 
-    function createHistory($relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token)
+    function createHistory($cod_secretary,$relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token)
     {
-        $sql = "INSERT INTO optica.medical_history(id_person,cod_expert,date_history,hour_history,reason_history,ocular_history,family_history,personal_history,name_companion,surname_companion,phone_companion,relationship_companion,token_medical_history) VALUES ('$id_Person','$id_optometrist','$dateCreation','$hour','$reasonQueryHistory','$OcularBackgroundHistory','$familyBackgroundHistory','$personalHistory','$nameCompanionHistory','$surnameCompanionHistory','$phoneCompanionHistory','$relationshipHistory','$token')";
+        $sql = "INSERT INTO optica.medical_history(id_person,cod_expert,date_history,hour_history,reason_history,ocular_history,family_history,personal_history,name_companion,surname_companion,phone_companion,relationship_companion,token_medical_history,cod_secretary) VALUES ('$id_Person','$id_optometrist','$dateCreation','$hour','$reasonQueryHistory','$OcularBackgroundHistory','$familyBackgroundHistory','$personalHistory','$nameCompanionHistory','$surnameCompanionHistory','$phoneCompanionHistory','$relationshipHistory','$token','$cod_secretary')";
         $this->connection->query($sql);
     }
 

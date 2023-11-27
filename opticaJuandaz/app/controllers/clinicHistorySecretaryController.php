@@ -3,7 +3,7 @@ require_once "app/views/clinicHistorySecretaryView.php";
 require_once "app/models/clinicHistorySecretaryModel.php";
 
 class clinicHistorySecretaryController
-{ 
+{
     function paginateClinicHistory()
     {
         $connection = new Connection();
@@ -11,7 +11,8 @@ class clinicHistorySecretaryController
         $clinicHistoryView = new clinicHistorySecretaryView();
         date_default_timezone_set('America/Bogota');
         $date = date('Y-m-d');
-        $array_history = $clinicHistoryModel->paginateClinicHistory($date);
+        $cod_secretary = $_SESSION['cod_employee'];
+        $array_history = $clinicHistoryModel->paginateClinicHistory($date, $cod_secretary);
         $clinicHistoryView->paginateClinicHistory($array_history);
     }
 
@@ -241,6 +242,7 @@ class clinicHistorySecretaryController
         $clinicHistoryModel = new clinicHistorySecretaryModel($connection);
         $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
         $clinicHistoryView = new clinicHistorySecretaryView();
+        $cod_secretary = $_SESSION['cod_employee'];
         $id_Person = $_POST['idPersonHistory'];
         $document_person = $_POST['documentHistory'];
         $nameHistory = $_POST['nameHistory'];
@@ -252,7 +254,6 @@ class clinicHistorySecretaryController
         $addressHistory = $_POST['addressHistory'];
         $birthDateHistory = $_POST['birthDateHistory'];
         $healthcareEntityHistory = $_POST['healthcareEntityHistory'];
-        $ageHistory = $_POST['ageHistory'];
         $occupationHistory = $_POST['occupationHistory'];
         $relationshipHistory = $_POST['relationshipHistory'];
         $nameCompanionHistory = $_POST['nameCompanionHistory'];
@@ -269,6 +270,33 @@ class clinicHistorySecretaryController
         $dateCreation = date('Y-m-d');
         $hour = date('H:i:s');
         $documentSearch = $clinicHistoryModel->searchPerson($document_person);
+        if (
+            empty($document_person) ||
+            empty($nameHistory) ||
+            empty($surnameHistory) ||
+            empty($phoneHistory) ||
+            empty($id_department) ||
+            empty($id_city) ||
+            empty($id_optometrist) ||
+            empty($addressHistory) ||
+            empty($birthDateHistory) ||
+            empty($healthcareEntityHistory) ||
+            empty($occupationHistory) ||
+            empty($reasonQueryHistory) ||
+            empty($personalHistory) ||
+            empty($OcularBackgroundHistory) ||
+            empty($familyBackgroundHistory)
+        ) {
+            $array_message = ['message' => 'Todos los campos son obligatorios'];
+            exit(json_encode($array_message));
+        }
+
+        if (!preg_match('/^\d{10}$/', $phoneHistory)) {
+            $array_message = ['message' => 'El teléfono debe contener exactamente 10 números'];
+            exit(json_encode($array_message));
+        }
+
+
         if ($documentSearch) {
             $clinicHistoryModel->updatePerson(
                 $nameHistory,
@@ -277,13 +305,12 @@ class clinicHistorySecretaryController
                 $addressHistory,
                 $birthDateHistory,
                 $healthcareEntityHistory,
-                $ageHistory,
                 $occupationHistory,
                 $id_department,
                 $id_city,
                 $tokenHistorySecretaryUpdate
             );
-            $clinicHistoryModel->createHistory($relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token);
+            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token);
         } else {
             $clinicHistoryModel->createPerson(
                 $document_person,
@@ -295,13 +322,12 @@ class clinicHistorySecretaryController
                 $addressHistory,
                 $birthDateHistory,
                 $healthcareEntityHistory,
-                $ageHistory,
                 $occupationHistory,
                 $tokenHistorySecretaryCreate
             );
             $id_person = $scheduleAppointmentModel->showId($document_person);
             $id_personCreate = $id_person[0]['id_person'];
-            $clinicHistoryModel->createHistory($relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_personCreate, $dateCreation, $hour, $token);
+            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_personCreate, $dateCreation, $hour, $token);
         }
     }
 
@@ -372,7 +398,7 @@ class clinicHistorySecretaryController
             $compareEntity == $healthcareEntityHistory && $compareOccupation == $occupationHistory && $compareDepartment == $id_department &&
             $compareCity == $id_city && $compareRelationship == $relationshipHistory  && $compareNameCompanion == $nameCompanionHistory  && $compareSurnameCompanion == $surnameCompanionHistory  && $comparePhoneCompanion == $phoneCompanionHistory && $compareReason == $reasonQueryHistory && $comparePersonal == $personalHistory && $compareOcular == $OcularBackgroundHistory && $compareFamily == $familyBackgroundHistory
         ) {
-            $array_message=['message'=>'No se realizo cambios, datos sin modificar'];
+            $array_message = ['message' => 'No se realizo cambios, datos sin modificar'];
             exit(json_encode($array_message));
         } else {
             $clinicHistoryModel->updatePersonHistory($id_department, $id_city, $healthcareEntityHistory, $occupationHistory, $tokenHistorySecretary);
@@ -381,6 +407,4 @@ class clinicHistorySecretaryController
             $clinicHistoryView->updateModalHistoryClinic($array_history, $array_department, $array_city, $array_optometrist);
         }
     }
-
-    
 }

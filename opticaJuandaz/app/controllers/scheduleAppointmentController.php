@@ -51,8 +51,7 @@ class scheduleAppointmentController
         $dateCreationQuote = date('Y-m-d');
         $token = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $tokenPerson = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
-        $cod_secretary = $_SESSION['id_access'];
-
+        $cod_secretary = $_SESSION['cod_employee'];
 
         // Validar los campos
         if (empty($name) || empty($surname) || empty($document) || empty($phone) || empty($hour) || empty($date) || empty($id_optometrist)) {
@@ -66,7 +65,7 @@ class scheduleAppointmentController
             exit(json_encode($array_message));
         }
 
-        $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour, $date);
+        $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour, $date,$cod_secretary);
         if ($arraySchedule) {
             $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
             exit(json_encode($array_message));
@@ -157,7 +156,8 @@ class scheduleAppointmentController
             exit(json_encode($array_message));
         } else {
             if ($date_quote_id != $current_date && $hour_quote_id != $current_hour) {
-                $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour_quote_id, $date_quote_id);
+                $cod_secretary = $_SESSION['cod_employee'];
+                $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour_quote_id, $date_quote_id, $cod_secretary);
             }
             if ($arraySchedule) {
                 $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];

@@ -124,7 +124,7 @@ class clinicHistorySecretaryView
                         </div>
                         <div class="justify-content-between">
                             <label class="textMedicalHistoryLabel">Edad</label>
-                            <input type="text" name="ageHistory" id="ageHistory" value="<?php echo $array_secretary_history[0]['age_person']; ?>" class="form-control inputMedicalHistory">
+                            <input type="number" name="ageHistory" id="ageHistory" value="<?php echo $array_secretary_history[0]['age_person']; ?>" class="form-control inputMedicalHistory" disabled>
                         </div>
                         <div class="justify-content-between">
                             <label class="textMedicalHistoryLabel">Ocupacion</label>

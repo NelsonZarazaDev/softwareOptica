@@ -44,7 +44,6 @@ class createUsersController
         $token_access = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $location_departament_id = $_POST['id_departament'];
         $location_city_id = $_POST['id_city'];
-        $location_address = $_POST['address'];
 
         $array_create = $createUsersModel->diplicateCreate($email_access, $document_access);
 
@@ -53,8 +52,8 @@ class createUsersController
             empty($date_birth_access) || empty($date_admission_access) || empty($phone_access) ||
             empty($years_experience_access) || empty($email_access) || empty($address_access) ||
             empty($sex_access) || empty($password_access) || empty($location_departament_id) ||
-            empty($location_city_id) || empty($location_address)
-        ) {
+            empty($location_city_id))
+        {
             $array_message = ['error' => true, 'message' => 'Todos los campos son obligatorios'];
             exit(json_encode($array_message));
         }
@@ -108,7 +107,7 @@ class createUsersController
                 move_uploaded_file($_FILES["photo_person"]["tmp_name"], $targetFile);
                 
             }
-            $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id, $location_address);
+            $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id);
         }
     }
 }

@@ -3,8 +3,7 @@ class statisticsJs {
     var inputFecha = document.getElementById("searchTod");
     var valorFecha = inputFecha.value;
     if (valorFecha === null || valorFecha === "") {
-      var object = new FormData(document.querySelector("#formSearchSecretary"));
-      fetch("searchStatisticsController/searchSecretary", {
+      fetch("searchStatisticsController/search", {
         method: "POST",
         body: object,
       })
@@ -58,7 +57,11 @@ class statisticsJs {
         .catch(function (error) {
           console.log(error);
         });
-    } else {
+    } 
+
+
+    
+    else {
       var object = new FormData(document.querySelector("#formSearchTod"));
       fetch("searchStatisticsController/searchTod", {
         method: "POST",
@@ -107,10 +110,18 @@ class statisticsJs {
                     dataArray.reservesQuantity.push(item.reserves_quantity);
                   });
                 }
-                if (
-                  Array.isArray(optometristData) &&
-                  optometristData.length > 0
-                )
+
+                if (Array.isArray(optometristData) && optometristData.length > 0){
+                  optometristData.forEach(function (item) {
+                    dataOptometry.nameAccess.push(item.name_access);
+                    dataOptometry.documentAccess.push(item.document_access);
+                    dataOptometry.quantityClinicalStories.push(item.quantity_clinical_stories);
+                  });
+                }
+
+
+
+
                 updatePieChartData(
                   countMedicalHistory,
                   countQuote,

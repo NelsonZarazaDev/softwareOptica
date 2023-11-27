@@ -3,7 +3,7 @@ class HistoryClinicJs {
     var object = new FormData();
     $("#my_modal_history").modal("show");
     document.querySelector("#modal_title_history").innerHTML =
-      "Actualizar reserva";
+      "Crear historia clinica";
     fetch("clinicHistorySecretaryController/modalHistoryClinic", {
       method: "POST",
       body: object,

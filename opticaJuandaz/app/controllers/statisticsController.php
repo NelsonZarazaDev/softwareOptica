@@ -17,3 +17,4 @@ class statisticsController
         $statisticsView->paginateStatistics($array_day, $array_secretary, $array_optometrist);
     }
 }
+ 

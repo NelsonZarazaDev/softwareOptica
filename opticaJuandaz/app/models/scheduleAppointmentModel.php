@@ -8,12 +8,12 @@
             $this->connection = $connection;
         }
 
-        function duplicateSchedule($hour, $date)
+        function duplicateSchedule($hour, $date, $cod_secretary)
         {
             if ($hour and $date) {
-                $sql = "SELECT date_quote,hour_quote FROM optica.quote where date_quote='$date' AND hour_quote = '$hour'";
+                $sql = "SELECT date_quote,hour_quote FROM optica.quote where date_quote='$date' AND hour_quote = '$hour' AND cod_secretary='$cod_secretary'";
             } else {
-                $sql = "SELECT date_quote,hour_quote FROM optica.quote where date_quote='$date' AND hour_quote != '$hour'";
+                $sql = "SELECT date_quote,hour_quote FROM optica.quote where date_quote='$date' AND hour_quote != '$hour' AND cod_secretary='$cod_secretary'";
             }
             $this->connection->query($sql);
             return $this->connection->fetchAll();
