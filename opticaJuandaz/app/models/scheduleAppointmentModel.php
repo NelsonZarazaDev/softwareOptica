@@ -8,6 +8,26 @@
             $this->connection = $connection;
         }
 
+        function searchPerson($document)
+        {
+            $sql = "SELECT * FROM optica.person WHERE document_person='$document'";
+            $this->connection->query($sql);
+            return $this->connection->fetchAll();
+        }
+
+        function searchDocument($document)
+        {
+            $sql = "SELECT p.*, c.name_city, d.name_department, a.name_access, a.surname_access, q.cod_expert
+            FROM optica.person p
+            LEFT JOIN optica.quote q ON p.id_person = q.id_person
+            INNER JOIN optica.city c ON p.location_city_id = c.id_city
+            INNER JOIN optica.department d ON p.location_department_id = d.id_department
+            LEFT JOIN optica.access a ON q.cod_expert = a.cod_employee
+            where p.document_person='$document'";
+            $this->connection->query($sql);
+            return $this->connection->fetchAll();
+        }
+
         function duplicateSchedule($hour, $date, $cod_secretary)
         {
             if ($hour and $date) {

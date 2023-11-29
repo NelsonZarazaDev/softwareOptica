@@ -13,7 +13,7 @@ class checkAppointmentScheduleView
         <div class="col-12 pt-3 pb-3">
             <div id="calendar"></div>
         </div>
-
+ 
         <script>
             $(function() {
                 function ini_events(ele) {
@@ -151,46 +151,52 @@ class checkAppointmentScheduleView
         $surname = $array_schedule[0]['surname_person'];
         $document_person = $array_schedule[0]['document_person'];
         $phone_person = $array_schedule[0]['phone_person'];
-        $name_access=$array_schedule[0]['name_access'];
-        $surname_access=$array_schedule[0]['surname_access'];
+        $name_optometrist=$array_schedule[0]['name_optometrist'];
+        $surname_optometrist=$array_schedule[0]['surname_optometrist'];
+        $name_secretary=$array_schedule[0]['name_secretary'];
+        $surname_secretary=$array_schedule[0]['surname_secretary'];
     ?>
         <div class="card">
             <div class="card-body">
                 <form id="update_schedule" class="row gx-5 gy-3">
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
-                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="name_person" name="name_person" value="<?php echo $name_person; ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch" textUpdateSearch" id="" name="" value="<?php echo $name_person; ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Apellidos</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" surname" name="surname" value="<?php echo $surname;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id="" name="" value="<?php echo $surname;  ?>" disabled>
                     </div>
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Documento</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $document_person;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id="" name="" value="<?php echo $document_person;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Telefono</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $phone_person;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $phone_person;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column">
                         <label class="textLabelCreate">Hora:</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $hour_quote;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $hour_quote;  ?>" disabled>
 
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Fecha</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $date_quote;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id="" name="" value="<?php echo $date_quote;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Optometra:</label>
-                        <input type="text" class="form-control textUpdateSearch"" id=" document_person" name="document_person" value="<?php echo $name_access." ".$surname_access;  ?>" disabled>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $name_optometrist." ".$surname_optometrist;  ?>" disabled>
                     </div>
 
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Secretaria:</label>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $name_secretary." ".$surname_secretary;  ?>" disabled>
+                    </div>
             </div>
 
 

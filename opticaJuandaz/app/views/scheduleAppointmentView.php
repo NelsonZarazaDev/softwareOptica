@@ -1,36 +1,35 @@
 <?php
 class scheduleAppointmentView
 {
-    function paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist)
+    function paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist)
     {
 ?>
 
         <script>
             document.getElementById("textInfo").innerHTML = "Reserva de citas";
         </script>
-
-        <div class="card-body mt-1">
+        <div class="card-body" id="card">
             <form id="insert_schedule">
                 <div class="row row-cols-lg-3">
 
                     <div class="d-flex flex-column mt-3">
+                        <label class="textLabelCreate">Documento:</label>
+                        <input class="textInputCreate text p-2" type="text" name="document" id="document" value="<?php echo $person_data[0]['document_person']; ?>" onchange="Schedule.searchDocument()">
+                    </div>
+
+                    <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Nombres:</label>
-                        <input class="textInputCreate text p-2" type="text" name="name" id="name">
+                        <input class="textInputCreate text p-2" type="text" name="name" id="name" value="<?php echo $person_data[0]['name_person']; ?>">
                     </div>
 
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Apellidos:</label>
-                        <input class="textInputCreate text p-2" type="text" name="surname" id="surname">
-                    </div>
-
-                    <div class="d-flex flex-column mt-3">
-                        <label class="textLabelCreate">Documento:</label>
-                        <input class="textInputCreate text p-2" type="text" name="document" id="document">
+                        <input class="textInputCreate text p-2" type="text" name="surname" id="surname" value="<?php echo $person_data[0]['surname_person']; ?>">
                     </div>
 
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Telefono:</label>
-                        <input class="textInputCreate text p-2" type="text" name="phone" id="phone">
+                        <input class="textInputCreate text p-2" type="text" name="phone" id="phone" value="<?php echo $person_data[0]['phone_person']; ?>">
                     </div>
 
                     <div class="d-flex flex-column mt-3">
@@ -66,7 +65,7 @@ class scheduleAppointmentView
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Departamento:</label>
                         <select class="textInputCreate textInputSelect p-2" name="id_department" id="id_department" required>
-                            <option value=""></option>
+                            <option value="<?php echo $person_data[0]['location_department_id']; ?>"><?php echo $person_data[0]['name_department']; ?></option>
                             <?php
                             if ($array_department) {
                                 foreach ($array_department as $object_department) {
@@ -84,7 +83,7 @@ class scheduleAppointmentView
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Ciudad:</label>
                         <select class="textInputCreate textInputSelect p-2" name="id_city" id="id_city" required>
-                            <option value=""></option>
+                            <option value="<?php echo $person_data[0]['location_city_id']; ?>"><?php echo $person_data[0]['name_city']; ?></option>
                             <?php
                             if ($array_city) {
                                 foreach ($array_city as $object_city) {
@@ -102,7 +101,7 @@ class scheduleAppointmentView
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Optometra:</label>
                         <select class="textInputCreate textInputSelect p-2" name="id_optometrist" id="id_optometrist" required>
-                            <option value=""></option>
+                            <option value="<?php echo $person_data[0]['cod_expert']; ?>"><?php echo ($person_data[0]['name_access']) . " " . ($person_data[0]['surname_access']); ?></option>
                             <?php
                             if ($array_optometrist) {
                                 foreach ($array_optometrist as $object_optometrist) {
@@ -123,8 +122,10 @@ class scheduleAppointmentView
                     <i class="bi bi-cursor me-2"></i>Crear
                 </button>
             </form>
+            <hr class="hrInfo">
         </div>
-        <hr class="hrInfo">
+
+
 
         <div id="external-events"></div>
         <div class="col-12 pt-3 pb-3">
@@ -363,19 +364,18 @@ class scheduleAppointmentView
             <input type="hidden" id="hour_quote" name="hour_quote" value="<?php echo $hour_quote;  ?>">
             <input type="hidden" id="date_quote" name="date_quote" value="<?php echo $date_quote;  ?>">
             <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
-
-
+            
             <div class="d-flex flex-sm-column flex-lg-row">
-                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual) { ?>
-                <?php } else { ?><button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
+                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual || $date_quote>$fechaActual) { ?>
+                <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
                         <i class="bi bi-floppy me-2 ms-2"></i> Guardar
-                    </button> <?php } ?>
+                    </button> <?php }  else {} ?>
 
-                <?php if ($date_quote == $fechaActual) { ?> <?php } else { ?>
+                <?php if ($date_quote <= $fechaActual) {} else {?> 
                     <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonDelete" onclick="Schedule.deleteSchedule()">
                         <i class="bi bi-trash3 me-2 ms-2"></i> Eliminar
                     </button>
-                <?php } ?>
+                <?php }  ?>
             </div>
             </form>
         </div>

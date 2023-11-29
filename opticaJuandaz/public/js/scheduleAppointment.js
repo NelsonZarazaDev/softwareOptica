@@ -14,7 +14,9 @@ class ScheduleJS {
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
           toastr.success("el registro fue guardado");
-          Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
+          Menu.menu(
+            "scheduleAppointmentController/paginateScheduleAppointment"
+          );
         }
       })
       .catch(function (error) {
@@ -73,7 +75,9 @@ class ScheduleJS {
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
           toastr.success("Reserva Modificada");
-          Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
+          Menu.menu(
+            "scheduleAppointmentController/paginateScheduleAppointment"
+          );
         }
       })
       .catch(function (error) {
@@ -114,6 +118,27 @@ class ScheduleJS {
           });
       }
     });
+  }
+
+  searchDocument() {
+    var object = new FormData(document.querySelector("#insert_schedule"));
+
+    fetch("scheduleAppointmentController/searchDocument", {
+      method: "POST",
+      body: object,
+    })
+      .then((resp) => resp.text())
+      .then(function (data) {
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#card").innerHTML = data;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 }
 

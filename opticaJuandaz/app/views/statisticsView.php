@@ -29,7 +29,7 @@ class statisticsView
           </span>
         </div>
       </form>
-
+ 
 
       <div class="row cols-row-2 mb-5">
         <div class="col-lg-5">
@@ -82,7 +82,7 @@ class statisticsView
               $quantity_clinical_stories = $object_secretary['quantity_clinical_stories'];
               $reserves_quantity = $object_secretary['reserves_quantity'];
             ?>
-              <div class="dropdown-menu position-static mb-2 d-flex flex-column flex-lg-row justify-content-start col-sm-12 p-3 rounded-3 shadow-lg" style="width: 33.60%;" data-bs-theme="light">
+              <div class="dropdown-menu position-static mb-2 d-flex flex-column flex-lg-row justify-content-start col-sm-12 p-3 rounded-3 shadow-lg" style="width: 32%;" data-bs-theme="light">
                 <div class="col-lg-6 d-flex justify-content-center flex-column align-items-center">
                   <img class="statisticalCircle" src="public/img/<?php echo $document_access; ?>.jpg" alt="">
                   <div class="textStatistical mt-3"><?php echo $name_access; ?></div>
@@ -113,7 +113,7 @@ class statisticsView
               $document_access = $object_optometrist['document_access'];
               $quantity_clinical_stories = $object_optometrist['quantity_clinical_stories'];
             ?>
-              <div class="dropdown-menu position-static mb-2 d-flex flex-column flex-lg-row justify-content-start col-sm-12 p-3 rounded-3 shadow-lg" style="width: 33.60%;" data-bs-theme="light">
+              <div class="dropdown-menu position-static mb-2 d-flex flex-column flex-lg-row justify-content-start col-sm-12 p-3 rounded-3 shadow-lg" style="width: 32%;" data-bs-theme="light">
                 <div class="col-lg-6 d-flex justify-content-center flex-column align-items-center">
                   <img class="statisticalCircle" src="public/img/<?php echo $document_access; ?>.jpg" alt="">
                   <div class="textStatistical mt-3"><?php echo $name_access; ?></div>

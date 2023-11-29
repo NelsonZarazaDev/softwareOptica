@@ -22,7 +22,22 @@ class scheduleAppointmentController
         $array_department = $departmentModel->paginateDepartment();
         $array_city = $cityModel->paginateCity();
         $array_optometrist = $optometristModel->paginateOptometrist();
-        $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
+        $person_data = array(
+            array(
+                'document_person' => '',
+                'name_person'  => '',
+                'surname_person'  => '',
+                'phone_person'  => '',
+                'location_department_id' => '',
+                'name_department' => '',
+                'location_city_id'  => '',
+                'name_city' => '',
+                'name_access'  => '',
+                'surname_access'  => '',
+                'cod_expert' => '',
+            )
+        );
+        $scheduleAppointmentView->paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist);
     }
 
     function insertSchedule()
@@ -53,6 +68,22 @@ class scheduleAppointmentController
         $tokenPerson = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $cod_secretary = $_SESSION['cod_employee'];
 
+        $person_data = array(
+            array(
+                'document_person' => '',
+                'name_person'  => '',
+                'surname_person'  => '',
+                'phone_person'  => '',
+                'location_department_id' => '',
+                'name_department' => '',
+                'location_city_id'  => '',
+                'name_city' => '',
+                'name_access'  => '',
+                'surname_access'  => '',
+                'cod_expert' => '',
+            )
+        );
+
         // Validar los campos
         if (empty($name) || empty($surname) || empty($document) || empty($phone) || empty($hour) || empty($date) || empty($id_optometrist)) {
             $array_message = ['message' => 'Todos los campos son obligatorios'];
@@ -65,7 +96,7 @@ class scheduleAppointmentController
             exit(json_encode($array_message));
         }
 
-        $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour, $date,$cod_secretary);
+        $arraySchedule = $scheduleAppointmentModel->duplicateSchedule($hour, $date, $cod_secretary);
         if ($arraySchedule) {
             $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
             exit(json_encode($array_message));
@@ -82,7 +113,7 @@ class scheduleAppointmentController
             $array_city = $cityModel->paginateCity();
             $array_optometrist = $optometristModel->paginateOptometrist();
             $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
-            $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
+            $scheduleAppointmentView->paginateScheduleAppointment($person_data,$arraySchedule, $array_department, $array_city, $array_optometrist);
         } else {
             $scheduleAppointmentModel->insertPerson($name, $surname, $document, $phone, $department, $city, $tokenPerson);
             $id_person = $scheduleAppointmentModel->showId($document);
@@ -93,7 +124,7 @@ class scheduleAppointmentController
             $array_city = $cityModel->paginateCity();
             $array_optometrist = $optometristModel->paginateOptometrist();
             $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
-            $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
+            $scheduleAppointmentView->paginateScheduleAppointment($person_data,$arraySchedule, $array_department, $array_city, $array_optometrist);
         }
     }
 
@@ -163,6 +194,21 @@ class scheduleAppointmentController
                 $array_message = ['message' => 'Ya se a realizado una reserva a esa hora'];
                 exit(json_encode($array_message));
             } else {
+                $person_data = array(
+                    array(
+                        'document_person' => '',
+                        'name_person'  => '',
+                        'surname_person'  => '',
+                        'phone_person'  => '',
+                        'location_department_id' => '',
+                        'name_department' => '',
+                        'location_city_id'  => '',
+                        'name_city' => '',
+                        'name_access'  => '',
+                        'surname_access'  => '',
+                        'cod_expert' => '',
+                    )
+                );
                 $cod_secretary = $_SESSION['cod_employee'];
                 $array_department = $departmentModel->paginateDepartment();
                 $array_city = $cityModel->paginateCity();
@@ -170,28 +216,86 @@ class scheduleAppointmentController
                 $scheduleAppointmentModel->updatePerson($id_person, $phone_person_id, $phone_person_name);
                 $scheduleAppointmentModel->updateSchedule($token, $hour_quote_name, $hour_quote_id, $date_quote_name, $date_quote_id, $cod_expert_name, $cod_expert_id);
                 $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
-                $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
+                $scheduleAppointmentView->paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist);
             }
         }
     }
-}
 
-function deleteSchedule()
-{
-    require_once "app/models/cityModel.php";
-    require_once "app/models/departmentModel.php";
-    require_once "app/models/optometristModel.php";
-    $connection = new connection();
-    $departmentModel = new departmentModel($connection);
-    $cityModel = new cityModel($connection);
-    $optometristModel = new optometristModel($connection);
-    $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
-    $scheduleAppointmentView = new scheduleAppointmentView();
-    $token = $_POST['current_token'];
-    $date = $_POST['current_date'];
-    $array_department = $departmentModel->paginateDepartment();
-    $array_city = $cityModel->paginateCity();
-    $array_optometrist = $optometristModel->paginateOptometrist();
-    $arraySchedule = $scheduleAppointmentModel->deleteSchedule($token);
-    $scheduleAppointmentView->paginateScheduleAppointment($arraySchedule, $array_department, $array_city, $array_optometrist);
+    function deleteSchedule()
+    {
+        require_once "app/models/cityModel.php";
+        require_once "app/models/departmentModel.php";
+        require_once "app/models/optometristModel.php";
+        $connection = new connection();
+        $departmentModel = new departmentModel($connection);
+        $cityModel = new cityModel($connection);
+        $optometristModel = new optometristModel($connection);
+        $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
+        $scheduleAppointmentView = new scheduleAppointmentView();
+        $token = $_POST['current_token'];
+        $date = $_POST['current_date'];
+        $person_data = array(
+            array(
+                'document_person' => '',
+                'name_person'  => '',
+                'surname_person'  => '',
+                'phone_person'  => '',
+                'location_department_id' => '',
+                'name_department' => '',
+                'location_city_id'  => '',
+                'name_city' => '',
+                'name_access'  => '',
+                'surname_access'  => '',
+                'cod_expert' => '',
+            )
+        );
+        $array_department = $departmentModel->paginateDepartment();
+        $array_city = $cityModel->paginateCity();
+        $array_optometrist = $optometristModel->paginateOptometrist();
+        $arraySchedule = $scheduleAppointmentModel->deleteSchedule($token);
+        $scheduleAppointmentView->paginateScheduleAppointment($person_data,$arraySchedule, $array_department, $array_city, $array_optometrist);
+    }
+
+    function searchDocument()
+    {
+        $connection = new connection();
+        require_once "app/models/cityModel.php";
+        require_once "app/models/departmentModel.php";
+        require_once "app/models/optometristModel.php";
+        $departmentModel = new departmentModel($connection);
+        $cityModel = new cityModel($connection);
+        $optometristModel = new optometristModel($connection);
+        $scheduleAppointmentModel = new scheduleAppointmentModel($connection);
+        $scheduleAppointmentView = new scheduleAppointmentView();
+        $cityModel = new cityModel($connection);
+        $optometristModel = new optometristModel($connection);
+        $array_department = $departmentModel->paginateDepartment();
+        $array_city = $cityModel->paginateCity();
+        $array_optometrist = $optometristModel->paginateOptometrist();
+        $document = $_POST['document'];
+        $cod_secretary = $_SESSION['cod_employee'];
+        $arraySchedule = $scheduleAppointmentModel->paginateScheduleAppointment($cod_secretary);
+        $documentSearch = $scheduleAppointmentModel->searchPerson($document);
+        if ($documentSearch) {
+            $person_data = $scheduleAppointmentModel->searchDocument($document);
+            $scheduleAppointmentView->paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist);
+        } else {
+            $person_data = array(
+                array(
+                    'document_person' => $document,
+                    'name_person'  => '',
+                    'surname_person'  => '',
+                    'phone_person'  => '',
+                    'location_department_id' => '',
+                    'name_department' => '',
+                    'location_city_id'  => '',
+                    'name_city' => '',
+                    'name_access'  => '',
+                    'surname_access'  => '',
+                    'cod_expert' => '',
+                )
+            );
+            $scheduleAppointmentView->paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist);
+        }
+    }
 }
