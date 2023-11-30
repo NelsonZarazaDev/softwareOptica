@@ -364,14 +364,16 @@ class scheduleAppointmentView
             <input type="hidden" id="hour_quote" name="hour_quote" value="<?php echo $hour_quote;  ?>">
             <input type="hidden" id="date_quote" name="date_quote" value="<?php echo $date_quote;  ?>">
             <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
-            
-            <div class="d-flex flex-sm-column flex-lg-row">
-                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual || $date_quote>$fechaActual) { ?>
-                <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
-                        <i class="bi bi-floppy me-2 ms-2"></i> Guardar
-                    </button> <?php }  else {} ?>
 
-                <?php if ($date_quote <= $fechaActual) {} else {?> 
+            <div class="d-flex flex-sm-column flex-lg-row">
+                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual || $date_quote > $fechaActual) { ?>
+                    <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
+                        <i class="bi bi-floppy me-2 ms-2"></i> Guardar
+                    </button> <?php } else {
+                            } ?>
+
+                <?php if ($date_quote <= $fechaActual) {
+                } else { ?>
                     <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonDelete" onclick="Schedule.deleteSchedule()">
                         <i class="bi bi-trash3 me-2 ms-2"></i> Eliminar
                     </button>
@@ -387,3 +389,11 @@ class scheduleAppointmentView
     }
 }
 ?>
+
+<script>
+    $(document).ready(function() {
+        $('#multiple-checkboxes').multiselect({
+          includeSelectAllOption: true,
+        });
+    });
+</script>

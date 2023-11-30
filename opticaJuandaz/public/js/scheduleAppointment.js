@@ -110,7 +110,7 @@ class ScheduleJS {
             } catch (error) {
               document.querySelector("#content").innerHTML = data;
               toastr.success("Reserva eliminada");
-              /* Menu.menu('scheduleAppointmentController/paginateScheduleAppointment') */
+              Menu.menu('scheduleAppointmentController/paginateScheduleAppointment')
             }
           })
           .catch(function (error) {

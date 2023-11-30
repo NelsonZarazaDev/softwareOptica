@@ -174,7 +174,6 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--gray);
-  left: -9px;
 }
 
 .imgCreate {
@@ -358,4 +357,13 @@ a.page-link {
 
 .disabled-select {
   background-color: #e9ecef;
+}
+
+
+.multiselectCss{
+  font-family: var(--openSans);
+  border: none;
+  border-radius: 8px;
+  color: var(--darkBlue);
+  box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }

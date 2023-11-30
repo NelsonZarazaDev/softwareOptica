@@ -24,15 +24,12 @@ class searchUsersView
             <table class="table table-hover" id="myTable">
                 <thead>
                     <tr>
+                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Codigo</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Nombre</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Apellido</td>
-                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Rol</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Documento</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Telefono</td>
-                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Fecha ingreso</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Correo</td>
-                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Direccion</td>
-                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Sexo</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Estado</td>
                         <td class="textTableHeaderSearch" style="text-align:center; background-color:#cbedf6;">Acci&oacute;n</td>
                     </tr>
@@ -40,28 +37,22 @@ class searchUsersView
                 <tbody>
                     <?php
                     foreach ($array_searchUsers as $object_searchUsers) {
-                        $name_role = $object_searchUsers['name_role'];
+                        $cod_employee = $object_searchUsers['cod_employee'];
                         $name_access = $object_searchUsers['name_access'];
                         $surname_access = $object_searchUsers['surname_access'];
                         $document_access = $object_searchUsers['document_access'];
-                        $date_admission_access = $object_searchUsers['date_admission_access'];
                         $phone_access = $object_searchUsers['phone_access'];
                         $email_access = $object_searchUsers['email_access'];
-                        $address_access = $object_searchUsers['address_access'];
-                        $sex_access = $object_searchUsers['sex_access'];
                         $status_access = $object_searchUsers['status_access'];
                         $token_access = $object_searchUsers['token_access'];
                     ?>
                         <tr class="text-center">
-                            <td class="textTableSearch text-start"><?php echo $name_access; ?></td>
-                            <td class="textTableSearch text-start"><?php echo $surname_access; ?></td>
-                            <td class="textTableSearch"><?php echo $name_role; ?></td>
+                        <td class="textTableSearch text-center"><?php echo $cod_employee; ?></td>
+                            <td class="textTableSearch text-center"><?php echo $name_access; ?></td>
+                            <td class="textTableSearch text-center"><?php echo $surname_access; ?></td>
                             <td class="textTableSearch"><?php echo $document_access; ?></td>
                             <td class="textTableSearch"><?php echo $phone_access; ?></td>
-                            <td class="textTableSearch"><?php echo $date_admission_access; ?></td>
-                            <td class="textTableSearch text-start"><?php echo $email_access; ?></td>
-                            <td class="textTableSearch"><?php echo $address_access; ?></td>
-                            <td class="textTableSearch"><?php echo $sex_access; ?></td>
+                            <td class="textTableSearch text-center"><?php echo $email_access; ?></td>
                             <td class="textTableSearch"><?php echo $status_access; ?></td>
                             <td class="textTableSearch" style="text-align:center;"><i class="bi bi-pencil-square" onclick="Administrador.showSearchUsers('<?php echo $token_access ?>')"></i></td>
                         </tr>
@@ -105,7 +96,7 @@ class searchUsersView
         <div class="card">
             <div class="card-body">
                 <form id="update_User" class="row gx-5 gy-3">
-                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>" >
+                    <input type="hidden" class="form-control textUpdateSearch" textUpdateSearch" id="token_access" name="token_access" value="<?php echo $token_access; ?>">
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Nombres</label>
