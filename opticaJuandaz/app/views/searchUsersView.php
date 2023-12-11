@@ -28,8 +28,8 @@ class searchUsersView
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Nombre</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Apellido</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Documento</td>
-                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Telefono</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Correo</td>
+                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Sucursal</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Estado</td>
                         <td class="textTableHeaderSearch" style="text-align:center; background-color:#cbedf6;">Acci&oacute;n</td>
                     </tr>
@@ -41,18 +41,18 @@ class searchUsersView
                         $name_access = $object_searchUsers['name_access'];
                         $surname_access = $object_searchUsers['surname_access'];
                         $document_access = $object_searchUsers['document_access'];
-                        $phone_access = $object_searchUsers['phone_access'];
                         $email_access = $object_searchUsers['email_access'];
                         $status_access = $object_searchUsers['status_access'];
                         $token_access = $object_searchUsers['token_access'];
+                        $name_city = $object_searchUsers['name_city'];
                     ?>
                         <tr class="text-center">
                         <td class="textTableSearch text-center"><?php echo $cod_employee; ?></td>
                             <td class="textTableSearch text-center"><?php echo $name_access; ?></td>
                             <td class="textTableSearch text-center"><?php echo $surname_access; ?></td>
                             <td class="textTableSearch"><?php echo $document_access; ?></td>
-                            <td class="textTableSearch"><?php echo $phone_access; ?></td>
                             <td class="textTableSearch text-center"><?php echo $email_access; ?></td>
+                            <td class="textTableSearch text-center"><?php echo $name_city; ?></td>
                             <td class="textTableSearch"><?php echo $status_access; ?></td>
                             <td class="textTableSearch" style="text-align:center;"><i class="bi bi-pencil-square" onclick="Administrador.showSearchUsers('<?php echo $token_access ?>')"></i></td>
                         </tr>
@@ -75,7 +75,7 @@ class searchUsersView
 
     <?php
     }
-    function showSearchUsers($array_searchUsers, $array_role)
+    function showSearchUsers($array_searchUsers, $array_role, $array_sede_city)
     {
         $name_access = $array_searchUsers[0]['name_access'];
         $surname_access = $array_searchUsers[0]['surname_access'];
@@ -92,6 +92,9 @@ class searchUsersView
         $status_access = $array_searchUsers[0]['status_access'];
         $name_role = $array_searchUsers[0]['name_role'];
         $token_access = $array_searchUsers[0]['token_access'];
+        $sede_city = $array_searchUsers[0]['sede_city'];
+        $name_city = $array_searchUsers[0]['name_city'];
+        $sede_address = $array_searchUsers[0]['sede_address'];
     ?>
         <div class="card">
             <div class="card-body">
@@ -109,6 +112,10 @@ class searchUsersView
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Documento</label>
                         <input type="text" class="form-control textUpdateSearch"" id=" document_access" name="document_access" value="<?php echo $document_access;  ?>" disabled>
+                    </div>
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Direccion sucursal:</label>
+                        <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $sede_address;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
@@ -128,6 +135,26 @@ class searchUsersView
                             ?>
                         </select>
                     </div>
+
+
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Sucursal:</label>
+                        <select id="id_sede_city" class="form-control p-2" name="id_sede_city" required>
+                        <option value="<?php echo $sede_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                            if ($array_sede_city) {
+                                foreach ($array_sede_city as $object_sede_city) {
+                                    $id_sede_city = $object_sede_city['id_sede_city'];
+                                    $name_city = $object_sede_city['name_city'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
 
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Telefono</label>
@@ -165,6 +192,7 @@ class searchUsersView
                         <label class="textUpdateSearchLabel">sexo</label>
                         <input type="text" class="form-control textUpdateSearch"" id=" name" name="name" value="<?php echo $sex_access;  ?>" disabled>
                     </div>
+                    
             </div>
             <input type="hidden" id="token_access" name="token_access" value="<?php echo $token_access;  ?>">
             <input type="hidden" id="id_role" name="id_role" value="<?php echo $id_role;  ?>">

@@ -50,12 +50,11 @@ class menuView
                                     <?php if ($id_role == "R0000") { ?>
                                         <!-- Secretaria -->
                                         <hr>
-                                        <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav1" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
-                                        <div class="collapse collapse-horizontal optionsNav" id="collapseListNav1">
-                                            <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistorySecretaryController/paginateClinicHistory')">Historia Clinica</a></li>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
-                                            </ul>
+                                        <div>
+                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('clinicHistorySecretaryController/paginateClinicHistory')">
+                                                <i class="bi bi-clipboard-pulse sidebarIcon"></i>
+                                                Historias Cl&iacute;nicas
+                                            </a>
                                         </div>
                                         <hr>
                                         <li>
@@ -75,11 +74,8 @@ class menuView
                                     <?php } ?>
                                     <?php if ($id_role == "R0001") { ?>
                                         <!-- Dueña -->
-                                        <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav2" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
-                                        <div class="collapse collapse-horizontal optionsNav" id="collapseListNav2">
-                                            <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
-                                            </ul>
+                                        <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav2" aria-expanded="true" aria-controls="collapseList" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
+                                        <div class="collapse collapse-horizontal " id="collapseListNav2">
                                         </div>
                                         <hr>
 
@@ -109,12 +105,11 @@ class menuView
                                     <?php } ?>
                                     <?php if ($id_role == "R0002") { ?>
                                         <!-- Optometra -->
-                                        <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseListNav3" aria-expanded="true" aria-controls="collapseList" class="boldFont sidebarTextColor"><i class="bi bi-clipboard-pulse sidebarIcon"></i>Historias Cl&iacute;nicas</a>
-                                        <div class="collapse collapse-horizontal optionsNav" id="collapseListNav3">
-                                            <ul>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('clinicHistoryOptometristController/paginateClinicHistory')">Historia Clinica</a></li>
-                                                <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchMedicalHistoryController/paginateSearchMedicalHistory')">Buscar</a></li>
-                                            </ul>
+                                        <div>
+                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('clinicHistoryOptometristController/paginateClinicHistory')">
+                                                <i class="bi bi-clipboard-pulse sidebarIcon"></i>
+                                                Historias Cl&iacute;nicas
+                                            </a>
                                         </div>
                                         <hr>
 
@@ -135,6 +130,14 @@ class menuView
                                                 <li class="boldFont"><a href="#" class="sidebarTextColor" onclick="Menu.menu('searchUsersController/paginateSearchUsers')">Buscar</a></li>
                                             </ul>
                                         </div>
+                                        <hr>
+
+                                        <li>
+                                            <a href="#" class="boldFont sidebarTextColor" onclick="Menu.menu('branchOfficesController/paginateBranchOffices')">
+                                                <i class="bi bi-person sidebarIcon"></i>
+                                                Sucursales
+                                            </a>
+                                        </li>
                                         <hr>
 
                                         <li>
@@ -213,6 +216,7 @@ class menuView
             <script src="assets/fullcalendar/main.js"></script>
             <script src="public/js/menu.js"></script>
             <script src="public/js/historyClinicSecretary.js"></script>
+            <script src="public/js/branchOffices.js"></script>
             <script src="public/js/historyClinicOptometrist.js"></script>
             <script src="public/js/statistics.js"></script>
             <script src="public/js/systemAdministrator.js"></script>

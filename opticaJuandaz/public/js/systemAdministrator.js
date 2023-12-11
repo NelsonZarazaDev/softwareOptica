@@ -7,21 +7,19 @@ class systemAdministratorJs {
     })
       .then((resp) => resp.text())
       .then(function (data) {
-
-          const responseObject = JSON.parse(data.trim());
-          if (responseObject.error) {
-            toastr.error(responseObject.message);
-          } else {
-            document.querySelector("#content").innerHTML = data;
-            toastr.success("El registro fue guardado");
-          }
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#content").innerHTML = data;
+          toastr.success("el registro fue guardado");
+          Menu.menu("createUsersController/paginateCreateUsers");
+        }
       })
-      .catch((error) => {
-        toastr.success("El registro fue guardado");
-        Menu.menu('createUsersController/paginateCreateUsers')
+      .catch(function (error) {
+        console.log(error);
       });
   }
-  
 
   showSearchUsers(token_access) {
     var object = new FormData();

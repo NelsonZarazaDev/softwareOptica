@@ -43,7 +43,6 @@ class clinicHistoryOptometristController
 
         $od_lensometry = $_POST['od_lensometry'];
         $oi_lensometry = $_POST['oi_lensometry'];
-        $add_lensometry = $_POST['add_lensometry'];
 
 
         $farvisualacuityod_sc = $_POST['farvisualacuityod_sc'];
@@ -67,8 +66,6 @@ class clinicHistoryOptometristController
         $keratometriavertical_oi = $_POST['keratometriavertical_oi'];
         $keratometriaeje_od = $_POST['keratometriaeje_od'];
         $keratometriaeje_oi = $_POST['keratometriaeje_oi'];
-        $keratometriadifferential_od = $_POST['keratometriadifferential_od'];
-        $keratometriadifferential_oi = $_POST['keratometriadifferential_oi'];
 
 
         $refractionsphere_od = $_POST['refractionsphere_od'];
@@ -77,8 +74,7 @@ class clinicHistoryOptometristController
         $refractioncilindro_oi = $_POST['refractioncilindro_oi'];
         $refractionaxis_od = $_POST['refractionaxis_od'];
         $refractionaxis_oi = $_POST['refractionaxis_oi'];
-        $refractionaddition_od = $_POST['refractionaddition_od'];
-        $refractionaddition_oi = $_POST['refractionaddition_oi'];
+
 
 
         $subjectivesphere_od = $_POST['subjectivesphere_od'];
@@ -87,8 +83,6 @@ class clinicHistoryOptometristController
         $subjectivecylinder_oi = $_POST['subjectivecylinder_oi'];
         $subjectiveeje_od = $_POST['subjectiveeje_od'];
         $subjectiveeje_oi = $_POST['subjectiveeje_oi'];
-        $subjectiveadd_od = $_POST['subjectiveadd_od'];
-        $subjectiveadd_oi = $_POST['subjectiveadd_oi'];
         $subjectivedp_od = $_POST['subjectivedp_od'];
         $subjectivedp_oi = $_POST['subjectivedp_oi'];
 
@@ -105,6 +99,57 @@ class clinicHistoryOptometristController
 
         $token = $_POST['token_medical_history'];
 
+        if(empty($reason_history) ||
+        empty($personal_history) ||
+        empty($ocular_history) ||
+        empty($family_history) ||
+        empty($od_lensometry) ||
+        empty($oi_lensometry) ||
+        empty($farvisualacuityod_sc) ||
+        empty($farvisualacuityoi_sc) ||
+        empty($farvisualacuityod_cc) ||
+        empty($farvisualacuityoi_cc) ||
+        empty($farvisualacuityod_ph) ||
+        empty($farvisualacuityoi_ph) ||
+        empty($nearvisualacuity_a_od_sc) ||
+        empty($acuityvisualnearoi_sc) ||
+        empty($acuityvisualnearod_cc) ||
+        empty($acuityvisualnearoi_cc) ||
+        empty($acuityvisualnearod_ph) ||
+        empty($acuityvisualnearoi_ph) ||
+        empty($keratometriahorizontal_od) ||
+        empty($keratometriahorizontal_oi) ||
+        empty($keratometriavertical_od) ||
+        empty($keratometriavertical_oi) ||
+        empty($keratometriaeje_od) ||
+        empty($keratometriaeje_oi) ||
+        empty($refractionsphere_od) ||
+        empty($refractionsphere_oi) ||
+        empty($refractioncilindro_od) ||
+        empty($refractioncilindro_oi) ||
+        
+        empty($refractionaxis_od) ||
+        empty($refractionaxis_oi) ||
+        empty($subjectivesphere_od) ||
+        empty($subjectivesphere_oi) ||
+        empty($subjectivecylinder_od) ||
+        empty($subjectivecylinder_oi) ||
+        empty($subjectiveeje_od) ||
+        empty($subjectiveeje_oi) ||
+        empty($subjectivedp_od) ||
+        empty($subjectivedp_oi) ||
+        empty($acuityvisualdistancefar_od) ||
+        empty($acuityvisualdistancefar_oi) ||
+        empty($acuityvisualdistancenear_od) ||
+        empty($acuityvisualdistancenear_oi) ||
+        empty($observation) ||
+        empty($recommendation) ||
+        empty($diagnostic)        
+        ){
+            $array_message = ['message' => 'Todos los campos son obligatorios'];
+            exit(json_encode($array_message));
+        }
+
         $array_update = $clinicHistoryModel->updateHistory(
             $reason_history,
             $personal_history,
@@ -112,7 +157,6 @@ class clinicHistoryOptometristController
             $family_history,
             $od_lensometry,
             $oi_lensometry,
-            $add_lensometry,
             $farvisualacuityod_sc,
             $farvisualacuityoi_sc,
             $farvisualacuityod_cc,
@@ -131,24 +175,18 @@ class clinicHistoryOptometristController
             $keratometriavertical_oi,
             $keratometriaeje_od,
             $keratometriaeje_oi,
-            $keratometriadifferential_od,
-            $keratometriadifferential_oi,
             $refractionsphere_od,
             $refractionsphere_oi,
             $refractioncilindro_od,
             $refractioncilindro_oi,
             $refractionaxis_od,
             $refractionaxis_oi,
-            $refractionaddition_od,
-            $refractionaddition_oi,
             $subjectivesphere_od,
             $subjectivesphere_oi,
             $subjectivecylinder_od,
             $subjectivecylinder_oi,
             $subjectiveeje_od,
             $subjectiveeje_oi,
-            $subjectiveadd_od,
-            $subjectiveadd_oi,
             $subjectivedp_od,
             $subjectivedp_oi,
             $acuityvisualdistancefar_od,

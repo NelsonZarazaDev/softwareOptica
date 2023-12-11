@@ -2,7 +2,7 @@
 
 class statisticsView
 {
-  function paginateStatistics($array_day, $array_secretary, $array_optometrist)
+  function paginateStatistics($array_day, $array_secretary, $array_optometrist, $date)
   {
     $json_secretary = json_encode($array_secretary);
     $json_optometrist = json_encode($array_optometrist);
@@ -15,23 +15,30 @@ class statisticsView
     $countQuote = $array_day[0]['quote'];
 ?>
     <script>
-      document.getElementById("textInfo").innerHTML = "Estadisticas";
+      document.getElementById("textInfo").innerHTML = "Estadisticas"
     </script>
 
     <div class="card-body mt-4">
       <form id="formSearchTod" class="mb-5">
-        <div class="input-group position-static justify-content-end">
-          <input type="date" id="searchTod" name="searchTod" class="inputSearch p-2"">
+        <div>
+          <div class="input-group position-static align-items-center justify-content-between">
+            <div class="date">Estad&iacute;sticas d&iacute;a <?php echo $date ?></div>
+            <div class="d-flex">
+              <input type="date" id="searchTod" name="searchTod" class="inputSearch p-2"">
           <span class=" input-group-text" id="">
-          <button type="button" class="search" onclick="Statistics.searchTod()">
-            <i class="bi bi-search"></i>
-          </button>
-          </span>
+              <button type="button" class="search" onclick="Statistics.searchTod()">
+                <i class="bi bi-search"></i>
+              </button>
+              </span>
+            </div>
+          </div>
         </div>
       </form>
- 
+
 
       <div class="row cols-row-2 mb-5">
+        <h3 class="mb-4">Estad&iacute;sticas globales por d&iacute;a</h3>
+        <hr class=" hrInfo">
         <div class="col-lg-5">
           <div class="dropdown-menu position-static col-lg-12 mb-3 d-flex flex-column flex-lg-row justify-content-start p-3 rounded-3 shadow-lg" data-bs-theme="light">
             <div class="col-lg-5 d-flex justify-content-center">

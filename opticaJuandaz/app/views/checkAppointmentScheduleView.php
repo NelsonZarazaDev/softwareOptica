@@ -155,6 +155,8 @@ class checkAppointmentScheduleView
         $surname_optometrist=$array_schedule[0]['surname_optometrist'];
         $name_secretary=$array_schedule[0]['name_secretary'];
         $surname_secretary=$array_schedule[0]['surname_secretary'];
+        $name_city=$array_schedule[0]['name_city'];
+        $sede_address=$array_schedule[0]['sede_address'];
     ?>
         <div class="card">
             <div class="card-body">
@@ -178,7 +180,7 @@ class checkAppointmentScheduleView
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column">
-                        <label class="textLabelCreate">Hora:</label>
+                        <label class="textLabelCreate">Hora</label>
                         <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $hour_quote;  ?>" disabled>
 
                     </div>
@@ -189,13 +191,23 @@ class checkAppointmentScheduleView
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
-                        <label class="textUpdateSearchLabel">Optometra:</label>
+                        <label class="textUpdateSearchLabel">Optometra</label>
                         <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $name_optometrist." ".$surname_optometrist;  ?>" disabled>
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column ">
-                        <label class="textUpdateSearchLabel">Secretaria:</label>
+                        <label class="textUpdateSearchLabel">Secretaria</label>
                         <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $name_secretary." ".$surname_secretary;  ?>" disabled>
+                    </div>
+
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Sede</label>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $name_city;  ?>" disabled>
+                    </div>
+
+                    <div class="col-lg-6 d-flex flex-column ">
+                        <label class="textUpdateSearchLabel">Direccion sede</label>
+                        <input type="text" class="form-control textUpdateSearch"" id=" " name="" value="<?php echo $sede_address;  ?>" disabled>
                     </div>
             </div>
 

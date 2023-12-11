@@ -8,7 +8,24 @@ class clinicHistoryOptometristView
             document.getElementById("textInfo").innerHTML = "Crear historia clinica";
         </script>
 
-        <div class="table-responsive pt-5">
+        <div class="card-body mt-4">
+            <form id="formSearch" class="mb-5">
+                <div>
+                    <div class="input-group position-static justify-content-end">
+                        <div class="d-flex">
+                            <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento,Nombre, N° historia">
+                            <span class="input-group-text" id="">
+                                <button type="button" class="search" onclick="HistoryClinic.search()">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-responsive">
             <table class="table table-hover" id="myTable">
                 <thead>
                     <tr class="text-center">
@@ -151,7 +168,7 @@ class clinicHistoryOptometristView
                             <input type="text" name="phoneCompanionHistory" id="phoneCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['phone_companion']) ?>" disabled>
                         </div>
                     </div>
- 
+
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Motivo de consulta</label>
                         <textarea name="reason_history" id="reason_history" cols="10" rows="5" class="form-control inputMedicalHistory"><?php echo ($array_optometrist_history[0]['reason_history']) ?></textarea>
@@ -180,15 +197,15 @@ class clinicHistoryOptometristView
                             <div>
                                 <div class="d-flex m-2 align-items-center">
                                     <label class="textMedicalHistoryLabel m-2">OD</label>
-                                    <input type="text" name="od_lensometry" id="od_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['od_lensometry']) ?>">
+                                    <input type="number" name="od_lensometry" id="od_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['od_lensometry']) ?>">
                                 </div>
                                 <div class="d-flex m-2 align-items-center">
                                     <label class="textMedicalHistoryLabel m-2">OI</label>
-                                    <input type="text" name="oi_lensometry" id="oi_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['oi_lensometry']) ?>">
+                                    <input type="number" name="oi_lensometry" id="oi_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['oi_lensometry']) ?>">
                                 </div>
                                 <div class="d-flex m-2 align-items-center">
                                     <label class="textMedicalHistoryLabel m-2">ADD</label>
-                                    <input type="text" name="add_lensometry" id="add_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['add_lensometry']) ?>">
+                                    <input type="number" name="add_lensometry" id="add_lensometry" class="form-control inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['add_lensometry']) ?>" disabled>
                                 </div>
                             </div>
                         </div>
@@ -204,13 +221,13 @@ class clinicHistoryOptometristView
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityod_sc" id="farvisualacuityod_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_sc']) ?>">
+                                                    <input type="number" name="farvisualacuityod_sc" id="farvisualacuityod_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_sc']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityoi_sc" id="farvisualacuityoi_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_sc']) ?>">
+                                                    <input type="number" name="farvisualacuityoi_sc" id="farvisualacuityoi_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_sc']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -220,13 +237,13 @@ class clinicHistoryOptometristView
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityod_cc" id="farvisualacuityod_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_cc']) ?>">
+                                                    <input type="number" name="farvisualacuityod_cc" id="farvisualacuityod_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_cc']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityoi_cc" id="farvisualacuityoi_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_cc']) ?>">
+                                                    <input type="number" name="farvisualacuityoi_cc" id="farvisualacuityoi_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_cc']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -235,12 +252,12 @@ class clinicHistoryOptometristView
                                             <label class="textMedicalHistoryLabel">PH</label>
                                             <div class="d-flex">
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityod_ph" id="farvisualacuityod_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_ph']) ?>">
+                                                    <input type="number" name="farvisualacuityod_ph" id="farvisualacuityod_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityod_ph']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="farvisualacuityoi_ph" id="farvisualacuityoi_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_ph']) ?>">
+                                                    <input type="number" name="farvisualacuityoi_ph" id="farvisualacuityoi_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['farvisualacuityoi_ph']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -257,13 +274,13 @@ class clinicHistoryOptometristView
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="nearvisualacuity_a_od_sc" id="nearvisualacuity_a_od_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['nearvisualacuity_a_od_sc']) ?>">
+                                                    <input type="number" name="nearvisualacuity_a_od_sc" id="nearvisualacuity_a_od_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['nearvisualacuity_a_od_sc']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="acuityvisualnearoi_sc" id="acuityvisualnearoi_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_sc']) ?>">
+                                                    <input type="number" name="acuityvisualnearoi_sc" id="acuityvisualnearoi_sc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_sc']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -273,13 +290,13 @@ class clinicHistoryOptometristView
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="acuityvisualnearod_cc" id="acuityvisualnearod_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearod_cc']) ?>">
+                                                    <input type="number" name="acuityvisualnearod_cc" id="acuityvisualnearod_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearod_cc']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="mx-2 textMedicalHistoryLabel d-flex align-items-center">20/</div>
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="acuityvisualnearoi_cc" id="acuityvisualnearoi_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_cc']) ?>">
+                                                    <input type="number" name="acuityvisualnearoi_cc" id="acuityvisualnearoi_cc" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_cc']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -288,12 +305,12 @@ class clinicHistoryOptometristView
                                             <label class="textMedicalHistoryLabel">PH</label>
                                             <div class="d-flex">
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="acuityvisualnearod_ph" id="acuityvisualnearod_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearod_ph']) ?>">
+                                                    <input type="number" name="acuityvisualnearod_ph" id="acuityvisualnearod_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearod_ph']) ?>">
                                                 </div>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="justify-content-between">
-                                                    <input type="text" name="acuityvisualnearoi_ph" id="acuityvisualnearoi_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_ph']) ?>">
+                                                    <input type="number" name="acuityvisualnearoi_ph" id="acuityvisualnearoi_ph" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualnearoi_ph']) ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -314,47 +331,47 @@ class clinicHistoryOptometristView
                                         <label class="d-flex textMedicalHistoryLabel justify-content-center">Horizontal</label>
                                         <div class="d-flex">
                                             <div class="textMedicalHistoryLabel d-flex align-items-center">OD</div>
-                                            <input type="text" name="keratometriahorizontal_od" id="keratometriahorizontal_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriahorizontal_od']) ?>">
+                                            <input type="number" name="keratometriahorizontal_od" id="keratometriahorizontal_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriahorizontal_od']) ?>">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Vertical</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriavertical_od" id="keratometriavertical_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriavertical_od']) ?>">
+                                        <input type="number" name="keratometriavertical_od" id="keratometriavertical_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriavertical_od']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Eje</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriaeje_od" id="keratometriaeje_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriaeje_od']) ?>">
+                                        <input type="number" name="keratometriaeje_od" id="keratometriaeje_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriaeje_od']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Dif</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriadifferential_od" id="keratometriadifferential_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriadifferential_od']) ?>">
+                                        <input type="number" name="keratometriadifferential_od" id="keratometriadifferential_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriadifferential_od']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex">
                                 <div class="justify-content-between mx-2 d-flex">
                                     <div class="textMedicalHistoryLabel d-flex align-items-center mx-1">OI</div>
-                                    <input type="text" name="keratometriahorizontal_oi" id="keratometriahorizontal_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriahorizontal_oi']) ?>">
+                                    <input type="number" name="keratometriahorizontal_oi" id="keratometriahorizontal_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriahorizontal_oi']) ?>">
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriavertical_oi" id="keratometriavertical_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriavertical_oi']) ?>">
+                                        <input type="number" name="keratometriavertical_oi" id="keratometriavertical_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriavertical_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriaeje_oi" id="keratometriaeje_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriaeje_oi']) ?>">
+                                        <input type="number" name="keratometriaeje_oi" id="keratometriaeje_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriaeje_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="keratometriadifferential_oi" id="keratometriadifferential_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriadifferential_oi']) ?>">
+                                        <input type="number" name="keratometriadifferential_oi" id="keratometriadifferential_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['keratometriadifferential_oi']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -362,53 +379,53 @@ class clinicHistoryOptometristView
 
                         <div class="card mt-3 mr-3">
                             <label class="textMedicalHistoryLabel m-2">Refraccion</label>
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center">
                                 <div class="d-flex">
                                     <div class="justify-content-between mx-2">
                                         <label class="d-flex textMedicalHistoryLabel justify-content-center">Esfera</label>
                                         <div class="d-flex">
                                             <div class="textMedicalHistoryLabel d-flex align-items-center">OD</div>
-                                            <input type="text" name="refractionsphere_od" id="refractionsphere_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionsphere_od']) ?>">
+                                            <input type="number" name="refractionsphere_od" id="refractionsphere_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionsphere_od']) ?>">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Cilindro</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractioncilindro_od" id="refractioncilindro_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractioncilindro_od']) ?>">
+                                        <input type="number" name="refractioncilindro_od" id="refractioncilindro_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractioncilindro_od']) ?>">
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Eje</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractionaxis_od" id="refractionaxis_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaxis_od']) ?>">
+                                        <input type="number" name="refractionaxis_od" id="refractionaxis_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaxis_od']) ?>">
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Adici&oacute;n</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractionaddition_od" id="refractionaddition_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaddition_od']) ?>">
+                                        <input type="number" name="refractionaddition_od" id="refractionaddition_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaddition_od']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex">
                                 <div class="justify-content-between mx-2 d-flex">
                                     <div class="textMedicalHistoryLabel d-flex align-items-center mx-1">OI</div>
-                                    <input type="text" name="refractionsphere_oi" id="refractionsphere_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionsphere_oi']) ?>">
+                                    <input type="number" name="refractionsphere_oi" id="refractionsphere_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionsphere_oi']) ?>">
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractioncilindro_oi" id="refractioncilindro_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractioncilindro_oi']) ?>">
+                                        <input type="number" name="refractioncilindro_oi" id="refractioncilindro_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractioncilindro_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractionaxis_oi" id="refractionaxis_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaxis_oi']) ?>">
+                                        <input type="number" name="refractionaxis_oi" id="refractionaxis_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaxis_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="refractionaddition_oi" id="refractionaddition_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaddition_oi']) ?>">
+                                        <input type="number" name="refractionaddition_oi" id="refractionaddition_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['refractionaddition_oi']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -431,58 +448,59 @@ class clinicHistoryOptometristView
                                         <label class="d-flex textMedicalHistoryLabel justify-content-center">Esfera</label>
                                         <div class="d-flex">
                                             <div class="textMedicalHistoryLabel d-flex align-items-center">OD</div>
-                                            <input type="text" name="subjectivesphere_od" id="subjectivesphere_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivesphere_od']) ?>">
+                                            <input type="number" name="subjectivesphere_od" id="subjectivesphere_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivesphere_od']) ?>">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Cilindro</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectivecylinder_od" id="subjectivecylinder_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivecylinder_od']) ?>">
+                                        <input type="number" name="subjectivecylinder_od" id="subjectivecylinder_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivecylinder_od']) ?>">
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">Eje</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectiveeje_od" id="subjectiveeje_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveeje_od']) ?>">
+                                        <input type="number" name="subjectiveeje_od" id="subjectiveeje_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveeje_od']) ?>">
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column">
-                                    <label class="textMedicalHistoryLabel">ADD</label>
-                                    <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectiveadd_od" id="subjectiveadd_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveadd_od']) ?>">
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column">
+                                
+                                <div class="d-flex flex-column d-flex align-items-center">
                                     <label class="textMedicalHistoryLabel">DP</label>
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectivedp_od" id="subjectivedp_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivedp_od']) ?>">
+                                        <input type="number" name="subjectivedp_od" id="subjectivedp_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivedp_od']) ?>">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column d-flex align-items-center">
+                                    <label class="textMedicalHistoryLabel">ADD</label>
+                                    <div class="justify-content-between mx-2">
+                                        <input type="number" name="subjectiveadd_od" id="subjectiveadd_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveadd_od']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex">
                                 <div class="justify-content-between mx-2 d-flex">
                                     <div class="textMedicalHistoryLabel d-flex align-items-center mx-1">OI</div>
-                                    <input type="text" name="subjectivesphere_oi" id="subjectivesphere_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivesphere_oi']) ?>">
+                                    <input type="number" name="subjectivesphere_oi" id="subjectivesphere_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivesphere_oi']) ?>">
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectivecylinder_oi" id="subjectivecylinder_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivecylinder_oi']) ?>">
+                                        <input type="number" name="subjectivecylinder_oi" id="subjectivecylinder_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivecylinder_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectiveeje_oi" id="subjectiveeje_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveeje_oi']) ?>">
+                                        <input type="number" name="subjectiveeje_oi" id="subjectiveeje_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveeje_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectiveadd_oi" id="subjectiveadd_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveadd_oi']) ?>">
+                                        <input type="number" name="subjectivedp_oi" id="subjectivedp_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivedp_oi']) ?>">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mx-2">
-                                        <input type="text" name="subjectivedp_oi" id="subjectivedp_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectivedp_oi']) ?>">
+                                        <input type="number" name="subjectiveadd_oi" id="subjectiveadd_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['subjectiveadd_oi']) ?>" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -491,31 +509,31 @@ class clinicHistoryOptometristView
                             <label class="textMedicalHistoryLabel">Agudeza Visual</label>
                             <div class="d-flex p-2">
                                 <div>
-                                    <label class="textMedicalHistoryLabel">Lejos</label>
+                                    <label class="textMedicalHistoryLabel d-flex justify-content-center">Lejos</label>
                                     <div class="d-flex">
                                         <div class="textMedicalHistoryLabel">20/</div>
                                         <div class="justify-content-between mx-2">
-                                            <input type="text" name="acuityvisualdistancefar_od" id="acuityvisualdistancefar_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancefar_od']) ?>">
+                                            <input type="number" name="acuityvisualdistancefar_od" id="acuityvisualdistancefar_od" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancefar_od']) ?>">
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="textMedicalHistoryLabel">20/</div>
                                         <div class="justify-content-between mx-2">
-                                            <input type="text" name="acuityvisualdistancefar_oi" id="acuityvisualdistancefar_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancefar_oi']) ?>">
+                                            <input type="number" name="acuityvisualdistancefar_oi" id="acuityvisualdistancefar_oi" class="form-control mb-2 mx-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancefar_oi']) ?>">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label class="textMedicalHistoryLabel">Cerca</label>
+                                    <label class="textMedicalHistoryLabel d-flex justify-content-center">Cerca</label>
                                     <div class="d-flex">
                                         <div class="justify-content-between mx-2">
-                                            <input type="text" name="acuityvisualdistancenear_od" id="acuityvisualdistancenear_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancenear_od']) ?>">
+                                            <input type="number" name="acuityvisualdistancenear_od" id="acuityvisualdistancenear_od" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancenear_od']) ?>">
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="justify-content-between mx-2">
-                                            <input type="text" name="acuityvisualdistancenear_oi" id="acuityvisualdistancenear_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancenear_oi']) ?>">
+                                            <input type="number" name="acuityvisualdistancenear_oi" id="acuityvisualdistancenear_oi" class="form-control mb-2 inputMedicalHistory" value="<?php echo ($array_optometrist_history[0]['acuityvisualdistancenear_oi']) ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -523,7 +541,7 @@ class clinicHistoryOptometristView
                             <div></div>
                         </div>
                     </div>
- 
+
 
                     <div class="justify-content-between mt-3 mb-3">
                         <label class="textMedicalHistoryLabel">Observaciones</label>

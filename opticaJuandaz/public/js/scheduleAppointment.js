@@ -15,8 +15,7 @@ class ScheduleJS {
           document.querySelector("#content").innerHTML = data;
           toastr.success("el registro fue guardado");
           Menu.menu(
-            "scheduleAppointmentController/paginateScheduleAppointment"
-          );
+            "scheduleAppointmentController/paginateScheduleAppointment");
         }
       })
       .catch(function (error) {

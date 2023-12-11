@@ -20,20 +20,23 @@ class searchUsersController
     function showSearchUsers()
     {
         require_once "app/models/roleModel.php";
+        require_once "app/models/sedeCityModel.php";
 
         $connection = new connection();
         $roleModel = new roleModel($connection);
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();
+        $sedeCityModel = new sedeCityModel($connection);
         $array_role = $roleModel->paginateRole();
+        $array_sede_city=$sedeCityModel->paginateSedeCity();
         $token = $_POST['token_access'];
 
         $array_searchUsers = $searchUsersModel->selectUsers(['field' => 'token_access', 'value' => $token]);
-        $searchUsersView->showSearchUsers($array_searchUsers, $array_role);
+        $searchUsersView->showSearchUsers($array_searchUsers, $array_role, $array_sede_city);
     }
 
     function updateSearchUsers()
-    { 
+    {
         $connection = new connection();
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();
@@ -51,9 +54,11 @@ class searchUsersController
         $status_access_name = $_POST['status_access'];
         $password_access_id = $_POST['password_access'];
         $password_access_name = $_POST['password_access'];
+        $sede_city=$_POST['id_sede_city'];
 
-        $arrayDuplicateSearch = $searchUsersModel->duplicateSearch($id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name, $token_access);
-        if (empty($id_role_id) || empty($phone_access_id) || empty($email_access_id) || empty($address_access_id) || empty($status_access_id) || empty($password_access_id)) {
+        $arrayDuplicateSearch = $searchUsersModel->duplicateSearch($id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name, $token_access, $sede_city);
+
+        if (empty($id_role_id) || empty($phone_access_id) || empty($email_access_id) || empty($address_access_id) || empty($status_access_id) || empty($password_access_id) || empty($sede_city)) {
             $array_message = ['error' => true, 'message' => 'Todos los campos son obligatorios.'];
             exit(json_encode($array_message));
         }
@@ -78,7 +83,7 @@ class searchUsersController
             $array_message = ['message' => 'No se a realizado cambios'];
             exit(json_encode($array_message));
         }
-        $searchUsersModel->updateSearchUsers($token_access, $id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name);
+        $searchUsersModel->updateSearchUsers($token_access, $id_role_id, $id_role_name, $phone_access_id, $phone_access_name, $email_access_id, $email_access_name, $address_access_id, $address_access_name, $status_access_id, $status_access_name, $password_access_id, $password_access_name, $sede_city);
         $array_updateSearchUsers = $searchUsersModel->paginateSearchUsers();
         $searchUsersView->paginateSearchUsers($array_updateSearchUsers);
     }
@@ -89,7 +94,12 @@ class searchUsersController
         $searchUsersModel = new searchUsersModel($connection);
         $searchUsersView = new searchUsersView();
         $search = $_POST['search'];
-        $array_search = $searchUsersModel->search($search);
-        $searchUsersView->paginateSearchUsers($array_search);
+        if (empty($search)) {
+            $array_message = ['error' => true, 'message' => 'Campo vacio'];
+            exit(json_encode($array_message));
+        } else {
+            $array_search = $searchUsersModel->search($search);
+            $searchUsersView->paginateSearchUsers($array_search);
+        }
     }
 }

@@ -133,12 +133,13 @@ class clinicHistorySecretaryController
         $array_department = $departmentModel->paginateDepartment();
         $array_city = $cityModel->paginateCity();
         $array_optometrist = $optometristModel->paginateOptometrist();
-
+        date_default_timezone_set('America/Bogota');
+        $date = date('Y-m-d');
         $document = $_POST['documentHistory'];
         $documentSearch = $clinicHistoryModel->searchPerson($document);
 
         if ($documentSearch) {
-            $array_secretary_history = $clinicHistoryModel->searchDocument($document);
+            $array_secretary_history = $clinicHistoryModel->searchDocument($document,$date);
             foreach ($array_secretary_history as &$item) {
                 $item['name_companion'] = '';
                 $item['surname_companion'] = '';
@@ -264,6 +265,7 @@ class clinicHistorySecretaryController
         $OcularBackgroundHistory = $_POST['OcularBackgroundHistory'];
         $familyBackgroundHistory = $_POST['familyBackgroundHistory'];
         $tokenHistorySecretaryUpdate = $_POST['tokenHistorySecretary'];
+        $sede_city=$_SESSION['sede_city'];
         $tokenHistorySecretaryCreate = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $token = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         date_default_timezone_set('America/Bogota');
@@ -308,9 +310,9 @@ class clinicHistorySecretaryController
                 $occupationHistory,
                 $id_department,
                 $id_city,
-                $tokenHistorySecretaryUpdate
+                $tokenHistorySecretaryUpdate,
             );
-            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token);
+            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_Person, $dateCreation, $hour, $token, $sede_city);
         } else {
             $clinicHistoryModel->createPerson(
                 $document_person,
@@ -327,7 +329,7 @@ class clinicHistorySecretaryController
             );
             $id_person = $scheduleAppointmentModel->showId($document_person);
             $id_personCreate = $id_person[0]['id_person'];
-            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_personCreate, $dateCreation, $hour, $token);
+            $clinicHistoryModel->createHistory($cod_secretary, $relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $id_optometrist, $id_personCreate, $dateCreation, $hour, $token, $sede_city);
         }
     }
 
@@ -364,6 +366,7 @@ class clinicHistorySecretaryController
         $array_department = $departmentModel->paginateDepartment();
         $array_city = $cityModel->paginateCity();
         $array_optometrist = $optometristModel->paginateOptometrist();
+        $sede_city=$_SESSION['sede_city'];
 
         $compareEntity = $_POST['compareEntity'];
         $compareOccupation = $_POST['compareOccupation'];
@@ -402,7 +405,7 @@ class clinicHistorySecretaryController
             exit(json_encode($array_message));
         } else {
             $clinicHistoryModel->updatePersonHistory($id_department, $id_city, $healthcareEntityHistory, $occupationHistory, $tokenHistorySecretary);
-            $clinicHistoryModel->updateHistoryUpdate($relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $tokenHistory);
+            $clinicHistoryModel->updateHistoryUpdate($relationshipHistory, $nameCompanionHistory, $surnameCompanionHistory, $phoneCompanionHistory, $reasonQueryHistory, $personalHistory, $OcularBackgroundHistory, $familyBackgroundHistory, $tokenHistory, $sede_city);
             $array_history = $clinicHistoryModel->selectHistoryClinic(['field' => 'token_medical_history', 'value' => $tokenHistory]);
             $clinicHistoryView->updateModalHistoryClinic($array_history, $array_department, $array_city, $array_optometrist);
         }

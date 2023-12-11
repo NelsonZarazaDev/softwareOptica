@@ -149,6 +149,15 @@ class searchMedicalHistoryView
                         <label class="textMedicalHistoryLabel">Telefono acompa&ntilde;ante</label>
                         <input type="text" name="phoneCompanionHistory" id="phoneCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['phone_companion']) ?>" disabled>
                     </div>
+
+                    <div class="justify-content-between">
+                        <label class="textMedicalHistoryLabel">Sede</label>
+                        <input type="text" name="surnameCompanionHistory" id="surnameCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['name_city']) ?>" disabled>
+                    </div>
+                    <div class="justify-content-between">
+                        <label class="textMedicalHistoryLabel">Direccion sede</label>
+                        <input type="text" name="phoneCompanionHistory" id="phoneCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['sede_address']) ?>" disabled>
+                    </div>
                 </div>
 
                 <div class="justify-content-between mt-3 mb-3">

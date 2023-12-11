@@ -367,3 +367,10 @@ a.page-link {
   color: var(--darkBlue);
   box-shadow: 1px 7px 17px 2px rgb(20 20 20 / 15%);
 }
+
+.date{
+  color: var(--darkBlue);
+  font-family: var(--leagueSpartan);
+  font-size: 40px;
+}
+

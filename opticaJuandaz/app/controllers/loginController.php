@@ -25,6 +25,7 @@ class loginController
             $_SESSION['auth'] = 'OK';
             $_SESSION['document_access'] = $array_access[0]['document_access'];
             $_SESSION['cod_employee']=$array_access[0]['cod_employee'];
+            $_SESSION['sede_city']=$array_access[0]['sede_city'];
         }
         header('Location: index.php');
     }

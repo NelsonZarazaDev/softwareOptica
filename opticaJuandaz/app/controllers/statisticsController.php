@@ -14,7 +14,7 @@ class statisticsController
         $array_day = $statisticsModel->paginateStatistics($currentDate);
         $array_secretary = $statisticsModel->paginateSecretary($currentDate);
         $array_optometrist = $statisticsModel->paginateOptometrist($currentDate);
-        $statisticsView->paginateStatistics($array_day, $array_secretary, $array_optometrist);
+        $statisticsView->paginateStatistics($array_day, $array_secretary, $array_optometrist, $currentDate);
     }
 }
  

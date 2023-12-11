@@ -20,31 +20,31 @@
         {
             $value = $array['value'];
 
-            $sql = "SELECT q.date_quote, q.hour_quote,  p.name_person, p.surname_person, p.phone_person, p.document_person, q.token_quote, p.id_person, 
-            (
-                SELECT name_access 
-                FROM optica.access 
-                WHERE cod_employee = q.cod_expert
-            ) AS name_optometrist,
-            (
-                SELECT surname_access 
-                FROM optica.access 
-                WHERE cod_employee = q.cod_expert
-            ) AS surname_optometrist,
-            (
-                SELECT name_access 
-                FROM optica.access 
-                WHERE cod_employee = q.cod_secretary
-            ) AS name_secretary,
-            (
-                SELECT surname_access 
-                FROM optica.access 
-                WHERE cod_employee = q.cod_secretary
-            ) AS surname_secretary
+            $sql = "SELECT 
+            q.date_quote, 
+            q.hour_quote,  
+            p.name_person, 
+            p.surname_person, 
+            p.phone_person, 
+            p.document_person, 
+            q.token_quote, 
+            p.id_person, 
+            s.name_city, 
+            s.sede_address,
+            oa.name_access AS name_optometrist,
+            oa.surname_access AS surname_optometrist,
+            sa.name_access AS name_secretary,
+            sa.surname_access AS surname_secretary
         FROM 
             optica.quote q
         INNER JOIN 
             optica.person p ON q.id_person = p.id_person
+        INNER JOIN 
+            optica.sede_city s ON q.sede_city = s.id_sede_city
+        LEFT JOIN 
+            optica.access oa ON q.cod_expert = oa.cod_employee
+        LEFT JOIN 
+            optica.access sa ON q.cod_secretary = sa.cod_employee
         WHERE q.token_quote = '$value';";
             $this->connection->query($sql);
             return $this->connection->fetchall();

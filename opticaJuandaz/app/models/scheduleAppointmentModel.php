@@ -1,4 +1,4 @@
- <?php
+<?php
     class scheduleAppointmentModel
     {
         private $connection;
@@ -48,8 +48,16 @@
 
         function insertPerson($name, $surname, $document, $phone, $department, $city, $tokenPerson)
         {
-            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id,token_person)
-        VALUES ('$name', '$document', '$phone', '$surname', '$department', '$city','$tokenPerson')";
+            $sql = "INSERT INTO optica.person (name_person, document_person, phone_person, surname_person, location_department_id, location_city_id, token_person)
+        VALUES (
+            UPPER('$name'),
+            UPPER('$document'),
+            UPPER('$phone'),
+            UPPER('$surname'),
+            '$department',
+            '$city',
+            '$tokenPerson'
+        )";
             $this->connection->query($sql);
         }
 
@@ -60,10 +68,10 @@
             return $this->connection->fetchAll();
         }
 
-        function insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist, $dateCreationQuote)
+        function insertSchedule($id_person, $hour, $date, $cod_secretary, $token, $id_optometrist, $dateCreationQuote, $sede_city)
         {
-            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token_quote,cod_expert,date_creation_quote)
-        VALUES ('$id_person','$date','$hour','$cod_secretary','$token','$id_optometrist','$dateCreationQuote')";
+            $sql = "INSERT INTO optica.quote (id_person,date_quote,hour_quote,cod_secretary,token_quote,cod_expert,date_creation_quote, sede_city)
+        VALUES ('$id_person','$date','$hour','$cod_secretary','$token','$id_optometrist','$dateCreationQuote','$sede_city')";
             $this->connection->query($sql);
         }
 

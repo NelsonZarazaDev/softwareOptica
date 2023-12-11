@@ -45,7 +45,6 @@ class HistoryClinicJs {
     })
       .then((resp) => resp.text())
       .then(function (data) {
-        console.log(data);
         try {
           object = JSON.parse(data);
           toastr.error(object.message);

@@ -271,6 +271,7 @@ class scheduleAppointmentView
         $surname_access = $array_schedule[0]['surname_access'];
         date_default_timezone_set('America/Bogota');
         $fechaActual = date('Y-m-d');
+        $hora_actual = date('H:i:s');
         $currentTime = new DateTime();
         $hour_historyObject = new DateTime($hour_quote);
         $difference = $currentTime->diff($hour_historyObject);
@@ -366,7 +367,7 @@ class scheduleAppointmentView
             <input type="hidden" id="id_optometrist" name="id_optometrist" value="<?php echo $cod_employee;  ?>">
 
             <div class="d-flex flex-sm-column flex-lg-row">
-                <?php if ($subtraction < '02:00:00' && $date_quote == $fechaActual || $date_quote > $fechaActual) { ?>
+                <?php if ($subtraction > '02:00:00' && $hour_quote > $hora_actual  && $date_quote == $fechaActual || $date_quote > $fechaActual) { ?>
                     <button type="button" class="align-items-center m-2 col-10 col-lg-4 d-flex mt-2 p-2 justify-content-center buttonSearch" onclick="Schedule.updateSchedule()">
                         <i class="bi bi-floppy me-2 ms-2"></i> Guardar
                     </button> <?php } else {
@@ -389,11 +390,3 @@ class scheduleAppointmentView
     }
 }
 ?>
-
-<script>
-    $(document).ready(function() {
-        $('#multiple-checkboxes').multiselect({
-          includeSelectAllOption: true,
-        });
-    });
-</script>

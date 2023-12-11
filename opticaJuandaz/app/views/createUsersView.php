@@ -1,7 +1,7 @@
 <?php
 class createUsersView
 {
-    function paginateCreateUsers($array_department, $array_city, $array_role)
+    function paginateCreateUsers($array_department, $array_city, $array_role,$array_sede_city)
     {
 ?>
         <script>
@@ -126,6 +126,27 @@ class createUsersView
                             ?>
                         </select>
                     </div>
+
+
+                    <div class="col d-flex flex-sm-column justify-content-between">
+                        <label for="sexo" class="textLabelCreate">Sucursal:</label>
+                        <select id="id_sede_city" class="textInputCreate textInputSelect col-8 col-lg-10 p-2" name="id_sede_city" required>
+                            <option value=""></option>
+                            <?php
+                            if ($array_sede_city) {
+                                foreach ($array_sede_city as $object_sede_city) {
+                                    $id_sede_city = $object_sede_city['id_sede_city'];
+                                    $name_city = $object_sede_city['name_city'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+
                 </div>
                 <div class="justify-content-lg-start mt-4">
                     <button type="button" class="align-items-center buttonUserRegister col-10 col-lg-2 mt-4 p-2 d-flex justify-content-center" onclick="Administrador.insertUser()"><i class="bi bi-person-plus me-2"></i>Crear</button>

@@ -9,25 +9,28 @@ class createUsersController
         require_once "app/models/departmentModel.php";
         require_once "app/models/cityModel.php";
         require_once "app/models/roleModel.php";
+        require_once "app/models/sedeCityModel.php";
 
-        $conecction = new connection();
+        $connection = new connection();
 
-        $departmentModel = new departmentModel($conecction);
-        $cityModel = new cityModel($conecction);
-        $roleModel = new roleModel($conecction);
+        $departmentModel = new departmentModel($connection);
+        $cityModel = new cityModel($connection);
+        $roleModel = new roleModel($connection);
+        $sedeCityModel = new sedeCityModel($connection);
 
         $createUsersView = new createUsersView();
 
         $array_department = $departmentModel->paginateDepartment();
         $array_city = $cityModel->paginateCity();
         $array_role = $roleModel->paginateRole();
-        $createUsersView->paginateCreateUsers($array_department, $array_city, $array_role);
+        $array_sede_city=$sedeCityModel->paginateSedeCity();
+        $createUsersView->paginateCreateUsers($array_department, $array_city, $array_role,$array_sede_city);
     }
 
     function insertUser()
     {
-        $conecction = new Connection();
-        $createUsersModel = new createUsersModel($conecction);
+        $connection = new Connection();
+        $createUsersModel = new createUsersModel($connection);
 
         $id_role = $_POST['id_role'];
         $name_access = $_POST['name'];
@@ -44,6 +47,7 @@ class createUsersController
         $token_access = date('YmdHms') . microtime(true) . rand(1, 1000) . $_SESSION['id_access'] . uniqid() . rand(100, 1000);
         $location_departament_id = $_POST['id_departament'];
         $location_city_id = $_POST['id_city'];
+        $sede_city=$_POST['id_sede_city'];
 
         $array_create = $createUsersModel->diplicateCreate($email_access, $document_access);
 
@@ -107,7 +111,7 @@ class createUsersController
                 move_uploaded_file($_FILES["photo_person"]["tmp_name"], $targetFile);
                 
             }
-            $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id);
+            $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id, $sede_city);
         }
     }
 }
