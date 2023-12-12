@@ -21,7 +21,7 @@ class searchMedicalHistoryModel
     function viewClinicHistory($array){
         $field=$array['field'];
         $value=$array['value'];
-        $sql="SELECT p.*, m.*, c.name_city, d.name_department, a.name_access, a.surname_access, s.name_city, s.sede_address
+        $sql="SELECT p.*, m.*, c.name_city, d.name_department, a.name_access, a.surname_access, s.name_city_sede, s.sede_address
         FROM optica.person p
         INNER JOIN optica.medical_history m ON p.id_person = m.id_person
         INNER JOIN optica.city c ON p.location_city_id = c.id_city
@@ -46,4 +46,6 @@ class searchMedicalHistoryModel
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }
+
+
 }

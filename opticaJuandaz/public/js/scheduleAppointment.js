@@ -138,7 +138,55 @@ class ScheduleJS {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  } 
+
+  searchCity() {
+    var object = new FormData(document.querySelector("#insert_schedule"));
+    fetch("scheduleAppointmentController/searchCity", {
+        method: "POST",
+        body: object,
+    })
+        .then((resp) => resp.text())
+        .then(function (data) {
+            try {
+                object = JSON.parse(data);
+                toastr.error(object.message);
+            } catch (error) {
+                // Extract only the HTML for the city dropdown
+                var cityDropdownHTML = data.match(/<select.id="id_city".*?<\/select>/s);
+
+
+                if (cityDropdownHTML) {
+                    // Find the city dropdown element
+                    var cityDropdown = document.getElementById("id_city");
+
+                    // Save the current selected city
+                    var currentSelectedCity = cityDropdown.value;
+
+                    // Update only the city dropdown options
+                    cityDropdown.innerHTML = cityDropdownHTML[0];
+
+                    // Set back the previously selected city if it still exists in the new options
+                    if (currentSelectedCity) {
+                        var optionExists = Array.from(cityDropdown.options).some(option => option.value === currentSelectedCity);
+                        if (optionExists) {
+                            cityDropdown.value = currentSelectedCity;
+                        }
+                    }
+
+                    toastr.success("El registro fue guardado");
+                } else {
+                    toastr.error("Error parsing HTML");
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+
+
 }
 
 var Schedule = new ScheduleJS();

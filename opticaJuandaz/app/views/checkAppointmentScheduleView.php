@@ -155,7 +155,7 @@ class checkAppointmentScheduleView
         $surname_optometrist=$array_schedule[0]['surname_optometrist'];
         $name_secretary=$array_schedule[0]['name_secretary'];
         $surname_secretary=$array_schedule[0]['surname_secretary'];
-        $name_city=$array_schedule[0]['name_city'];
+        $name_city=$array_schedule[0]['name_city_sede'];
         $sede_address=$array_schedule[0]['sede_address'];
     ?>
         <div class="card">

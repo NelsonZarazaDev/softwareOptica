@@ -29,7 +29,7 @@
             p.document_person, 
             q.token_quote, 
             p.id_person, 
-            s.name_city, 
+            s.name_city_sede, 
             s.sede_address,
             oa.name_access AS name_optometrist,
             oa.surname_access AS surname_optometrist,

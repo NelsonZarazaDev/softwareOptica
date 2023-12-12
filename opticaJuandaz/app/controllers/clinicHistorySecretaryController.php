@@ -249,7 +249,7 @@ class clinicHistorySecretaryController
         $nameHistory = $_POST['nameHistory'];
         $surnameHistory = $_POST['surnameHistory'];
         $phoneHistory = $_POST['phoneHistory'];
-        $id_department = $_POST['id_department'];
+        $id_department = $_POST['id_departament'];
         $id_city = $_POST['id_city'];
         $id_optometrist = $_POST['id_optometrist'];
         $addressHistory = $_POST['addressHistory'];
@@ -410,4 +410,26 @@ class clinicHistorySecretaryController
             $clinicHistoryView->updateModalHistoryClinic($array_history, $array_department, $array_city, $array_optometrist);
         }
     }
+
+    function searchCity()
+    {
+        $connection = new connection();
+        require_once "app/models/cityModel.php";
+        require_once "app/models/departmentModel.php";
+        require_once "app/models/optometristModel.php";
+
+        $clinicHistoryModel = new clinicHistorySecretaryModel($connection);
+        $clinicHistoryView = new clinicHistorySecretaryView();
+        $departmentModel = new departmentModel($connection);
+        $optometristModel = new optometristModel($connection);
+        $array_department = $departmentModel->paginateDepartment();
+        $array_optometrist = $optometristModel->paginateOptometrist();
+        $department=$_POST['id_departament'];
+        $array_city=$clinicHistoryModel->searchCity($department);
+        $array_secretary_history[0]['name_city']='';
+        $array_secretary_history[0]['location_city_id']='';
+        $clinicHistoryView->modalHistoryClinic($array_secretary_history, $array_department, $array_city, $array_optometrist);
+    }
+
+
 }

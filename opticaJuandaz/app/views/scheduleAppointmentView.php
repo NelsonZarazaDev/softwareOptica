@@ -4,7 +4,6 @@ class scheduleAppointmentView
     function paginateScheduleAppointment($person_data, $arraySchedule, $array_department, $array_city, $array_optometrist)
     {
 ?>
-
         <script>
             document.getElementById("textInfo").innerHTML = "Reserva de citas";
         </script>
@@ -63,9 +62,9 @@ class scheduleAppointmentView
                     </div>
 
                     <div class="d-flex flex-column mt-3">
-                        <label class="textLabelCreate">Departamento:</label>
-                        <select class="textInputCreate textInputSelect p-2" name="id_department" id="id_department" required>
-                            <option value="<?php echo $person_data[0]['location_department_id']; ?>"><?php echo $person_data[0]['name_department']; ?></option>
+                        <label for="sexo" class="textLabelCreate">Departamento:</label>
+                        <select id="id_departament" class="textInputCreate textInputSelect p-2" name="id_departament" onchange="Schedule.searchCity()" required>
+                        <option value="<?php echo $array_city[0]['id_department']; ?>"><?php echo $array_city[0]['name_city']; ?></option>
                             <?php
                             if ($array_department) {
                                 foreach ($array_department as $object_department) {
@@ -81,9 +80,9 @@ class scheduleAppointmentView
                     </div>
 
                     <div class="d-flex flex-column mt-3">
-                        <label class="textLabelCreate">Ciudad:</label>
-                        <select class="textInputCreate textInputSelect p-2" name="id_city" id="id_city" required>
-                            <option value="<?php echo $person_data[0]['location_city_id']; ?>"><?php echo $person_data[0]['name_city']; ?></option>
+                        <label for="sexo" class="textLabelCreate">Ciudad:</label>
+                        <select id="id_city" class="textInputCreate textInputSelect p-2" name="id_city" required>
+                        <option value="<?php echo $person_data[0]['location_city_id']; ?>"><?php echo $person_data[0]['name_city']; ?></option>
                             <?php
                             if ($array_city) {
                                 foreach ($array_city as $object_city) {
@@ -94,6 +93,7 @@ class scheduleAppointmentView
                             <?php
                                 }
                             }
+                            echo 'id_city';
                             ?>
                         </select>
                     </div>
@@ -101,7 +101,7 @@ class scheduleAppointmentView
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Optometra:</label>
                         <select class="textInputCreate textInputSelect p-2" name="id_optometrist" id="id_optometrist" required>
-                            <option value="<?php echo $person_data[0]['cod_expert']; ?>"><?php echo ($person_data[0]['name_access']) . " " . ($person_data[0]['surname_access']); ?></option>
+                            <option value=""></option>
                             <?php
                             if ($array_optometrist) {
                                 foreach ($array_optometrist as $object_optometrist) {

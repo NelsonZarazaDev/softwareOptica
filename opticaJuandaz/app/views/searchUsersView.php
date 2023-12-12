@@ -140,14 +140,15 @@ class searchUsersView
                     <div class="col-lg-6 d-flex flex-column ">
                         <label class="textUpdateSearchLabel">Sucursal:</label>
                         <select id="id_sede_city" class="form-control p-2" name="id_sede_city" required>
-                        <option value="<?php echo $sede_city; ?>"><?php echo $name_city; ?></option>
+                        <option value="<?php echo $sede_city; ?>"><?php echo $name_city." - ".$sede_address ?></option>
                             <?php
                             if ($array_sede_city) {
                                 foreach ($array_sede_city as $object_sede_city) {
                                     $id_sede_city = $object_sede_city['id_sede_city'];
                                     $name_city = $object_sede_city['name_city'];
+                                    $sede_address = $object_sede_city['sede_address'];
                             ?>
-                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city; ?></option>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city." - ".$sede_address; ?></option>
                             <?php
                                 }
                             }

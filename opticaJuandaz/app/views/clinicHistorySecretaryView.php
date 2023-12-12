@@ -18,12 +18,12 @@ class clinicHistorySecretaryView
                             </button>
                         </div>
                         <div class="d-flex">
-                        <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento,Nombre, N° historia">
-                    <span class="input-group-text" id="">
-                        <button type="button" class="search" onclick="HistoryClinic.search()">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </span>
+                            <input type="text" id="search" name="search" class="inputSearch p-2" placeholder="Documento,Nombre, N° historia">
+                            <span class="input-group-text" id="">
+                                <button type="button" class="search" onclick="HistoryClinic.search()">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -139,9 +139,9 @@ class clinicHistorySecretaryView
                                 <input type="text" name="occupationHistory" id="occupationHistory" value="<?php echo ($array_secretary_history[0]['occupation_person']) ?>" class="form-control inputMedicalHistory">
                             </div>
 
-                            <div class="d-flex flex-column">
-                                <label class="textLabelCreate">Departamento:</label>
-                                <select class="textInputCreate textInputSelect p-2" name="id_department" id="id_department" required>
+                            <div class="d-flex flex-column mt-3">
+                                <label for="sexo" class="textLabelCreate">Departamento:</label>
+                                <select id="id_departament" class="textInputCreate textInputSelect p-2" name="id_departament" onchange="HistoryClinic.searchCity()" required>
                                     <option value="<?php echo $array_secretary_history[0]['location_department_id']; ?>"><?php echo $array_secretary_history[0]['name_department']; ?></option>
                                     <?php
                                     if ($array_department) {
@@ -158,9 +158,10 @@ class clinicHistorySecretaryView
                             </div>
 
                             <div class="d-flex flex-column mt-3">
-                                <label class="textLabelCreate">Ciudad:</label>
-                                <select class="textInputCreate textInputSelect p-2" name="id_city" id="id_city" required>
-                                    <option value="<?php echo $array_secretary_history[0]['location_city_id']; ?>"><?php echo $array_secretary_history[0]['name_city']; ?></option>
+                                <label for="sexo" class="textLabelCreate">Ciudad:</label>
+                                <select id="id_city" class="textInputCreate textInputSelect p-2" name="id_city" required>
+                                <option value="<?php echo $array_secretary_history[0]['location_city_id']; ?>"><?php echo $array_secretary_history[0]['name_city']; ?></option>
+
                                     <?php
                                     if ($array_city) {
                                         foreach ($array_city as $object_city) {
@@ -171,9 +172,11 @@ class clinicHistorySecretaryView
                                     <?php
                                         }
                                     }
+                                    echo 'id_city';
                                     ?>
                                 </select>
                             </div>
+
 
                             <div class="d-flex flex-column mt-3">
                                 <label class="textLabelCreate">Optometra:</label>

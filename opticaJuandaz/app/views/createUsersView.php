@@ -1,8 +1,9 @@
 <?php
 class createUsersView
-{
-    function paginateCreateUsers($array_department, $array_city, $array_role,$array_sede_city)
+{ 
+    function paginateCreateUsers($array_department, $array_city, $array_role, $array_sede_city)
     {
+
 ?>
         <script>
             document.getElementById("textInfo").innerHTML = "Crear Usuarios";
@@ -93,8 +94,8 @@ class createUsersView
 
                     <div class="col d-flex flex-sm-column justify-content-between">
                         <label for="sexo" class="textLabelCreate">Departamento:</label>
-                        <select id="id_departament" class="textInputCreate textInputSelect col-8 col-lg-10 p-2" name="id_departament" required>
-                            <option value=""></option>
+                        <select id="id_departament" class="textInputCreate textInputSelect col-8 col-lg-10 p-2" name="id_departament" onchange="Administrador.searchCity()" required>
+                            <option value="<?php echo $array_city[0]['id_department']; ?>"><?php echo $array_city[0]['name_department']; ?></option>
                             <?php
                             if ($array_department) {
                                 foreach ($array_department as $object_department) {
@@ -137,8 +138,9 @@ class createUsersView
                                 foreach ($array_sede_city as $object_sede_city) {
                                     $id_sede_city = $object_sede_city['id_sede_city'];
                                     $name_city = $object_sede_city['name_city'];
+                                    $sede_address = $object_sede_city['sede_address'];
                             ?>
-                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city; ?></option>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_sede_city; ?>"><?php echo $name_city." - ".$sede_address; ?></option>
                             <?php
                                 }
                             }

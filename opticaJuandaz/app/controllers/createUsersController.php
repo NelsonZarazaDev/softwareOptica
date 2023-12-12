@@ -24,6 +24,8 @@ class createUsersController
         $array_city = $cityModel->paginateCity();
         $array_role = $roleModel->paginateRole();
         $array_sede_city=$sedeCityModel->paginateSedeCity();
+        $array_city[0]['name_department']='';
+
         $createUsersView->paginateCreateUsers($array_department, $array_city, $array_role,$array_sede_city);
     }
 
@@ -113,5 +115,30 @@ class createUsersController
             }
             $createUsersModel->insertUser($id_role, $name_access, $surname_access, $document_access, $date_birth_access, $date_admission_access, $phone_access, $years_experience_access, $email_access, $address_access, $sex_access, $password_access, $token_access, $location_departament_id, $location_city_id, $sede_city);
         }
+    }
+
+    function searchCity()
+    {
+        require_once "app/models/departmentModel.php";
+        require_once "app/models/cityModel.php";
+        require_once "app/models/roleModel.php";
+        require_once "app/models/sedeCityModel.php";
+
+        $connection = new connection();
+
+        $departmentModel = new departmentModel($connection);
+        $searchCityModel = new searchCityModel($connection);
+        $roleModel = new roleModel($connection);
+        $sedeCityModel = new sedeCityModel($connection);
+
+        $department=$_POST['id_departament'];
+        $array_city=$searchCityModel->searchCity($department);
+
+        $createUsersView = new createUsersView();
+
+        $array_department = $departmentModel->paginateDepartment();
+        $array_role = $roleModel->paginateRole();
+        $array_sede_city=$sedeCityModel->paginateSedeCity();
+        $createUsersView->paginateCreateUsers($array_department, $array_city, $array_role,$array_sede_city);
     }
 }

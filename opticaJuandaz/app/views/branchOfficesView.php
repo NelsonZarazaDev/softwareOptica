@@ -1,7 +1,7 @@
 <?php
 class branchOfficesView
 {
-    function paginateBranchOffices($array_sede_city)
+    function paginateBranchOffices($array_sede_city, $array_department, $array_city)
     {
 ?>
         <script>
@@ -11,10 +11,41 @@ class branchOfficesView
         <div class="card-body pt-5">
             <form id="insert_city">
                 <div class="row row-cols-1 row-cols-md-3 g-3 text-sm-start">
+
                     <div class="col d-flex flex-sm-column justify-content-between">
-                        <label for="nombre" class="textLabelCreate">Ciudad:</label>
-                        <input type="text" class="textInputCreate col-8 col-lg-10 p-2" id="city" name="city" required>
-                        <div class="error" id="error-nombre"></div>
+                        <label for="sexo" class="textLabelCreate">Departamento:</label>
+                        <select id="id_departament" class="textInputCreate textInputSelect p-2" name="id_departament" onchange="branchOffice.searchCity()" required>
+                        <option value="<?php echo $array_city[0]['id_department']; ?>"><?php echo $array_city[0]['name_department']; ?></option>
+                            <?php
+                            if ($array_department) {
+                                foreach ($array_department as $object_department) {
+                                    $id_department = $object_department['id_department'];
+                                    $name_department = $object_department['name_department'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_department; ?>"><?php echo $name_department; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col d-flex flex-sm-column justify-content-between">
+                        <label for="sexo" class="textLabelCreate">Ciudad:</label>
+                        <select id="id_city" class="textInputCreate textInputSelect p-2" name="id_city" required>
+                            <option value=""></option>
+                            <?php
+                            if ($array_city) {
+                                foreach ($array_city as $object_city) {
+                                    $id_city = $object_city['id_city'];
+                                    $name_city = $object_city['name_city'];
+                            ?>
+                                    <option class="textInputCreate p-2" value="<?php echo $id_city; ?>"><?php echo $name_city; ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col d-flex flex-sm-column justify-content-between">
                         <label for="apellidos" class="textLabelCreate">Direccion:</label>
@@ -72,22 +103,32 @@ class branchOfficesView
         <script src="public/js/function.js"></script>
 
     <?php }
-    function paginateModelSede($array_updateSede)
+    function paginateModelSede($array_updateSede, $array_department, $array_city)
     {
     ?>
         <div class="card-body">
             <form id="updae_city">
                 <div class="row row-cols-1 row-cols-md-3 g-3 text-sm-start">
                     <input type="hidden" name="token" value="<?php echo $array_updateSede[0]['token_sede'] ?>">
-                    <input type="hidden" name="currentName" value="<?php echo $array_updateSede[0]['name_city'] ?>">
+                    <input type="hidden" name="currentName" value="<?php echo $array_updateSede[0]['name_city_sede'] ?>">
                     <input type="hidden" name="currentAddress" value="<?php echo $array_updateSede[0]['sede_address'] ?>">
                     <input type="hidden" name="currentState" value="<?php echo $array_updateSede[0]['sede_state'] ?>">
+                    <input type="hidden" name="name_city_sede" value="<?php echo $array_updateSede[0]['name_city_sede'] ?>">
+                    <input type="hidden" name="department_sede" value="<?php echo $array_updateSede[0]['department_sede'] ?>">
+                    
 
                     <div class="col d-flex flex-sm-column justify-content-between">
-                        <label for="nombre" class="textLabelCreate">Ciudad:</label>
-                        <input type="text" class="textInputCreate col-8 col-lg-10 p-2" id="city" name="city" required value="<?php echo $array_updateSede[0]['name_city'] ?>">
-                        <div class="error" id="error-nombre"></div>
+                        <label for="apellidos" class="textLabelCreate">Departamento:</label>
+                        <input type="text" name="" id="" class="form-control p-2 inputMedicalHistory" value="<?php echo ($array_updateSede[0]['name_department']) ?>" disabled>
+                        <div class="error" id="error-apellidos"></div>
                     </div>
+
+                    <div class="col d-flex flex-sm-column justify-content-between">
+                        <label for="apellidos" class="textLabelCreate">Ciudad:</label>
+                        <input type="text" name="" id="" class="form-control p-2 inputMedicalHistory" value="<?php echo ($array_updateSede[0]['city']) ?>" disabled>
+                        <div class="error" id="error-apellidos"></div>
+                    </div>
+
 
                     <div class="col d-flex flex-sm-column justify-content-between">
                         <label for="apellidos" class="textLabelCreate">Direccion:</label>

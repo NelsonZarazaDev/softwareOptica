@@ -10,7 +10,9 @@ class sedeCityModel
 
     function paginateSedeCity()
     {
-        $sql="SELECT * FROM optica.sede_city WHERE sede_state='t'";
+        $sql="SELECT s.*,c.name_city FROM optica.sede_city s inner join optica.city c
+        on c.id_city=s.name_city_sede
+        WHERE sede_state='t'";
         $this->connection->query($sql);
         return $this->connection->fetchAll();
     }

@@ -10,7 +10,7 @@ class cityModel
 
     function paginateCity()
     {
-        $sql="SELECT * FROM optica.city";
+        $sql="SELECT * FROM optica.city order by name_city";
         $this->connection->query($sql);
         return $this->connection->fetchAll();
     }

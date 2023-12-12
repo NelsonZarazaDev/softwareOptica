@@ -1,6 +1,5 @@
 class branchOfficesJS {
   insertCity() {
-    console.log("hola");
     var object = new FormData(document.querySelector("#insert_city"));
     fetch("branchOfficesController/insertCity", {
       method: "POST",
@@ -40,33 +39,49 @@ class branchOfficesJS {
       });
   }
 
+  updateCity() {
+    var object = new FormData(document.querySelector("#updae_city"));
 
-  updateCity()    {
-    var object=new FormData(document.querySelector('#updae_city'));
-     
-    fetch('branchOfficesController/updateCity',{
-        method: 'POST',
-        body: object
+    fetch("branchOfficesController/updateCity", {
+      method: "POST",
+      body: object,
     })
-    .then((resp) => resp.text())
-    .then(function(data)
-    { 
-        try 
-        {
-            object = JSON.parse(data);
-            toastr.error(object.message);
-        } 
-        catch(error)
-        {
-            document.querySelector('#content').innerHTML=data;
-            toastr.success('El registro fue actualizado');
-            Menu.menu('branchOfficesController/paginateBranchOffices');
+      .then((resp) => resp.text())
+      .then(function (data) {
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#content").innerHTML = data;
+          toastr.success("El registro fue actualizado");
+          Menu.menu('branchOfficesController/paginateBranchOffices');
         }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  searchCity() {
+    var object = new FormData(document.querySelector("#insert_city"));
+    fetch("branchOfficesController/searchCity", {
+      method: "POST",
+      body: object,
     })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
+      .then((resp) => resp.text())
+      .then(function (data) {
+        try {
+          object = JSON.parse(data);
+          toastr.error(object.message);
+        } catch (error) {
+          document.querySelector("#content").innerHTML = data;
+          toastr.success("el registro fue guardado");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
 }
 
 var branchOffice = new branchOfficesJS();

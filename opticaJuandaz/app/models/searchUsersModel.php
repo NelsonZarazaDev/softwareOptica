@@ -9,11 +9,14 @@ class searchUsersModel
 
     function paginateSearchUsers()
     {
-        $sql = "SELECT r.name_role, a.*, s.name_city, s.sede_address
+        $sql = "SELECT r.name_role, a.*, c.name_city, s.sede_address
         from optica.access a inner join optica.role r
         on (a.id_role=r.id_role)
 		inner join optica.sede_city s
-		on(a.sede_city=s.id_sede_city) order by a.id_access DESC";
+		on(a.sede_city=s.id_sede_city)
+        inner join optica.city c
+		on c.id_city=s.name_city_sede 
+        order by a.id_access DESC";
         $this->connection->query($sql);
         return $this->connection->fetchall();
     }
@@ -23,11 +26,13 @@ class searchUsersModel
         $field = $array['field'];
         $value = $array['value'];
 
-        $sql = "SELECT r.name_role, a.*, s.name_city, s.sede_address
+        $sql = "SELECT r.name_role, a.*, c.name_city, s.sede_address
         from optica.access a inner join optica.role r
         on (a.id_role=r.id_role)
 		inner join optica.sede_city s
 		on(a.sede_city=s.id_sede_city)
+		inner join optica.city c
+		on c.id_city=s.name_city_sede
         WHERE $field='$value'";
         $this->connection->query($sql);
         return $this->connection->fetchall();
@@ -57,11 +62,13 @@ class searchUsersModel
 
     function search($search)
     {
-        $sql = "SELECT r.name_role, a.*, s.name_city, s.sede_address
+        $sql = "SELECT r.name_role, a.*, c.name_city, s.sede_address
         from optica.access a inner join optica.role r
         on (a.id_role=r.id_role)
 		inner join optica.sede_city s
-		on(a.sede_city=s.id_sede_city) WHERE a.cod_employee LIKE '%$search%' OR 
+		on(a.sede_city=s.id_sede_city)
+		inner join optica.city c
+		on c.id_city=s.name_city_sede WHERE a.cod_employee LIKE '%$search%' OR 
               a.document_access LIKE '%$search%' OR
               UPPER(a.name_access) LIKE UPPER('%$search%') OR
               UPPER(a.surname_access) LIKE UPPER('%$search%') OR  
