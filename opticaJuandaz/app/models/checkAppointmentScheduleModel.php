@@ -34,7 +34,8 @@
             oa.name_access AS name_optometrist,
             oa.surname_access AS surname_optometrist,
             sa.name_access AS name_secretary,
-            sa.surname_access AS surname_secretary
+            sa.surname_access AS surname_secretary,
+			c.name_city
         FROM 
             optica.quote q
         INNER JOIN 
@@ -45,6 +46,8 @@
             optica.access oa ON q.cod_expert = oa.cod_employee
         LEFT JOIN 
             optica.access sa ON q.cod_secretary = sa.cod_employee
+		INNER JOIN 
+			optica.city c ON s.name_city_sede = c.id_city
         WHERE q.token_quote = '$value';";
             $this->connection->query($sql);
             return $this->connection->fetchall();

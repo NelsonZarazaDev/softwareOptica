@@ -178,8 +178,6 @@ class HistoryClinicJs {
                 cityDropdown.value = currentSelectedCity;
               }
             }
-
-            toastr.success("El registro fue guardado");
           } else {
             toastr.error("Error parsing HTML");
           }

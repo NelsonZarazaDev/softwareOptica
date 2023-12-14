@@ -75,7 +75,6 @@ class branchOfficesJS {
           toastr.error(object.message);
         } catch (error) {
           document.querySelector("#content").innerHTML = data;
-          toastr.success("el registro fue guardado");
         }
       })
       .catch(function (error) {

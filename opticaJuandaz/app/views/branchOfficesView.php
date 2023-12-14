@@ -66,6 +66,7 @@ class branchOfficesView
                 <thead>
                     <tr>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Codigo</td>
+                        <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Departamento</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Ciudad</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Direccion</td>
                         <td class="textTableHeaderSearch" style=" background-color:#cbedf6;">Estado</td>
@@ -80,12 +81,14 @@ class branchOfficesView
                         $sede_address = $object_sedeCity['sede_address'];
                         $sede_state = $object_sedeCity['sede_state'];
                         $token_sede = $object_sedeCity['token_sede'];
+                        $name_department=$object_sedeCity['name_department'];
 
                     ?>
                         <tr class="text-center">
-                            <td class="textTableSearch text-center"><?php echo $id_sede_city; ?></td>
-                            <td class="textTableSearch text-center"><?php echo $name_city; ?></td>
-                            <td class="textTableSearch text-center"><?php echo $sede_address; ?></td>
+                            <td class="textTableSearch"><?php echo $id_sede_city; ?></td>
+                            <td class="textTableSearch"><?php echo $name_department; ?></td>
+                            <td class="textTableSearch"><?php echo $name_city; ?></td>
+                            <td class="textTableSearch"><?php echo $sede_address; ?></td>
                             <td class="textTableSearch"><?php echo $sede_state; ?></td>
                             <td class="textTableSearch" style="text-align:center;"><i class="bi bi-pencil-square" onclick="branchOffice.modalCity('<?php echo $token_sede ?>')"></i></td>
                         </tr>

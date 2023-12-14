@@ -125,7 +125,7 @@ class searchMedicalHistoryView
 
                     <div class="d-flex flex-column mt-3">
                         <label class="textLabelCreate">Ciudad:</label>
-                        <input type="text" name="id_city" id="id_city" value="<?php echo $array_secretary_history[0]['name_city'] ?>" class="form-control inputMedicalHistory" disabled>
+                        <input type="text" name="id_city" id="id_city" value="<?php echo $array_secretary_history[0]['person_city'] ?>" class="form-control inputMedicalHistory" disabled>
                     </div>
 
                     <div class="d-flex flex-column mt-3">
@@ -152,7 +152,7 @@ class searchMedicalHistoryView
 
                     <div class="justify-content-between">
                         <label class="textMedicalHistoryLabel">Sede</label>
-                        <input type="text" name="surnameCompanionHistory" id="surnameCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['name_city']) ?>" disabled>
+                        <input type="text" name="surnameCompanionHistory" id="surnameCompanionHistory" class="form-control inputMedicalHistory" value="<?php echo ($array_secretary_history[0]['sede_city']) ?>" disabled>
                     </div>
                     <div class="justify-content-between">
                         <label class="textMedicalHistoryLabel">Direccion sede</label>
