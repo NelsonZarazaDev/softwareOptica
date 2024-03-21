@@ -18,6 +18,6 @@ Se ofrece una licencia limitada para el uso no comercial y educativo de este sof
 
 ## Contacto
 
-Nombre: Nelson Mauricio Navarro Zaraza
-Teléfono: +57 3157465208
-Correo electrónico: nelsonmauricionavarrozaraza@gmail.com
+- Nombre: Nelson Mauricio Navarro Zaraza
+- Teléfono: +57 3157465208
+- Correo electrónico: nelsonmauricionavarrozaraza@gmail.com
