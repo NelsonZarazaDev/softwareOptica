@@ -14,7 +14,7 @@ El uso no autorizado de este software constituye una violación de los derechos 
 
 ## Licencia
 
-Se ofrece una licencia limitada para el uso no comercial y educativo de este software, sujeta a los términos y condiciones establecidos por Nelson Mauricio Navarro Zaraza. Para obtener más información sobre la licencia y los términos de uso, consulte los detalles de contacto a continuación.
+Se ofrece una licencia limitada para el uso educativo, excluyendo cualquier uso comercial, de este software, sujeta a los términos y condiciones establecidos por Nelson Mauricio Navarro Zaraza. Para obtener más información sobre la licencia y los términos de uso, consulta los detalles de contacto a continuación.
 
 ## Contacto
 
