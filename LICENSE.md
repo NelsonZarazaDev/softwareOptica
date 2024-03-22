@@ -2,7 +2,7 @@
 
 ## Software
 
-Este software es propiedad intelectual de Nelson Mauricio Navarro Zaraza. Se trata de un [descripción breve del software].
+Este software es propiedad intelectual de Nelson Mauricio Navarro Zaraza. Se trata de un software web para la gestión de reservas e historia clínicas en ópticas.
 
 ## Prohibición de uso no autorizado
 
