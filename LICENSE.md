@@ -10,7 +10,7 @@ Se prohíbe estrictamente el uso no autorizado de este software para fines comer
 
 ## Consecuencias legales
 
-El uso no autorizado de este software constituye una violación de los derechos de propiedad intelectual y estará sujeto a las sanciones legales previstas por la Ley 599 de 2000: [se quitó una URL no válida] (Código Penal Colombiano), el Código Civil Colombiano: [se quitó una URL no válida] y los tratados internacionales aplicables.
+El uso no autorizado de este software constituye una violación de los derechos de propiedad intelectual y estará sujeto a las sanciones legales previstas por la Ley 599 de 2000 (Código Penal Colombiano), el Código Civil Colombiano y los tratados internacionales aplicables.
 
 ## Licencia
 
